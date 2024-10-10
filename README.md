@@ -36,9 +36,12 @@ import - brings in modules or specific items from a module into your current pro
 
 del -  is used to delete objects in python. It can be a variable, a list item, or an attribute. It's like saying "You're outta here!
 
-is - 
-try - 
-in - 
+is - is a compararison operator used to test if two variables refer to the same objects. Example: "Are these two the exact same thing in memeory?"
+
+try - is used for exception handling. It allows you to test a block of codefor errors, so your program doesn't crash unexpectedly. ( Code's saftey net.)
+
+in - is a versitile keyword. It's used to check if a value exists within an iterable (list, tuple, or string) and also in loops to iterate over items.
+
 while - 
 lambda - 
 with - 
