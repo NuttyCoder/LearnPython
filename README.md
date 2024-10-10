@@ -46,7 +46,8 @@ while -  is used for creating loops that continue to execute as long as a given 
 
 lambda - is used to create small, anonymousfunctions on the fly. A min-function you can define ina single line without giving it a name.
 
-with - 
+with - is used in context management, which means it helps you manage resources like file streams or networks connections, ensuring they are properly cleaned up after their use. It makes your code cleaner and less error prone.
+
 except - 
 None - 
 yield - 
