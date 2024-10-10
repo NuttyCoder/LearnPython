@@ -42,7 +42,8 @@ try - is used for exception handling. It allows you to test a block of codefor e
 
 in - is a versitile keyword. It's used to check if a value exists within an iterable (list, tuple, or string) and also in loops to iterate over items.
 
-while - 
+while -  is used for creating loops that continue to execute as long as a given condition is true. Example: "keep doing this until your told to stop."
+
 lambda - 
 with - 
 except - 
