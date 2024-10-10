@@ -1,5 +1,15 @@
 Learn Python
 
+4 basic major data types: (you can use single or double quotations)
+
+int = integer ( any whole number)
+
+str = string ( anything embedded in quotations)
+
+bool = boolean data types = True or False (first letter needs to be capital)
+
+float =  data type = decimals
+
 Python keywords:
 
 and, False, or, from, if, True, elif, else
