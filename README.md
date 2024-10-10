@@ -62,7 +62,7 @@ except - is used in conjunction with [try] to handle exceptions. It's where you 
 
 none - is a special constant in Python, representing the absences of a vaule or a null value. It's tell you theres nothing here.
 
-yield - 
+yield - is used in python to create a generator, which is a special type of iterator. It allows a function to return values one at a time and resume where it left off. Think of it as a pause button for your function, allowing it to pick up where you left off on subsequent calls.
 
 Operators	Operation	Example
 
