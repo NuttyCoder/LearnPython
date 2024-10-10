@@ -44,7 +44,8 @@ in - is a versitile keyword. It's used to check if a value exists within an iter
 
 while -  is used for creating loops that continue to execute as long as a given condition is true. Example: "keep doing this until your told to stop."
 
-lambda - 
+lambda - is used to create small, anonymousfunctions on the fly. A min-function you can define ina single line without giving it a name.
+
 with - 
 except - 
 None - 
