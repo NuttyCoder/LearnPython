@@ -58,8 +58,10 @@ lambda - is used to create small, anonymousfunctions on the fly. A min-function 
 
 with - is used in context management, which means it helps you manage resources like file streams or networks connections, ensuring they are properly cleaned up after their use. It makes your code cleaner and less error prone.
 
-except - 
-None - 
+except - is used in conjunction with [try] to handle exceptions. It's where you define what should happen if an error occurs within the try block. Like saying "If something goes wrong, here's the plan."
+
+none - is a special constant in Python, representing the absences of a vaule or a null value. It's tell you theres nothing here.
+
 yield - 
 
 Operators	Operation	Example
