@@ -5,21 +5,37 @@ Python keywords:
 and, False, or, from, if, True, elif, else
 
 nonlocal - To declare a non-local variable
+
 as - To create an alias
+
 finally - Used with exceptions, what to do when an exception occurs
+
 not - A logical operator
+
 assert - For debugging
+
 for - To create a for loop
+
 break - To break out of  loop
+
 pass -  A null statement, a statement that will do nothing
-class - 
-global - 
-raise - 
-continue - 
-return - 
-def - 
-import - 
-del - 
+
+class -  To define a class
+
+global - is used to declare that a variable inside a function is global ( it exists in the global scope ) It allows you to modify a variable that is outside the function.
+
+raise - is used to throwan exception in Python. It's like saying, "Hey, something went wrong here!" It allows you to specify the error type and can even include a custom error message. 
+
+continue - is used within loops to skip the rest of the code inside the loop for the current iteration and jump to the next interation. It's like saying i'm done with this round let's move on to the next.
+
+return -  exits the function and optionally passes back a value to the caller. "Saying: I'm done here, and here's my answer."
+
+def - is short for define and is used to create a new function in python. Giving a name to a block of code you can call anytime you need it.
+
+import - brings in modules or specific items from a module into your current program. It's like saying "I need some tools from this other toolbox."
+
+del -  is used to delete objects in python. It can be a variable, a list item, or an attribute. It's like saying "You're outta here!
+
 is - 
 try - 
 in - 
