@@ -1,4 +1,6 @@
-Learn Python
+The Foundation in Learning Python
+__________________________________________________________________________________
+
 
 4 basic major data types: (you can use single or double quotations)
 
@@ -10,7 +12,9 @@ bool = boolean data types = True or False (first letter needs to be capital)
 
 float =  data type = decimals
 
+__________________________________________________________________________________
 Python keywords:
+__________________________________________________________________________________
 
 and, False, or, from, if, True, elif, else
 
@@ -63,8 +67,9 @@ except - is used in conjunction with [try] to handle exceptions. It's where you 
 none - is a special constant in Python, representing the absences of a vaule or a null value. It's tell you theres nothing here.
 
 yield - is used in python to create a generator, which is a special type of iterator. It allows a function to return values one at a time and resume where it left off. Think of it as a pause button for your function, allowing it to pick up where you left off on subsequent calls.
-
+_______________________________________________________________________________________________________________________________________________________________________________________
 Operators	Operation	Example
+_______________________________________________________________________________________________________________________________________________________________________________________
 
 **	Exponent	2 ** 3 = 8
 %	Modulus/Remainder	22 % 8 = 6
@@ -75,10 +80,13 @@ Operators	Operation	Example
 +	Addition	2 + 2 = 4
 
 
-
+________________________________________________________________________________________________________________________________________________________________________________________
 Python built-in Functions
+________________________________________________________________________________________________________________________________________________________________________________________
 
+________________________________________________________________________________________________________________________________________________________________________________________
 Function	Description
+________________________________________________________________________________________________________________________________________________________________________________________
 
 abs()	Return the absolute value of a number.
 
