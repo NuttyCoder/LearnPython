@@ -224,6 +224,10 @@ zip()	Iterate over several iterables in parallel.
 
 import()	This function is invoked by the import statement.
 
+
+FOUNDATION
+=============================================================================================================================================================================================================================================
+
 VARIABLES AND SIMPLE DATA TYPES
 
 LISTS
@@ -235,4 +239,12 @@ IF STATEMENTS
 DICTIONARIES
 
 USER INPUT AND WHILE LOOPS
+
+FUNCTIONS
+
+CLASSES
+
+FILES AND EXCEPTIONS
+
+TESTING YOUR CODE
 
