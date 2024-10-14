@@ -1,6 +1,8 @@
 import sys
 import pygame
 
+from settings import Settings
+
 
 class AlienInvasion:
   """Overall class to manage game assets and behaviors."""
@@ -9,8 +11,8 @@ class AlienInvasion:
     """Initialize the game, and create game resources."""
     pygame.init()
     self.clock = pygame.time.Clock() # Class Clock, making the clock tick at the end of the while loop
-    
-    self.screen = pygame.display.set_mode((1200,800))
+    self.settings _= Settings()
+    self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     # self.screen  is called the surface, while 1200, 800 is a tuple in this case the alien or the ship will have its own surface
     pygame.display.set_caption("Alien Invasion")
     # entire game window
@@ -25,7 +27,7 @@ def run_game(self):
                  if event.type == pygame.QUIT: # Event that allows the player to quit.
                   sys.exit()
               # Redraw the screen during each pass through thr loop  
-              self.screen.fill(self.bg_color)
+              self.screen.fill(self.setting.bg_color)
 
               # Make the most recently drawn screen visible.
               pygame.display.flip()
