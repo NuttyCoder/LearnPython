@@ -53,5 +53,22 @@ def capture_and_decode_image():
 
   return questions, answers
 
+# Example usage
+questions, answers = capture_and_decode_image()
+print("Decoded Questions:")
+for q in questions:
+  print(q)
+print("Decoded Answers:")
+for a in answers:
+a
 
+
+# Next Steps:
+# 1. Integrate a robust image processing pipeline (e.g., using OpenCV).
+# 2. Improve OCR accuracy through preprocessing and potentially a language model.
+# 3. Design a method for identifying and parsing questions and answer choices 
+#    from the extracted text.
+# 4. Connect to a question-answering system or model to provide answers.
+# 5. Create a user interface (GUI or web app) for interacting with the app.
+ 
  
