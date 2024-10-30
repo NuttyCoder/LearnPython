@@ -1,4 +1,4 @@
-# prompt: create and app that can take a picture scan it and decode the questions and give answers
+# objective: create and app that can take a picture scan it and decode the questions and give answers
 
 # This code provides a conceptual outline for a basic image-based question answering application.
 # It requires several external libraries and services to function fully.
