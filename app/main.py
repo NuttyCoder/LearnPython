@@ -33,5 +33,25 @@ def capture_and_decode_image():
   # - Remove noise 
   gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
   # ... More preprocessing steps here
+  
+  # 3. Optical Character Recognition (OCR) using Tesseract
+  text = pytesseract.image_to_string(gray)
+
+  # 4. Parse Text (Identify questions and potential answer choices)
+  # This step needs to be customized based on your specific data format.
+  # You might need to use NLP techniques and regular expressions to parse the text.
+  questions = []
+  answers = []
+
+  # Example: Assume questions are marked with "Q:" and answers with "A:"
+  lines = text.split('\n')
+  for line in lines:
+    if line.startswith('Q:'):
+      questions.append(line[2:].strip())
+    elif line.startswith('A:'):
+      answers.append(line[2:].strip())
+
+  return questions, answers
+
 
  
