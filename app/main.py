@@ -21,5 +21,17 @@ def capture_and_decode_image():
 
   This function is a placeholder for a more robust image capture and processing pipeline.
   """
+ # 1. Capture Image from Webcam (Requires OpenCV)
+  camera = cv2.VideoCapture(0)  # 0 for default camera
+  return_value, image = camera.read()
+  cv2.imwrite('captured_image.jpg', image)
+  del(camera)
+
+  # 2. Image Preprocessing (Optional, for better OCR accuracy)
+  # - Convert to grayscale
+  # - Apply thresholding
+  # - Remove noise 
+  gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+  # ... More preprocessing steps here
 
  
