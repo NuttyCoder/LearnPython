@@ -17,4 +17,17 @@ We'll create a simple Flask web app that allows users to upload images. The app 
 sh
 pip install flask opencv-python-headless pytesseract
 
+Steps to Run the App
 
+Save the provided Python code in a file named app.py.
+
+Create a templates directory and save the HTML code in a file named index.html inside this directory.
+
+Create an uploads directory in the same location as app.py to store uploaded files.
+
+Run the Flask app:
+
+Sh
+python app.py
+
+5. Open your browser and navigate to http://127.0.0.1:5000/ to upload images taken by your phone.
