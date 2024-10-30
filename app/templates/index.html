@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Homework Sheet</title>
+</head>
+<body>
+    <h1>Upload Homework Sheet</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <div id="results"></div>
+    <script>
+        document.querySelector('form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<h2>Questions:</h2>' + data.questions.map(q => `<p>${q}</p>`).join('') +
+                                   '<h2>Answers:</h2>' + data.answers.map(a => `<p>${a}</p>`).join('');
+        });
+    </script>
+</body>
+</html>
