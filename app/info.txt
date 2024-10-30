@@ -1,0 +1,20 @@
+Enhance Image Processing: Fine-tune the preprocessing steps to improve OCR accuracy. Experiment with different thresholding methods, filters, and image enhancements.
+
+Improve OCR Accuracy: Consider training a custom Tesseract model or using more advanced OCR libraries/models.
+
+Parse Text: Use NLP techniques and regular expressions to accurately extract questions and answer choices. You might need to handle different formats and types of questions.
+
+Question-Answering System: Implement logic to match questions with answers or use an AI model for answering questions.
+
+User Interface: Develop a user-friendly interface using a framework like Tkinter for a desktop app or Flask/Django for a web app.
+
+assume that the images are uploaded from the phone. We can achieve this by designing a simple web interface using Flask where users can upload pictures taken by their phone.
+
+Backend (Python) with Flask
+We'll create a simple Flask web app that allows users to upload images. The app will then process these images and perform OCR.
+
+
+sh
+pip install flask opencv-python-headless pytesseract
+
+
