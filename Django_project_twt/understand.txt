@@ -1,0 +1,7 @@
+Table of contents------------------------------>
+
+Setup a Django Project
+Configure URL's
+Create Database Models
+Render Dynamic Data with Templates
+Use the Django Admin Panel
