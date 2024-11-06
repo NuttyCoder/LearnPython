@@ -1,7 +1,16 @@
 Table of contents------------------------------>
+What is Django?  
+"It is a powerful web framework for Python."
+used to build websites like instagram, Spotify and Dropbox.
+
 
 Setup a Django Project
+Pregenerated File Explanation
+Django Application
 Configure URL's
-Create Database Models
+Running the server
+HTML Templates
+Create Database Models/ Database Models and ORM
+Django Mirgrations
 Render Dynamic Data with Templates
 Use the Django Admin Panel
