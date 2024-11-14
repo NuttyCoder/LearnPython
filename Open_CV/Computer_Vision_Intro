@@ -1,0 +1,13 @@
+Is there is difference between Computer Vision and Image Processing the answer is Yes!
+
+Image Processing is input image ---> output image
+
+Computer Vision is input image ---> output ---> data 
+Feature [0.5, 0.1, -0.2, 1]
+Location [(x1, y1), (x2,y2)]
+Identity [id_001, id_002]
+
+Computer Vision example:
+Image Input ---> OutPut data
+Facial Reconization
+Objective Detection
