@@ -1,5 +1,8 @@
+import pygame
 import random
+import sys
 
+# Game logic classes
 class Card:
     suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
     ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -29,18 +32,23 @@ class Hand:
     def __repr__(self):
         return ', '.join(map(str, self.cards))
 
-def main():
+# Pygame UI integration
+pygame.init()
+SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption('Pirate Gin Rummy')
+
+def draw_hand(screen, hand, x, y):
+    font = pygame.font.Font(None, 36)
+    for idx, card in enumerate(hand.cards):
+        card_text = font.render(str(card), True, (255, 255, 255))
+        screen.blit(card_text, (x, y + idx * 30))
+
+def game_loop():
     deck = Deck()
     player1_hand = Hand()
     player2_hand = Hand()
 
     # Draw initial hands
     for _ in range(10):
-        player1_hand.add_card(deck.draw_card())
-        player2_hand.add_card(deck.draw_card())
-
-    print("Player 1 Hand:", player1_hand)
-    print("Player 2 Hand:", player2_hand)
-
-if __name__ == "__main__":
-    main()
+        player1_hand.add
