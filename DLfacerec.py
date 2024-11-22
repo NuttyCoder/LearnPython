@@ -47,4 +47,5 @@ face = cv2.resize(frame, (128, 128)) / 255.0
 face = np.expand_dims(face, axis=0) 
 prediction = model.predict(face) 
 return np.argmax(prediction)
-                                                 
+# Real-time face recognition using webcam 
+cap = cv2.VideoCapture(0)                                                 
