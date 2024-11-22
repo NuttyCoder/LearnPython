@@ -48,4 +48,19 @@ face = np.expand_dims(face, axis=0)
 prediction = model.predict(face) 
 return np.argmax(prediction)
 # Real-time face recognition using webcam 
-cap = cv2.VideoCapture(0)                                                 
+cap = cv2.VideoCapture(0)
+
+while True: 
+    ret, frame = cap.read() 
+    if not ret: 
+        break 
+    face_label = recognize_face(frame, model) 
+    cv2.putText(frame, f'Label: {face_label}', (50, 50), 
+    cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, 
+    cv2.LINE_AA) cv2.imshow('Face Recognition', frame) 
+    if cv2.waitKey(1) & 0xFF == ord('q'): 
+         break
+        
+cap.release() 
+cv2.destroyAllWindows()
+
