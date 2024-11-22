@@ -1,3 +1,23 @@
-<div>
-  main page
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Emergency App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Emergency Contacts</h1>
+    <ul id="contact-list">
+        {% for contact in contacts %}
+        <li>{{ contact.name }}: {{ contact.phone }}</li>
+        {% endfor %}
+    </ul>
+    <button onclick="window.location.href='{{ url_for('add_contact') }}'">Add New Contact</button>
+    <button onclick="window.location.href='{{ url_for('medical_instructions') }}'">Medical Instructions</button>
+    <button onclick="window.location.href='{{ url_for('survival_tips') }}'">Survival Tips</button>
+    <button onclick="window.location.href='{{ url_for('offline_map') }}'">Offline Map</button>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
