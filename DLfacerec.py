@@ -41,4 +41,10 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 
 # Train the model 
 model.fit(X_train, y_train, epochs=10, validation_data=(X_val, y_val))
+# Function to recognize face in a frame 
+def recognize_face(frame, model): 
+face = cv2.resize(frame, (128, 128)) / 255.0 
+face = np.expand_dims(face, axis=0) 
+prediction = model.predict(face) 
+return np.argmax(prediction)
                                                  
