@@ -1,0 +1,76 @@
+key components of this Internet Usage Tracker program:
+
+Dependencies and Libraries:
+
+psutil: Helps retrieve network usage statistics
+sqlite3: Provides database functionality to store usage data
+datetime: Manages time-related operations
+
+
+Main Features:
+
+Track internet usage per child
+Set daily internet time limits
+Generate usage reports
+Store usage data in a SQLite database
+
+
+Key Methods:
+
+create_database(): Sets up SQLite database with two tables
+
+usage_log: Tracks individual usage sessions
+daily_limits: Stores daily time limits for each child
+
+
+set_daily_limit(): Allows setting internet time limits for each child
+track_usage(): Monitors network usage for a specified duration
+
+Captures bytes sent and received
+Logs usage details to the database
+
+
+check_daily_limit(): Verifies if a child has exceeded their daily internet time
+generate_report(): Creates usage reports for a specified time period
+Potential Improvements:
+
+Website Tracking
+
+Add functionality to log specific websites visited
+Implement website blocking for restricted sites
+
+
+Real-time Monitoring
+
+Create a continuous monitoring mode
+Add notifications when limits are approached
+
+
+Graphical User Interface (GUI)
+
+Develop a tkinter or PyQt interface for easier interaction
+Visualize usage statistics with charts
+
+
+Cross-Platform Compatibility
+
+Enhance network tracking for different operating systems
+Add more robust network detection methods
+
+
+
+Security and Privacy Considerations:
+
+Ensure data is stored securely
+Implement user authentication
+Provide options for children to view their own usage
+
+Installation Requirements:
+bashCopypip install psutil
+Limitations:
+
+Requires Python to be running to track usage
+Basic network tracking (might not capture all network activities)
+No built-in website filtering
+
+
