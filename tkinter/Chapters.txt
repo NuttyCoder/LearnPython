@@ -1,0 +1,6 @@
+Chapters
+1 - Widgets
+2 - Layout
+3 - Style
+
+Understanding the pyrimid on how Tkinter works together in the following there are lessons on learing each of these areas, play with them change them so you understand the concepts.
