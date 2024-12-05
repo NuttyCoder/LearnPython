@@ -30,8 +30,8 @@ label = ttk.Label(master = window, text = 'my label')
 label.pack()
 
 #ttk button
-button = ttk.Button(master = window, text = 'Button2', command = button2_func)
-button.pack()
+button2 = ttk.Button(master = window, text = 'Button2', command = button2_func)
+button2.pack()
 
 #ttk button
 button = ttk.Button(master = window, text = 'A button', command = button_func)
