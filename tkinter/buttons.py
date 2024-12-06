@@ -53,7 +53,7 @@ radio2.pack()
 # exercise radios
 
 def radio_func():
-    pass
+    print(check_bool.get)
 
 #data
 radio_string = tk.StringVar()
@@ -69,3 +69,6 @@ exercise_radio2.pack()
 exercise_check.pack()
 #run
 window.mainloop()
+
+
+
