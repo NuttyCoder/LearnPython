@@ -33,6 +33,14 @@ check = ttk.Checkbutton(
     variable = check_var)
 check.pack()
 
+def reset_func():
+    label['text'] = 'Some text'
+
+exercise_button = ttk.Button(master = window, text = 'Exercise button', command = reset_func)
+exercise_button.pack()
+
 
 # run
 window.mainloop()
+
+
