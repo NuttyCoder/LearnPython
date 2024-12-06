@@ -14,5 +14,9 @@ button_string = tk.StringVar(value = 'A button with string var ')
 button = ttk.Button(window, text = 'A simple button', command = button_func, textvariable = button_string)
 button.pack()
 
+#checkbutton
+check = ttk.Checkbutton(window, text = 'checkbox 1', command = lambda: print('checkbutton'))
+check.pack()
+
 #run
 window.mainloop()
