@@ -31,8 +31,26 @@ def reset_func():
 exercise_button = ttk.Button(master = window, text = 'exercise button', command = reset_func)
 exercise_button.pack()
 
+# exercise
+# create 2 entry fields and 1 label, they should all be connected via a StringVar
+# set a start value of 'test'
+
+exercise_var = tk.StringVar(value = 'test')
+
+entry1 = ttk.Entry(master = window, textvariable = exercise_var)
+entry1.pack()
+entry2 = ttk.Entry(master = window, textvariable = exercise_var)
+entry2.pack()
+exercise_label = ttk.Label(master = window, text = 'exercise label')
+exercise_label.pack()
+
+
 #run
 window.mainloop()
+
+# Tkinter has inbuilt variables that are designed to work with widgets
+# They are automatically updated by a widget and they update a widget
+# Although they still store basic data like string, integers & Booleans
 
 # Tkinter has inbuilt variables that are designed to work with widgets
 # They are automatically updated by a widget and they update a widget
