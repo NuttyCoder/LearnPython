@@ -10,7 +10,8 @@ window.geometry('600x400')
 def button_func():
     print('a basic button')
 
-button = ttk.Button(window, text = 'A simple button', command = button_func)
+button_string = tk.StringVar(value = 'A button with string var ')
+button = ttk.Button(window, text = 'A simple button', command = button_func, textvariable = button_string)
 button.pack()
 
 #run
