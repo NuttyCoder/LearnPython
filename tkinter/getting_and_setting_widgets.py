@@ -8,6 +8,8 @@ def button_func():
     # update the label
     # label.configure(text =  'some other text')
     label['text'] = entry_text
+    entry['state'] = 'disabled'
+    print(label.configure())
 
 # window
 window = tk.Tk()
