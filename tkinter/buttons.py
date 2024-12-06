@@ -57,11 +57,11 @@ def radio_func():
 
 #data
 radio_string = tk.StringVar()
-
+check_bool = tk.BooleanVar()
 #widgets
 exercise_radio1 = ttk.Radiobutton(window, text = 'Radio A', command = radio_func, value = 'A', variable = radio_string)
 exercise_radio2 = ttk.Radiobutton(window, text = 'Radio B', command = radio_func, value = 'B', variable = radio_string)
-exercise_check = ttk.Checkbutton(window, text = 'exercise check')
+exercise_check = ttk.Checkbutton(window, text = 'exercise check', variable = check_bool)
 
 #layout
 exercise_radio1.pack()
