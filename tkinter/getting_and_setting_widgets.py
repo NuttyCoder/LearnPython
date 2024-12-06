@@ -24,17 +24,11 @@ entry.pack()
 
 button = ttk.Button(master = window, text = 'The button', command = button_func)
 button.pack()
-# checkbutton
-check_var = tk.IntVar()
-check = ttk.Checkbutton(
-    window,
-    text = 'checkbox 1',
-    command = lambda : print(check_var.get()),
-    variable = check_var)
-check.pack()
+
 
 def reset_func():
     label['text'] = 'Some text'
+    entry['state'] = 'enabled'
 
 exercise_button = ttk.Button(master = window, text = 'Exercise button', command = reset_func)
 exercise_button.pack()
@@ -42,5 +36,3 @@ exercise_button.pack()
 
 # run
 window.mainloop()
-
-
