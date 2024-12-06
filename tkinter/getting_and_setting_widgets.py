@@ -24,6 +24,15 @@ entry.pack()
 
 button = ttk.Button(master = window, text = 'The button', command = button_func)
 button.pack()
+# checkbutton
+check_var = tk.IntVar()
+check = ttk.Checkbutton(
+    window,
+    text = 'checkbox 1',
+    command = lambda : print(check_var.get()),
+    variable = check_var)
+check.pack()
+
 
 # run
 window.mainloop()
