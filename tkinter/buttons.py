@@ -55,3 +55,13 @@ radio2.pack()
 def radio_func():
     pass
 
+radio_string = tk.StringVar()
+exercise_radio1 = ttk.Radiobutton(window, text = 'Radio A', command = radio_func, value = 'A')
+exercise_radio2 = ttk.Radiobutton(window, text = 'Radio B', command = radio_func, value = 'B')
+
+exercise_check = ttk.Checkbutton(window, text = 'exercise check')
+exercise_radio1.pack()
+exercise_radio2.pack()
+
+#run
+window.mainloop()
