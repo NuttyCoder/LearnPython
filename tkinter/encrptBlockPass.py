@@ -30,6 +30,14 @@ def verify_user(username, password):
     conn.close()
     return user
 
+def retrieve_users():
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM users')
+    users = c.fetchall()
+    conn.close()
+    return users
+
 def login():
     username = entry_username.get()
     password = entry_password.get()
@@ -43,6 +51,16 @@ def register():
     password = entry_password.get()
     add_user(username, password)
     messagebox.showinfo("Register", "User registered successfully")
+
+def decrypt_and_display():
+    decryption_password = entry_decrypt_password.get()
+    if decryption_password == "your_encryption_password":  # Replace with actual decryption password logic
+        users = retrieve_users()
+        user_data = "\n".join([f"Username: {user[0]}, Password: {user[1]}" for user in users])
+        text_display.delete('1.0', tk.END)
+        text_display.insert(tk.END, user_data)
+    else:
+        messagebox.showerror("Error", "Incorrect decryption password")
 
 # GUI setup
 app = tk.Tk()
@@ -59,6 +77,15 @@ entry_password.grid(row=1, column=1)
 
 tk.Button(app, text="Login", command=login).grid(row=3, column=0)
 tk.Button(app, text="Register", command=register).grid(row=3, column=1)
+
+tk.Label(app, text="Decryption Password").grid(row=4)
+entry_decrypt_password = tk.Entry(app, show="*")
+entry_decrypt_password.grid(row=4, column=1)
+
+tk.Button(app, text="Decrypt and Display", command=decrypt_and_display).grid(row=5, column=1)
+
+text_display = tk.Text(app, height=10, width=50)
+text_display.grid(row=6, column=0, columnspan=2)
 
 create_db()
 app.mainloop()
