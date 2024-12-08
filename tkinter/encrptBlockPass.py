@@ -3,6 +3,13 @@ from tkinter import messagebox
 import sqlite3
 import hashlib
 
+# hash functions are used for:
+# Data Integrity: Verifying that the data has not been altered
+# Password hashing: Securely storing passwords by hashing them before saving.
+# Digital signatures and certificates: Ensuring authenticity and integrity.
+
+
+
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
