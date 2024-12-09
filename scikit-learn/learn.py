@@ -1,4 +1,4 @@
-# Scikit-learn is a powerful machine learning library in Python. It provides simple and efficient tools for data mining and data analysis, and it is built on top of NumPy, SciPy, and matplotlib. Let's go through the basics to get you started.
+   # Scikit-learn is a powerful machine learning library in Python. It provides simple and efficient tools for data mining and data analysis, and it is built on top of NumPy, SciPy, and matplotlib. Let's go through the basics to get you started.
 
 # Installing Scikit-learn
 #First, you need to install Scikit-learn if you haven't already. You can install it using pip:
@@ -12,8 +12,27 @@
 # Models: Scikit-learn provides a wide variety of machine learning algorithms, which can be used for classification, regression, clustering, and dimensionality reduction.
 
 #Training and Testing: You can train a model using a training dataset and evaluate it using a testing dataset.
-#_________________________________________________________________________________________________________________________________________________________________________
-# Example: Iris Dataset Classification
+
+\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Here's an example of how to use Scikit-learn to classify the Iris dataset using a Support Vector Machine (SVM).
 
 from sklearn import datasets
