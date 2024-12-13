@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parental Control</title>
+</head>
+<body>
+    <h1>Internet Browsing History</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Website Address</th>
+            <th>Device</th>
+            <th>Time of Day</th>
+            <th>Date of Visit</th>
+            <th>Actions</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+            <td>{{ entry[2] }}</td>
+            <td>{{ entry[3] }}</td>
+            <td>{{ entry[4] }}</td>
+            <td><a href="{{ url_for('delete_entry', id=entry[0]) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add New Entry</h2>
+    <form method="POST" action="/add_entry">
+        <label>Website Address: </label><input type="text" name="website_address"><br>
+        <label>Device: </label><input type="text" name="device"><br>
+        <label>Time of Day: </label><input type="time" name="time_of_day"><br>
+        <label>Date of Visit: </label><input type="date" name="date_of_visit"><br>
+        <button type="submit">Add Entry</button>
+    </form>
+</body>
+</html>
