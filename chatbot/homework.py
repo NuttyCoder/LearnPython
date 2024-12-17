@@ -24,4 +24,21 @@ def government_help(query):
     else:
         return "Sorry, I can help with basic American Government questions such as the Constitution, branches of government, and amendments."
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/get_response", methods=["POST"])
+def get_response():
+    query = request.form["query"].lower()
+    if "math" in query:
+        response = math_help(query)
+    elif "government" in query:
+        response = government_help(query)
+    else:
+        response = "I'm not sure how to help with that. Please ask a Math or American Government question."
+    return jsonify({"response": response})
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
