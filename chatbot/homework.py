@@ -13,3 +13,15 @@ def math_help(query):
     else:
         return "Sorry, I can help with basic Math questions such as derivatives, integrals, and solving equations."
 
+def government_help(query):
+    # Simple rule-based responses for American Government questions
+    if "constitution" in query:
+        return "The U.S. Constitution is the supreme law of the United States, establishing the framework of the government."
+    elif "branches" in query:
+        return "The U.S. government has three branches: the Executive, the Legislative, and the Judicial."
+    elif "amendments" in query:
+        return "The Constitution has 27 amendments. The first ten amendments are known as the Bill of Rights."
+    else:
+        return "Sorry, I can help with basic American Government questions such as the Constitution, branches of government, and amendments."
+
+
