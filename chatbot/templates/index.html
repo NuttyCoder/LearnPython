@@ -24,4 +24,29 @@
         </div>
     </div>
 
-  
+    <script>
+        function sendQuery() {
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message';
+            userMessage.textContent = 'You: ' + userInput;
+            chatBox.appendChild(userMessage);
+
+            fetch('/get_response', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message';
+                botMessage.textContent = 'Chatbot: ' + data.response;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>
