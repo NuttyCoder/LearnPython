@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Network Website Info</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 50%; margin: 0 auto; padding: 20px; }
+        .input-box { margin-top: 20px; }
+        .input-box input { width: calc(100% - 60px); padding: 10px; }
+        .input-box button { padding: 10px; }
+        .website-list { margin-top: 20px; }
+        .website-item { border: 1px solid #ddd; padding: 10px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Home Network Website Info</h1>
+        <div class="input-box">
+            <input type="text" id="website-address" placeholder="Website Address">
+            <input type="text" id="device" placeholder="Device">
+            <button onclick="addWebsite()">Add Website</button>
+        </div>
+        <div class="website-list" id="website-list"></div>
+    </div>
+
+    <script>
+        function addWebsite() {
+            const websiteAddress = document.getElementById('website-address').value;
+            const device = document.getElementById('device').value;
+
+            fetch('/add_website', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `website_address=${websiteAddress}&device=${device}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                fetchWebsites();
+            });
+        }
+
+        function fetchWebsites() {
+            fetch('/get_websites')
+            .then(response => response.json())
+            .then(data => {
+                const websiteList = document.getElementById('website-list');
+                websiteList.innerHTML = '';
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'website-item';
+                    div.textContent = `Website: ${item[1]}, Device: ${item[2]}, Date: ${item[3]}, Time: ${item[4]}`;
+                    websiteList.appendChild(div);
+                });
+            });
+        }
+
+        window.onload = fetchWebsites;
+    </script>
+</body>
+</html>
