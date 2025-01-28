@@ -39,7 +39,49 @@ Let's go through some basic operations:
 from pyspark.sql import SparkSession
 
 # Create a SparkSession
+
 spark = SparkSession.builder \
     .appName("PySparkTutorial") \
     .getOrCreate()
 
+Create DataFrame
+
+# Create a simple DataFrame
+data = [("Alice", 34), ("Bob", 45), ("Cathy", 29)]
+columns = ["Name", "Age"]
+df = spark.createDataFrame(data, columns)
+df.show()
+
+Basic Transformations
+# Select operation
+df.select("Name").show()
+
+# Filter operation
+df.filter(df.Age > 30).show()
+
+# Group by and aggregate
+df.groupBy("Age").count().show()
+
+
+SQL Operations
+PySpark allows SQL queries on DataFrames:
+
+# Register the DataFrame as a SQL temporary view
+df.createOrReplaceTempView("people")
+
+# SQL can be run over DataFrames that have been registered as a table.
+results = spark.sql("SELECT Name FROM people WHERE Age > 30")
+results.show()
+
+urther Learning
+RDDs: While DataFrame API is more commonly used, understanding RDDs (Resilient Distributed Datasets) can give deeper insights into Spark's internals.
+Data Sources: Learn to read from and write to various data sources like CSV, JSON, Parquet, etc.
+MLlib: Spark's machine learning library for large-scale data processing.
+GraphX: For graph processing in Spark.
+
+Tips for Learning PySpark
+Practice: Use datasets like those from Kaggle or public datasets on AWS S3 to practice.
+Spark UI: Always check the Spark UI for monitoring job execution and optimizing performance.
+Performance Tuning: Learn about partitioning, caching, and broadcast variables to optimize your jobs.
+
+Remember, PySpark is about leveraging distributed computing, so thinking in terms of how data is spread across nodes will significantly enhance your ability to write efficient Spark jobs.
