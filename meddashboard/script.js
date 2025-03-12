@@ -53,3 +53,21 @@ const config = {
 
 // Create the chart
 new Chart(ctx, config);
+// Function to fetch simulated real-time heart rate data
+function getHeartRateData() {
+    // Simulated data (replace with API call for live data)
+    const simulatedData = Array.from({ length: 7 }, () => Math.floor(Math.random() * (80 - 60 + 1) + 60));
+    return simulatedData;
+}
+
+// Update the chart dynamically
+function updateHeartRateChart(chart) {
+    const newData = getHeartRateData();
+    chart.data.datasets[0].data = newData;
+    chart.update();
+}
+
+// Add interval to update data every 5 seconds
+setInterval(() => {
+    updateHeartRateChart(heartRateChart);
+}, 5000);
