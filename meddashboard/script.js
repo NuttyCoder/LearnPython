@@ -52,7 +52,50 @@ const config = {
 };
 
 // Create the chart
-new Chart(ctx, config);
+const heartRateChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [{
+            label: 'Heart Rate (bpm)',
+            data: getHeartRateData(), // Initial data
+            borderColor: '#ff6f61',
+            backgroundColor: 'rgba(255, 111, 97, 0.2)',
+            tension: 0.4,
+            borderWidth: 3,
+            pointRadius: 5,
+            pointBackgroundColor: '#ff6f61'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: '#ffffff',
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#ffffff',
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#ffffff',
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                }
+            }
+        }
+    }
 // Function to fetch simulated real-time heart rate data
 function getHeartRateData() {
     // Simulated data (replace with API call for live data)
