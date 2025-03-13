@@ -204,3 +204,39 @@ visited_capitals["Australia"] = "Canberra"
 # Displaying the updated dictionary
 print("Countries and their capitals:", visited_capitals)
 
+# TODO: Write a program to create a dictionary of countries and their capital
+visited_capitals = {
+    'France': 'Paris',
+    'Japan': 'Tokyo',
+    'USA': 'Washington D.C'}
+# TODO: Add and remove countries from the dictionary
+visited_capitals['Australia'] = 'Canberra'
+
+del visited_capitals['USA']
+
+# TODO: Display the updated dictionary
+print("Updated Travel Plans:", visited_capitals)
+
+# Nested dictionary
+airport_codes = {
+    "JFK": {"city": "New York", "country": "USA"},
+    "LAX": {"city": "Los Angeles", "country": "USA"}
+}
+
+airport_codes = {
+    "JFK": {"city": "New York", "country": "USA"},
+    "LAX": {"city": "Los Angeles", "country": "USA"}
+}
+
+# Add Osaka's Kansai International Airport
+airport_codes["KIX"] = {"city": "Osaka", "country": "Japan"}
+
+# Add airport elevation data to KIX
+airport_codes["KIX"]["elevation"] = 4
+
+# Update elevation data
+airport_codes["KIX"]["elevation"] = 5
+
+# Delete elevation data
+del airport_codes["KIX"]["elevation"]
+
