@@ -608,3 +608,5 @@ if travel_profile['passport'] and travel_profile['tickets']:
         print("You are ready to travel.") 
 else:
     print("General travel advice: Make sure you have your passport and your ticket ready for a hassel-free travel experience.")   
+
+
