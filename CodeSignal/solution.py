@@ -240,3 +240,30 @@ airport_codes["KIX"]["elevation"] = 5
 # Delete elevation data
 del airport_codes["KIX"]["elevation"]
 
+# WHY ARE NESTED DICTIONARIES IMPORTANT
+# Nested dictionaries are vital for managing intricate, 
+# hierarchical data, crucial for applications like our travel 
+# scenario. Understanding these advanced techniques enables 
+# sophisticated data modeling and improves problem-solving skills
+# in real-world, data-rich environments.
+# A dictionary to handle airport codes
+airport_codes = {
+    "JFK": {"city": "New York", "country": "USA"},
+    "LAX": {"city": "Los Angeles", "country": "USA"},
+    "LHR": {"city": "London", "country": "UK"},
+}
+
+# Output the contents of the dictionary
+print(airport_codes)
+
+# A dictionary to handle airport codes
+airport_codes = {
+    "JFK": {"city": "New York", "country": "USA"},
+    "LAX": {"city": "Los Angeles", "country": "USA"},
+    "LHR": {"city": "London", "country": "UK"},
+    "HND": {"city": "Tokyo", "country": "Japan"},
+    "SYD": {"city": "Sydney", "country": "Australia"}
+}
+
+# TODO: Access and print the city and country that corresponds to a particular airport code.
+print(airport_codes["LHR"]["city"], "-", airport_codes["LHR"]["country"])
