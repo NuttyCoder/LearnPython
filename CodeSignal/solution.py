@@ -125,3 +125,19 @@ print("Last city visited: ", cities_visited[-1])
 
 # Unsuccessful attempt to change tuple value (this will return an error as tuples are immutable)
 # cities_visited[0] = "Rome"
+
+#To create a dictionary with starting key:value pairs:
+
+# Creating a simple dictionary to hold the country as key and its capital as value
+capital_cities = {
+    "France": "Paris",
+    "Japan": "Kyoto",
+    "Kenya": "Nairobi",
+}
+
+# Add more capital cities
+capital_cities["Switzerland"] = "Bern"
+capital_cities["Germany"] = "Berlin"
+capital_cities["Japan"] = "Tokyo" # Update to new capital
+
+del capital_cities["Germany"] # Removes "Germany" : "Berlin"
