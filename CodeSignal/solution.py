@@ -141,3 +141,27 @@ capital_cities["Germany"] = "Berlin"
 capital_cities["Japan"] = "Tokyo" # Update to new capital
 
 del capital_cities["Germany"] # Removes "Germany" : "Berlin"
+# Creating a simple dictionary to hold the country as key and its capital as value
+capital_cities = {
+    "France": "Paris",
+    "Japan": "Tokyo",
+    "Kenya": "Nairobi",
+}
+
+# Accessing the capital of France
+print("The capital of France is:", capital_cities["France"])
+
+# Creating a dictionary to hold the country as key and its capital as value
+capital_cities = {
+    "France": "Paris",
+    "Japan": "Tokyo",
+    "Kenya": "Nairobi",
+}
+
+# TODO: Add the USA with its capital to the dictionary
+capital_cities["USA"] = "Washington D.C."
+# TODO: Access and print the capital city of USA
+print("The capital of the USA is:", capital_cities["USA"])
+
+
+
