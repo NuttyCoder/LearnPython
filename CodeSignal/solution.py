@@ -280,3 +280,23 @@ airport_codes = {
 # TODO: Update 'country' of 'LHR' to 'England'
 airport_codes['LHR']['country'] ='England'
 print(airport_codes)
+
+# A dictionary to handle airport codes
+airport_codes = {
+    "JFK": {"city": "New York", "country": "USA"},
+    "LAX": {"city": "Los Angeles", "country": "USA"},
+    "LHR": {"city": "London", "country": "UK"},
+    "HND": {"city": "Tokyo", "country": "Japan"},
+    "SYD": {"city": "Sydney", "country": "Australia"}
+}
+
+# Accessing a nested element with wrong keys - results in KeyError
+print(airport_codes["LHR"]["city"], "-", airport_codes["LHR"]["country"])
+
+# TODO: Construct a nested dictionary 
+itinerary = {
+    "Stop1": {"city": "New York", "country": "USA","airport_code":"JFK"},
+    "Stop2": {"city": "Los Angeles", "country": "USA","airport_code":"LAX"},
+    "Stop3": {"city": "London", "country": "UK","airport_code":"LHR"}
+}
+print(itinerary)
