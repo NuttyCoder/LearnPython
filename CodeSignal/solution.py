@@ -563,3 +563,48 @@ if travel_profile['passport'] and travel_profile['tickets'] and travel_profile['
 else:
     print("General travel advice: Make sure you have your passport and tickets and insurance ready for hassle-free travel.")  # Mention of insurance is missing
 
+# Travel profile has necessary details of the traveler
+travel_profile = {
+    "passport": True, 
+    "tickets": True,
+}
+
+# Check if the basic requirement for travel are met (passport and tickets)
+if travel_profile['passport'] and travel_profile['tickets']:
+    print("You are ready for the initial phase of travel preparation.")
+else:
+    print("Please ensure you have both your passport and tickets.")
+
+# Travel profile has necessary details of the traveller
+travel_profile = {
+    "passport": True, 
+    "visa": {"required": True, "available": False}, 
+    "tickets": True,
+}
+
+# Check if all required documents for travel are available
+if travel_profile['passport'] and travel_profile['tickets']:
+    if travel_profile['visa']['required'] and not travel_profile['visa']['available']:  # This line contains a bug
+        print("You need to apply for a visa.")
+    else:
+        print("You are ready to travel.")
+else:
+    print("General travel advice: Make sure you have your passport, visa (if required), and tickets ready for hassle-free travel.")
+    
+# Travel profile has necessary details of the traveller
+travel_profile = {
+    "passport": True, 
+    "visa": {"required": True, "available": True}, 
+    "tickets": True,
+}
+
+# TODO: Implement nested if statements to check if all required documents for travel are available
+# Use the pattern: if <condition>: ... else: ...
+# Inside the first if block, add another if statement to check visa requirements
+if travel_profile['passport'] and travel_profile['tickets']:
+    if travel_profile['visa']['required'] and not travel_profile['visa']['available']:
+        print("You need to apply for a visa.")
+    else:
+        print("You are ready to travel.") 
+else:
+    print("General travel advice: Make sure you have your passport and your ticket ready for a hassel-free travel experience.")   
