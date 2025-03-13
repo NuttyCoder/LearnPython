@@ -452,4 +452,47 @@ else:
     print("You are eligible for the children's travel package.")
 # TODO: Else block for travelers 18 or below
     # TODO: Print "You are eligible for the children's travel package."
+travel_destinations = {
+    "France": {"capital": "Paris", "visited": False},
+    "Italy": {"capital": "Rome", "visited": True},
+    "Spain": {"capital": "Madrid", "visited": False},
+}
+destination = "France"
 
+if travel_destinations[destination]["visited"]:
+    print(f"You have already visited {destination}!")
+else:
+    print(f"It seems you haven't visited {destination} yet. Get ready for an exciting adventure in {travel_destinations[destination]['capital']}!")
+# Dictionaries within dictionaries .. use the dict[outer_key][nested_key] syntax to access the nested values
+# Capital of France in our travel_destinations dictionary, we write travel_destinations["France"]["capital"]
+# This first retrieves the dictionary associated with "France" and then fetches the value paired with "capital" within that dictionary.
+# Let's imagine a traveler who has a dictionary of destinations with some essential travel info
+travel_destinations = {
+    "France": {"capital": "Paris", "visited": False},
+    "Italy": {"capital": "Rome", "visited": True},
+    "Spain": {"capital": "Madrid", "visited": False},
+}
+
+# Test if the traveler is planning to visit a new destination this year
+destination = "France"
+
+if travel_destinations[destination]["visited"]:
+    print(f"You have already visited {destination}!")
+else:
+    print(f"It seems you haven't visited {destination} yet. Get ready for an exciting adventure in {travel_destinations[destination]['capital']}!")
+
+# Let's imagine a traveler who has a dictionary of destinations with some essential travel info
+# TODO: Change visited status for Italy to False
+travel_destinations = {
+    "France": {"capital": "Paris", "visited": False},
+    "Italy": {"capital": "Rome", "visited": False},
+    "Spain": {"capital": "Madrid", "visited": False},
+}
+
+# Test if the traveler had to cancel their trip to Italy
+destination = "Italy"
+
+if travel_destinations[destination]["visited"]:
+    print(f"You have already visited {destination}!")
+else:
+    print(f"It seems you had to cancel your trip to {destination}. Hopefully, you can visit {travel_destinations[destination]['capital']} soon!")
