@@ -383,4 +383,73 @@ elif age < 60:
 else:
     print("Senior Citizen Travel Package")
 
+# Controlling travel according to age and budget
+age = 23
+budget = 1500
+
+if age > 18:
+    if budget > 1000:
+        print("You are eligible for the international travel package.")
+    else:
+        print("You are eligible for the local travel package.")
+else:
+    print("You are eligible for the children's travel package.")
     
+  # Controlling travel according to age and budget creating a budget between 500 and 1000 for a special deal without using {range}
+age = 27
+budget = 800
+
+if age > 18:
+    if budget >= 1000:
+        print("You are eligible for the international travel package.")
+    elif budget  >= 500:   # Add the correct condition here
+        print("You are eligible for a special deal on the local travel package.")
+    else:
+        print("You are eligible for the local travel package.")
+else:
+    print("You are eligible for the children's travel package.")  
+
+# Controlling travel according to age and budget
+age = 23
+budget = 900
+
+if age > 18:
+    if budget >= 1000:
+        print("You are eligible for the international travel package.")
+    elif budget >= 500:
+        print(" You are eligible for a special travel package.")    
+    else:
+        print("You are eligible for the local travel package.")
+else:
+    print("You are eligible for the children's travel package.")
+
+# Controlling travel according to age and budget
+age = 23
+budget = 1500
+
+if age > 18:
+    if budget > 1000:
+        print("You are eligible for the international travel package.")
+    elif budget < 1000:
+        print("You are eligible for the local travel package.")
+else:
+    print("You are eligible for the children's travel package.")
+
+# TODO: Declare variables 'age' and 'budget' with appropriate values
+age = 18
+budget = 1000
+# TODO: Write an 'if' statement to determine if the traveler is over 18
+if age >= 18:
+    if budget  > 1000:
+    # TODO: Inside the 'if' block, write another 'if' statement to check if the budget is more than 1000
+        # TODO: Print "You are eligible for the international travel package." for budgets over 1000
+        print("You are eligible for th international travel package.")
+    # TODO: Else block for budgets 1000 or less
+    else:
+        print("You are eligible for the local travel package.")
+        # TODO: Print "You are eligible for the local travel package."
+else:
+    print("You are eligible for the children's travel package.")
+# TODO: Else block for travelers 18 or below
+    # TODO: Print "You are eligible for the children's travel package."
+
