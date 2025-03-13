@@ -80,7 +80,7 @@ world_tour_countries.remove("Australia")
 print(world_tour_countries)
 
 # TODO: Add "Australia" and "Spain" at the end of the list
-world_tour_countries.append("Australina")
+world_tour_countries.append("Australia")
 world_tour_countries.append("Spain")
 # TODO: Remove "Brazil" and "China" from the list
 world_tour_countries.remove("Brazil")
@@ -89,3 +89,27 @@ world_tour_countries.remove("China")
 world_tour_countries.insert(0,"Japan")
 # Print the final world tour plan
 print(world_tour_countries)
+
+# Tuples, like lists, are a way to store multiple items in a single variable. However, unlike lists, 
+# tuples are delineated with round brackets, and they are immutable, meaning they cannot be altered 
+# once they're set. In this unit, we will explore how to create a tuple, access its elements, and 
+# understand why its immutability is a key feature. **** Tuples are more memory-efficient than lists ****
+
+# Create a tuple of cities
+cities_visited = ("Paris", "Tokyo", "New York", "London", "Berlin")
+
+# My Tuple of Cities I plan to visit
+cities_to_visit = ("Barcelona", "Amsterdam", "Prague", "Berlin", "Zurich")
+
+# Print the first city to visit
+print("First city to visit: ", cities_to_visit[0])
+
+# Print the last city to visit
+print("Last city to visit: ", cities_to_visit[-1])
+
+# TODO: Create a new tuple of cities
+new_cities_visited = ("Bangkok", "Dubai", "Sydney", "Toronto", "Cape Town")
+
+# TODO: Access elements in the tuple and print them
+print("First city visited: ", new_cities_visited[0])
+print("Last city visited: ", new_cities_visited[-1])
