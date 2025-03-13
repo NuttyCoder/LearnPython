@@ -326,3 +326,20 @@ if balance >= 5000:
 else:
     print("You must maintain a balance of at least $5,000 to apply for visa.")
     
+# Declaring a Boolean variable "passport" 
+passport = True
+
+# Checking if passport is true
+if passport == True: 
+    print("You are eligible to travel.")
+else:
+    print("You cannot travel without a passport.")
+
+# Checking if the Driver's License is available
+drivers_license = False
+
+if drivers_license == True:
+    print("Great! You're all set to explore the Greek islands by car.")
+else:
+    print("You need a valid driver's license to rent a car.")
+    
