@@ -527,3 +527,39 @@ else:
     print(f"It seems you had to cancel your trip to {destination}. Hopefully, you can visit {travel_destinations[destinations]['capital']}soon!")
 # Print a message according to the visited status.
 
+# This effectively combines if, and, not statements in Python, providing us with a clear, comprehensive check of travel requirements.
+# The and operator allows us to check if two conditions are True at the same time.
+# The not operator inversely evaluates the condition, turning True into False, and vice versa.
+# And last but not least another common one, the or operator checks if at least one of two conditions is True.
+
+travel_profile = {
+    "passport": True, 
+    "visa": {"required": True, "available": False}, 
+    "tickets": True,
+}
+if travel_profile['passport'] and travel_profile['tickets']:
+    if travel_profile['visa']['required'] and not travel_profile['visa']['available']:
+        print("You need to apply for a visa.")
+    else:
+        print("You are ready to travel.")
+else:
+    print("General travel advice: Make sure you have your passport and tickets ready for hassle-free travel.")
+
+# Travel profile has necessary details of the traveller, including insurance now
+travel_profile = {
+    "passport": True, 
+    "visa": {"required": True, "available": True}, 
+    "tickets": True,
+    "insurance": False,
+}
+
+# Check if all required documents for travel are available
+# TODO: Insurance check missing
+if travel_profile['passport'] and travel_profile['tickets'] and travel_profile['insurance']:
+    if travel_profile['visa']['required'] and not travel_profile['visa']['available']:
+        print("You need to apply for a visa.")
+    else:
+        print("You are ready to travel.") 
+else:
+    print("General travel advice: Make sure you have your passport and tickets and insurance ready for hassle-free travel.")  # Mention of insurance is missing
+
