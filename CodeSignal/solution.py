@@ -352,6 +352,35 @@ if passport == True:
 else: 
     print("You cannot travel without a passport.")
 
+age = 20  # Example age
 
+if age < 18:
+    print("You are eligible for the children's travel package.")
+elif age < 60:
+    print("You are eligible for the adult's travel package.")
+else:
+    print("You are eligible for the senior citizen's travel package.")
+
+age = 15  # Example age
+
+# Determine the travel package eligibility based on age
+if age < 18 :
+    print("You are eligible for the children's travel package.")
+else:
+    print("You are eligible for the adult's travel package.")
+
+# TODO: Check age and assign a travel package accordingly
+# Example age
+age = 20
+
+# TODO: Use an if statement to check if the age is less than 18
+if age < 18:
+    print("Childrens Travel Package")
+# TODO: Use an elif statement to check if the age is less than 60
+elif age < 60:
+    print("Adults Travel Package")
+# TODO: Use an else statement for individuals 60 and older
+else:
+    print("Senior Citizen Travel Package")
 
     
