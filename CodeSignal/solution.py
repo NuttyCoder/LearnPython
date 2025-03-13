@@ -113,3 +113,15 @@ new_cities_visited = ("Bangkok", "Dubai", "Sydney", "Toronto", "Cape Town")
 # TODO: Access elements in the tuple and print them
 print("First city visited: ", new_cities_visited[0])
 print("Last city visited: ", new_cities_visited[-1])
+
+# My Tuple of Cities I have visited
+cities_visited = ("Paris", "Tokyo", "New York", "London", "Berlin")
+
+# Print the first city visited
+print("First city visited: ", cities_visited[0])
+
+# Print the last city visited
+print("Last city visited: ", cities_visited[-1])
+
+# Unsuccessful attempt to change tuple value (this will return an error as tuples are immutable)
+# cities_visited[0] = "Rome"
