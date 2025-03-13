@@ -300,3 +300,29 @@ itinerary = {
     "Stop3": {"city": "London", "country": "UK","airport_code":"LHR"}
 }
 print(itinerary)
+
+# Checking if the Passport is true
+passport = True
+
+if passport:
+    print("You are eligible to travel.")
+else:
+    print("You cannot travel without a passport.")
+
+if passport:
+    print("You are eligible to travel.")  # This print statement belongs to the if condition
+    # Any additional code dependent on the passport being True would also be indented here
+else:
+    print("You cannot travel without a passport.")  # This print statement belongs to the else condition
+    # Code to execute when the passport condition is False would be indented at this level
+# Any code here would not be part of the if-else block and executes regardless of the passport condition
+
+# Declaring an initial balance of $4500
+balance = 4500
+
+# Checking if the Visa Application Balance is greater than or equal to 5000
+if balance >= 5000:
+    print("You are eligible to apply for a visa.")
+else:
+    print("You must maintain a balance of at least $5,000 to apply for visa.")
+    
