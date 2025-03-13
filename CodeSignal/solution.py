@@ -342,4 +342,16 @@ if drivers_license == True:
     print("Great! You're all set to explore the Greek islands by car.")
 else:
     print("You need a valid driver's license to rent a car.")
+# TODO: Declare a Boolean "passport" and check whether it is True. If so, print "You are eligible to travel." 
+# Otherwise, print "You cannot travel without a passport."
+passport = True
+
+if passport == True:
+    print("You are eligible to travel.")
+    
+else: 
+    print("You cannot travel without a passport.")
+
+
+
     
