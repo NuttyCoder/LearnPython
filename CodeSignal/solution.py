@@ -1004,3 +1004,55 @@ for country, museums in world_museums.items():
     for museum in museums:
         print("-",museum)
 
+# Continuing your impressive journey through Python loops, let's put your learning into action with a practical run-through. 
+# Here, we have an example that epitomizes the application of for loops in calculating both total and average costs based on 
+# a list and a dictionary — a fundamental skill for data processing tasks.
+
+# This exercise involves iterating over a selection of countries to calculate the total travel cost and then determining the 
+# average cost per country. It's a perfect showcase of how loops can automate and simplify operations on collections of data, 
+# making tasks like budget planning or financial analysis much more straightforward.
+
+# In this code, the len function is used to calculate the number of countries in the chosen_countries list. It returns the 
+# total count of countries, which we then use to divide the total_trip_cost by, in order to find the average cost per country. 
+# This function is essential for determining the size of various data types, such as lists, in Python.
+# Let's calculate the total and average travel cost for a selection of countries.
+
+chosen_countries = ["France", "Italy", "Spain"]  # This list may be a result of former selection logic
+
+# Predefined costs for each country based on previous examples
+country_costs = {"France": 1000, "Italy": 800, "Spain": 900, "Japan": 1200}
+
+total_trip_cost = 0
+for country in chosen_countries:
+    total_trip_cost += country_costs[country]  # Summing up the cost for each chosen country
+
+average_cost_per_country = total_trip_cost / len(chosen_countries)  # Calculating the average cost
+
+# Display the total cost and the average cost per country
+print(f"The total cost of the trip is: ${total_trip_cost}")
+print(f"The average cost per country is: ${average_cost_per_country:.2f}") # In this line of code The .2f in the print statement is a format specifier used 
+# to display a floating-point number with two decimal places. It ensures that the average cost is shown with exactly two digits after the decimal point, 
+# making it look like a typical currency format.
+# For example, if the average cost is 850.0, it will be displayed as 850.00.
+
+# Output to the code ------>
+The total cost of the trip is: $2700
+The average cost per country is: $900.00
+
+# Coding Challenge ------->
+
+# TODO: Define a list named chosen_countries with countries selected for the road trip
+chosen_countries = ["UK","Norway","Ireland","Sweden"]
+# TODO: Define a dictionary named country_fuel_costs with fuel costs for countries
+country_fuel_cost = {"UK":1.46, "Norway": 1.93, "Ireland":1.80, "Sweden": 1.53 }
+# TODO: Initialize a variable total_fuel_cost to 0
+total_fuel_cost = 0
+# TODO: Use a for loop to add up the fuel cost for each chosen country
+for country in chosen_countries:
+    total_fuel_cost += country_fuel_cost[country]
+# TODO: Calculate the average fuel cost per country
+average_fuel_cost_per_country = total_fuel_cost / len(chosen_countries)
+# TODO: Print the total fuel cost for the road trip
+print(f"The total cost of fuel for this road trip is: ${total_fuel_cost}")
+# TODO: Print the average fuel cost per country
+print(f"The average fuel cost per country is: ${average_fuel_cost_per_country}")
