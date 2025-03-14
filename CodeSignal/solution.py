@@ -651,3 +651,49 @@ for gadget in essential_gadgets:
         print(f"Missing {gadget} not found")
             # TODO: Found missing gadget, stop searching
     # TODO: Print missing gadget if there is one
+
+weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+            'Saturday', 'Sunday']
+attending_days = ['Monday', 'Wednesday', 'Friday']
+# TODO: The loop should skip these days instead of stopping
+for day in weekdays:
+    if day not in attending_days:
+        continue
+    print(f"Attending {day}")
+
+# The difference ;in the above code is if you break your result will only be Monday, however if you continue you will get Monday, Wednesday and Friday
+
+
+items = ["shoes", "shirt", "pants", "underwear", "phone", "passport"]
+packed_items = ["passport", "pants", "phone"]
+
+# TODO: Find a way around using the `in` operator
+# Make sure NOT to use the `in` operator
+for item in items:
+    for packed_item in packed_items:
+        if items == packed_items:# TODO: Iterate through all the packed items
+            break
+    # TODO: If you find `item` in the packed items stop the inner loop
+   
+    # TODO: If the inner loop hasn't been stopped, skip outer loop iteration
+    else:
+        print(f"Need to pack {item}")
+
+# In this example we need to have a  Nested Loop, Which means you will use a loop inside  another loop.
+
+for packed_item in packed_items:
+# Then in the code we used the For-Else: The else block runs if the inner loop doesn't encounter a break. This is useful to determine if an item wasn't found in packed_items.
+items = ["shoes", "shirt", "pants", "underwear", "phone", "passport"]
+packed_items = ["passport", "pants", "phone"]
+
+# TODO: Find a way around using the `in` operator
+# Make sure NOT to use the `in` operator
+for item in items:
+    for packed_item in packed_items:
+        if item == packed_item:# TODO: Iterate through all the packed items  ---> Notice Item vs items and packed_items changed to packed_item
+            break
+    # TODO: If you find `item` in the packed items stop the inner loop
+   
+    # TODO: If the inner loop hasn't been stopped, skip outer loop iteration
+    else:
+        print(f"Need to pack {item}")
