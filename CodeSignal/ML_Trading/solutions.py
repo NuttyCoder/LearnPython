@@ -500,6 +500,10 @@ tesla_df.sort_index(ascending=False, inplace=True)
 print(tesla_df.head())
 
 
+# The world of Basic Plotting with Matplotlib. 
+# You'll learn how to create basic line plots to visualize Tesla's ($TSLA) stock data. 
+# This lesson is essential as visualizing financial data is crucial for identifying trends and making informed trading decisions. 
+# By the end of this lesson, you'll be proficient in plotting data using Matplotlib, customizing plots, and interpreting the results.
 
 
 
