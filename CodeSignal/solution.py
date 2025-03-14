@@ -968,3 +968,39 @@ for country, landmarks in exhibition_landmarks.items():
     print(f"Landmarks in {country} to feature:")
     for landmark in landmarks:
         print(landmark)
+
+# Problem to solve ------>
+# Organizing a travel guide for museums around the world.
+world_museums = {
+    "France": ["Louvre Museum", "Orsay Museum"],
+    "Italy": ["Uffizi Gallery", "Vatican Museums"],
+    "Spain": ["Prado Museum", "Reina Sofia Museum"],
+    "Japan": ["Tokyo National Museum", "Kyoto National Museum"]
+}
+
+# TODO: Write a nested loop to print each country and its must-see museums in the format:
+# In [country], you should visit:
+# - [museum 1]
+# - [museum 2]
+# (Continue for each museum in the country)
+
+# Answer to the problem ------>
+# Organizing a travel guide for museums around the world.
+world_museums = {
+    "France": ["Louvre Museum", "Orsay Museum"],
+    "Italy": ["Uffizi Gallery", "Vatican Museums"],
+    "Spain": ["Prado Museum", "Reina Sofia Museum"],
+    "Japan": ["Tokyo National Museum", "Kyoto National Museum"]
+}
+
+# TODO: Write a nested loop to print each country and its must-see museums in the format:
+# In [country], you should visit:
+# - [museum 1]
+# - [museum 2]
+# (Continue for each museum in the country)
+
+for country, museums in world_museums.items():
+    print(f"In {country}, you should visit:")
+    for museum in museums:
+        print("-",museum)
+
