@@ -1092,3 +1092,12 @@ def greet_user_by_name(name, city):
 greet_user_by_name("Alex", "Paris")
 
 
+# Coding Challenge--------->
+
+# TODO: Write a function named greet_with_welcome that takes two parameters: name and hometown.
+# The function should print a greeting to the user that includes their name and hometown.
+def greet_with_welcome(name,hometown):
+    print(f'Hello, {name}! What is the population of {hometown}?')
+    
+greet_with_welcome("Jim", "Green Bay")
+
