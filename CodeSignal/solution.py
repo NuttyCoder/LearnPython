@@ -1097,7 +1097,62 @@ greet_user_by_name("Alex", "Paris")
 # TODO: Write a function named greet_with_welcome that takes two parameters: name and hometown.
 # The function should print a greeting to the user that includes their name and hometown.
 def greet_with_welcome(name,hometown):
-    print(f'Hello, {name}! What is the population of {hometown}?')
-    
+    print(f'Hello, {name}! What is the population of {hometown}?')    
 greet_with_welcome("Jim", "Green Bay")
 
+# Understanding Return Values
+
+# Define a function to calculate the trip cost.
+def calculate_trip_cost(countries, country_costs):
+    total_cost = 0
+    for country in countries:
+        total_cost += country_costs[country]
+    return total_cost
+
+
+# Presuming the chosen_countries and their costs
+chosen_countries = ['France', 'Italy', 'Spain']
+country_costs = {'France': 1200, 'Italy': 950, 'Spain': 800}
+
+# Call the function
+trip_cost = calculate_trip_cost(chosen_countries, country_costs)
+print(f"The total cost of the trip is: ${trip_cost}")
+
+
+# Define a function to calculate the trip cost.
+def calculate_trip_cost(countries, country_costs):
+    total_cost = 0
+    for country in countries:
+        total_cost += country_costs[country]
+    return total_cost
+
+# Presuming the chosen_countries and their costs
+chosen_countries = ['France', 'Italy', 'Spain']
+country_costs = {'France': 1200, 'Italy': 950, 'Spain': 800}
+
+# Call the function
+trip_cost = calculate_trip_cost(chosen_countries, country_costs)
+print(f"The total cost of the trip is: ${trip_cost}")
+
+
+# Coding Challenge ------>
+
+# TODO: Define a function called calculate_souvenir_budget
+def calculate_souvenir_budget(countries, souvenir_costs):
+# TODO: The function should take two parameters: countries (a list of countries) and souvenir_costs (a dictionary with countries as keys and costs as values)
+    total_cost = 0
+# TODO: Inside the function, create a variable to hold the total budget and set it to 0
+# TODO: Use a for loop to iterate through the list of countries
+    for country in countries:
+        total_cost += souvenir_costs[country]
+    return total_cost    
+# TODO: For each country, add the corresponding souvenir cost to the total budget
+# TODO: The function should return the total budget
+
+# Assuming the countries you'll visit and the average souvenir costs
+countries = ['France', 'Italy', 'Spain']
+souvenir_costs = {'France': 150, 'Italy': 100, 'Spain': 75}
+
+# Call the function
+total_souvenir_budget = calculate_souvenir_budget(countries, souvenir_costs)
+print(f"The total souvenir budget for the trip is: ${total_souvenir_budget}")
