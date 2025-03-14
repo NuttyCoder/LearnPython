@@ -609,4 +609,45 @@ if travel_profile['passport'] and travel_profile['tickets']:
 else:
     print("General travel advice: Make sure you have your passport and your ticket ready for a hassel-free travel experience.")   
 
+# for loop allows us to execute a block of code a known number of times, or for each item in a sequence. 
+# It's incredibly useful for handling repetitive tasks without manually programming each repetition.
 
+trip_countries = ["France", "Italy", "Spain", "Japan"]
+
+for country in trip_countries:
+    print(f"Considering {country} for the trip.")
+# In Python, break and continue are powerful loop controls. The break statement can stop the loop even if the loop condition hasn't been met. 
+# On the other hand, the continue statement allows the loop to skip the remainder of the code and move to the next iteration.
+packing_list = ["passport", "tickets", "camera", "clothes"]
+packed_items = ["passport", "camera", "clothes"]
+
+for item in packing_list:
+    if item not in packed_items:
+        print(f"Forgot to pack {item}")
+        break
+        
+
+packing_list = ["passport", "tickets", "camera", "clothes", "snacks"]
+packed_items = ["passport", "camera", "clothes"]
+
+for item in packing_list:
+    if item in packed_items:
+        continue
+    print(f"Need to pack {item}")
+
+# A world of possibilities opens up when you understand and apply break and continue in your loops. These loop controls add flexibility 
+# to your code, make your loops more efficient, and generally help avoid unnecessary iterations.
+
+# Essential gadgets needed for the conference
+essential_gadgets = ["laptop", "charger", "adapter", "USB drive"]
+packed_items = ["laptop", "USB drive", "notebooks", "pens"]
+
+
+for gadget in essential_gadgets:
+    for packed in packed_items:
+        if packed == gadget:
+            break
+    else:
+        print(f"Missing {gadget} not found")
+            # TODO: Found missing gadget, stop searching
+    # TODO: Print missing gadget if there is one
