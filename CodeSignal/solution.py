@@ -769,3 +769,53 @@ while total_spent < local_tour_budget and attraction_costs:
         selected_attractions.append(attraction)
 
 print("Attractions selected for the local tour:", selected_attractions)
+
+# while loops can elegantly manage travel budgets and itinerary selections. 
+# Let's shift our focus slightly and apply this concept to choosing accommodations for your weekend getaway. 
+# By keeping within a set budget, you'll dynamically pick hotels, mirroring the decision-making process for 
+# selecting countries within a travel budget. This approach will further solidify your understanding of while 
+# loops in budget management and decision-making based on financial constraints.
+
+# Have you been wondering what that += does as we go through this unit? The += operator is a shorthand for 
+# adding a value to a variable and then assigning the result back to that variable. So, total_cost += cost is 
+# the same as writing total_cost = total_cost + cost. It adds the value of cost to total_cost and updates total_cost 
+# with this new value, making our code cleaner and more concise.
+# We have a set budget for accommodations over the weekend
+
+# Original Code ------->
+accommodation_budget = 300
+hotel_costs = {"Hotel A": 90, "Hotel B": 120, "Hotel C": 85}
+
+total_cost = 0
+chosen_hotels = []
+
+# TODO: Let's pick hotels for our weekend stay without exceeding our budget
+while total_cost < accommodation_budget and hotel_costs:
+    hotel, cost = hotel_costs.popitem()
+    if total_cost + cost <= accommodation_budget:
+        total_cost += cost
+        chosen_hotels.append(________)  # Add the hotel to the list of chosen hotels
+
+print("Hotels chosen for the weekend stay:", chosen_hotels)
+# Corrected Code --------->
+
+# We have a set budget for accommodations over the weekend
+accommodation_budget = 300
+hotel_costs = {"Hotel A": 90, "Hotel B": 120, "Hotel C": 85}
+
+total_cost = 0
+chosen_hotels = []
+
+# TODO: Let's pick hotels for our weekend stay without exceeding our budget
+while total_cost < accommodation_budget and hotel_costs:
+    hotel, cost = hotel_costs.popitem()
+    if total_cost + cost <= accommodation_budget:
+        total_cost += cost
+        chosen_hotels.append(hotel)  # Add the hotel to the list of chosen hotels
+
+print("Hotels chosen for the weekend stay:", chosen_hotels)
+
+# The Answer was append(hotel) ----->
+
+
+
