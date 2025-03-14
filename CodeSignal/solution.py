@@ -816,6 +816,140 @@ while total_cost < accommodation_budget and hotel_costs:
 print("Hotels chosen for the weekend stay:", chosen_hotels)
 
 # The Answer was append(hotel) ----->
+# Building on  understanding of while loops for smart budgeting during travel, let's fine-tune the planning process. 
+# In this exercise, adapt your code by integrating an additional travel destination along with its cost into the pre-existing dictionary. 
+# Specifically, add "Greece" with a cost of 950. This task not only tests the ability to update data structures but also demonstrates 
+# the loop's flexibility in accommodating an expanded list of options, further stretching your travel budget's capabilities.
 
+# Orginal Code ------->
+# We have a budget for the trip and each country costs a certain amount
+travel_budget = 5000
+# TODO: Add "Greece" to the country_costs dictionary with a cost and observe how it changes the final output.
+country_costs = {"France": 1000, "Italy": 800, "Spain": 900, "Japan": 1200} 
+
+total_cost = 0
+chosen_countries = []
+
+# Let's add countries to our trip until our budget runs out using a while loop
+while total_cost < travel_budget and country_costs:
+    country, cost = country_costs.popitem()
+    if total_cost + cost <= travel_budget:
+        total_cost += cost
+        chosen_countries.append(country)
+
+print("Countries chosen for the trip:", chosen_countries)
+
+# Correct Code ------>
+# We have a budget for the trip and each country costs a certain amount
+travel_budget = 5000
+# TODO: Add "Greece" to the country_costs dictionary with a cost and observe how it changes the final output.
+country_costs = {"France": 1000, "Italy": 800, "Spain": 900, "Japan": 1200, "Greece": 950} 
+
+total_cost = 0
+chosen_countries = []
+
+# Let's add countries to our trip until our budget runs out using a while loop
+while total_cost < travel_budget and country_costs:
+    country, cost = country_costs.popitem()
+    if total_cost + cost <= travel_budget:
+        total_cost += cost
+        chosen_countries.append(country)
+
+print("Countries chosen for the trip:", chosen_countries)
+
+# Challenge code ----->
+
+# TODO: Define the budget for the cultural tour
+# TODO: Define the cost associated with each city visit
+
+# TODO: Initialize the total amount spent and the list of chosen cities
+
+# TODO: Use a while loop to selectively add cities to the tour list based on the budget
+# Inside the loop:
+    # TODO: Retrieve a city and its associated cost
+    # TODO: Check if adding this city would exceed your budget
+        # TODO: If not, update the total spent and add the city to your list
+
+# TODO: Print the list of cities chosen for the cultural tour
+
+travel_budget = 4500
+country_costs = {"Germany": 900, "Ireland": 850,"Scotland": 1000, "Greenland": 500}
+
+total_cost = 0
+chosen_countries =[]
+
+while total_cost < travel_budget and country_costs:
+    country, cost = country_costs.popitem()
+    if total_cost + cost <= travel_budget:
+        total_cost += cost
+        chosen_countries.append(country)
+        
+print("Countries chosen for the trip:", chosen_countries)
+
+
+# Nested loops enable us to tackle more complex situations and augment the power of our code.
+
+# Nested loops signify the placement of one loop inside another. These loops prove particularly useful when we need to address scenarios 
+# involving more than one sequence, or when the number of iterations depends on the data itself. The set-up could involve a for loop inside 
+# another for loop, a for loop inside a while loop, or a combination of for and while loops.
+
+# Consider the following example. Suppose you're planning a trip and desire to list the key sights in the countries you intend to visit.
+
+# We might want to do some sightseeing in each country. For each country, we have a list of sights.
+country_sights = {"France": ["Eiffel Tower", "Louvre Museum"],
+                  "Italy": ["Colosseum", "Piazza San Marco"],
+                  "Spain": ["Park Güell", "The Alhambra"],
+                  "Japan": ["Mt. Fuji", "Fushimi Inari Taisha"]}
+
+for country, sights in country_sights.items():
+    print(f"***In {country}, I want to see:")
+    for sight in sights:
+        print(sight)
+
+# In this code snippet, we have a for loop that iterates over all countries, and within that loop, there is another for loop that cycles 
+# through all the sights for the current country. There you have it: a nested loop! Here is what you'd get if you run the code above:
+
+***In France, I want to see:
+Eiffel Tower
+Louvre Museum
+***In Italy, I want to see:
+Colosseum
+Piazza San Marco
+***In Spain, I want to see:
+Park Güell
+The Alhambra
+***In Japan, I want to see:
+Mt. Fuji
+Fushimi Inari Taisha
+
+# Nested loops serve as robust tools in Python. They enable you to manage scenarios with multiple sequences or corresponding data sets and heighten 
+# the depth of your code, revealing new potential solutions for complex problems. By using nested loops, you can include an additional layer of complexity 
+# in your work while simultaneously making your code more compact and efficient.
+# Orgininal Code ------>
+# Planning a cultural tour with events for each destination.
+destination_events = {
+    "France": ["Cannes Film Festival", "Bastille Day Fireworks"],
+    "Italy": ["Venice Carnival", "Florence Wine Festival"],
+    "Spain": ["La Tomatina", "Running of the Bulls"],
+    "Japan": ["Sapporo Snow Festival", "Cherry Blossom Viewing"]
+}
+
+for destination, events in destination_events.items():
+    print(f"Events to attend in {destination}:")
+    for event in events:
+        print(f"- {event}")
+
+# Answer to the solution
+# We might want to do some sightseeing in each country. For each country, we have a list of sights.
+country_sights = {"France": ["Eiffel Tower", "Louvre Museum"],
+                  "Italy": ["Colosseum", "Piazza San Marco"],
+                  "Spain": ["Park Güell", "The Alhambra"],
+                  "Japan": ["Mt. Fuji", "Fushimi Inari Taisha"]}
+
+# There's a bug in the loop structure that prevents the sights from being printed correctly. Fix it.
+for country, sights in country_sights.items(): # in this line correct  , sights after country to make the code work~!
+    print(f"***In {country}, I want to see:")
+    for sight in sights:
+        print(sight)
 
 
