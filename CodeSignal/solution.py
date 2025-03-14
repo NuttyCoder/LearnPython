@@ -1156,3 +1156,64 @@ souvenir_costs = {'France': 150, 'Italy': 100, 'Spain': 75}
 # Call the function
 total_souvenir_budget = calculate_souvenir_budget(countries, souvenir_costs)
 print(f"The total souvenir budget for the trip is: ${total_souvenir_budget}")
+
+
+# Define a function which tries to modify a global variable
+chosen_countries = ["France", "Italy"]
+
+def add_country(country):
+    chosen_countries.append(country)  # This modifies the global variable
+
+add_country("Spain")  # Invoke the function
+print(chosen_countries)  # ["France", "Italy", "Spain"]
+
+def book_flight():
+    destination = "Paris"  # Local variable defined within the function
+
+book_flight()
+print(destination)  # Attempt to access the local variable outside its function
+
+# The Importance of Variable Scope
+# Understanding variable scope is fundamental for avoiding errors and writing cleaner, 
+# more efficient code. If you manage the scope of your variables wisely, you'll have granular control over where and how your data is manipulated.
+
+# Understanding the difference between local and global variables helps prevent unintended side effects in your programs. For instance, 
+# imagine that within a large codebase a variable has been unintentionally altered. Sounds bothersome, right? That's just one of the many
+# complications that good understanding of variable scope can help you avoid.
+
+# Define a function which tries to modify a global variable
+chosen_countries = ["France", "Italy"]
+
+def add_country(country):
+    chosen_countries.append(country)  # This modifies the global variable
+
+add_country("Spain")
+print(chosen_countries)  # ["France", "Italy", "Spain"]
+
+
+
+# Define a function which tries to modify a global variable
+chosen_countries = ["France", "Italy"]
+
+def add_country(country):
+    # TODO: Modify the list of chosen_countries to include the new country
+    chosen_countries.append(country)
+    print("Country added successfully!")  # Feedback confirmation
+
+add_country("Spain")
+print(chosen_countries)  # This should print ["France", "Italy", "Spain"] after your modification
+
+
+# TODO: Declare a global list to keep track of visited landmarks
+visited_landmarks = ["Eiffel Tower", "Stonehedge"]
+# TODO: Define a function named log_landmark that takes two parameters: landmark and city
+def log_landmark(landmark, city):
+    # TODO: Add the landmark and its city to the global list in the format "landmark in city"
+    entry = f"{landmark} in {city}"
+    visited_landmarks.append(entry)
+# TODO: Call the log_landmark function with examples e.g., "Eiffel Tower" and "Paris"
+log_landmark("Eiffel Tower", "Paris")
+log_landmark("Stonehedge", "England")
+# TODO: Print the list of visited landmarks
+print(visited_landmarks)
+
