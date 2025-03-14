@@ -1056,3 +1056,26 @@ average_fuel_cost_per_country = total_fuel_cost / len(chosen_countries)
 print(f"The total cost of fuel for this road trip is: ${total_fuel_cost}")
 # TODO: Print the average fuel cost per country
 print(f"The average fuel cost per country is: ${average_fuel_cost_per_country}")
+
+# What is a Function and Its Syntax?
+# A function is a block of code that performs a specific task independently. We use functions to organize and repurpose code. 
+# You can think of a function as a small machine within your sprawling factory of code. Depending on its design, a function receives some input 
+# (or none) and returns an output after executing the necessary operations.
+
+# In Python, one defines a function using the def keyword, followed by the function's name and parentheses (). The code block contained in each 
+# function is indented and initiates with a colon :. Take a look at the syntax below:
+def greet_user():
+    print("Hello, traveler!")
+
+# Output ------>
+greet_user()  # Outputs: Hello, traveler!
+
+
+# Define a function to greet the user by name
+def greet_user_by_name(name):
+    print(f"Hello, {name}!")
+
+# Call the function
+greet_user_by_name("Alex")
+
+
