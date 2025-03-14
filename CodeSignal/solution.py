@@ -698,7 +698,8 @@ for item in items:
     else:
         print(f"Need to pack {item}")
 #--------While Loops-------------------
-
+# Think of while loops as a trusty friend who continues performing a task as long as a condition holds true. It keeps going until the condition fails or a break command halts it. 
+# Let's illustrate how it functions with a code snippet related to planning a trip based on the budget for the countries you want to visit
 # We have a budget for the trip and each country costs a certain amount
 travel_budget = 5000
 country_costs = {"France": 1000, "Italy": 800, "Spain": 900, "Japan": 1200}
@@ -714,3 +715,57 @@ while total_cost < travel_budget and country_costs:
         chosen_countries.append(country)
 
 print("Countries chosen for the trip:", chosen_countries)
+# We commence with a while loop that verifies two conditions — whether our total_cost is less than our travel_budget, 
+# and whether there are still countries left in the country_costs dictionary. The loop keeps running, popping items 
+# from the dictionary, and adding them to our trip until one of the conditions fails.
+
+#In this specific case, our budget is enough to go to all countries so the loop stops when country_costs is empty and there 
+# are no more countries to consider. If you were to adjust the travel_budget to a lower number the loop should stop sooner 
+# when the first condition is no longer met (i.e. total_cost < travel_budget).
+
+# The .popitem() method is used with dictionaries in Python. It removes and returns the last key-value pair added to the dictionary. 
+# This is particularly useful when you want to process or remove items one by one from a dictionary.
+# Understanding Python's Built-In Functions
+# As we dive into Python's built-in functions, it's like discovering a set of powerful tools that make coding simpler. 
+# Python comes packed with these ready-to-use functions, saving you the time and effort of writing common functionalities 
+# from scratch. For beginners, focusing on a few key functions can be incredibly helpful.
+
+# In the example of planning a trip with a while loop, we specifically use two functions: popitem() and append(). 
+# You might also come across functions like len(), which tells you how many items are in a list or dictionary, and print(), which shows your results on the screen.
+
+# popitem(): This function is specific to dictionaries. It removes the last added item and returns it, which is helpful for our loop as it 
+# allows us to take countries off our planning list one by one.
+
+# append(): Used with lists, this lets you add new items to the end. For us, it means we can keep adding countries to our travel list until we hit our budget limit.
+
+# Both popitem() and append() are simple yet powerful, allowing us to dynamically update our lists and dictionaries.
+# Importance of "while" Loops
+# Understanding while loops solidifies the ability to automate repetitive tasks and control the iterations fluidly. 
+# This understanding opens new avenues for coding efficiency and simplicity. Once mastered, this tool provides incredible flexibility and helps navigate complex tasks with ease.
+ # EXAMPLE
+# In this task, we're using while loops to pick out attractions for a local tour without going over our budget. 
+# This is a cool way to see while loops in action and learn how to change a list as we go with something called popitem().
+
+# Take a look at this line in the code:
+
+attraction, cost = attraction_costs.popitem()
+
+# popitem() takes the last item (like "Historical Site": 30) out of our list of places to visit and their costs. When it does, it gives back this item in a pair called a tuple, which is just a way of grouping things together in Python.
+# The magic part is where we say attraction, cost = . 
+# This means we take that pair (tuple) and split it, so attraction becomes the name ("Historical Site") 
+# and cost becomes how much it costs (30).
+# We have a budget for a local tour and each attraction costs a certain amount
+local_tour_budget = 150
+attraction_costs = {"Museum": 50, "Art Gallery": 40, "Historical Site": 30}
+
+total_spent = 0
+selected_attractions = []
+
+# Let's select attractions for our local tour without exceeding our budget
+while total_spent < local_tour_budget and attraction_costs:
+    attraction, cost = attraction_costs.popitem()
+    if total_spent + cost <= local_tour_budget:
+        total_spent += cost
+        selected_attractions.append(attraction)
+
+print("Attractions selected for the local tour:", selected_attractions)
