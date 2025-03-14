@@ -1217,3 +1217,109 @@ log_landmark("Stonehedge", "England")
 # TODO: Print the list of visited landmarks
 print(visited_landmarks)
 
+
+# Combining Functions to Solve Complex Problems
+travel_budget = 5000
+country_costs = {'France': 1200, 'Italy': 1500, 'Spain': 800, 'Germany': 900, 'Greece': 1100}
+def choose_countries(budget, costs):
+    total_cost = 0
+    chosen_countries = []
+    for country, cost in costs.items():
+        if total_cost + cost > budget:
+            break
+        total_cost += cost
+        chosen_countries.append(country)
+    return chosen_countries
+
+chosen_countries = choose_countries(travel_budget, country_costs)
+print(chosen_countries) # Prints ['France', 'Italy', 'Spain', 'Germany']
+
+def calculate_cost(countries, costs):
+    total_cost = 0
+    for country in countries:
+        total_cost += costs[country]
+    return total_cost
+
+total_cost = calculate_cost(chosen_countries, country_costs)
+print(total_cost) # Prints 4400
+
+# TIP
+# Focusing on combining functions is vital because, in professional programming scenarios—from web app development to 
+# data analysis—you'll often face complex issues that a single function cannot solve. Splitting these challenges into 
+# smaller, function-representative tasks not only clarifies your code but also makes it easier to test, debug, and enhance.
+
+# Define multiple functions and use them together to solve a problem.
+def choose_countries(budget, costs):
+    total_cost = 0
+    chosen_countries = []
+    for country, cost in costs.items():
+        if total_cost + cost > budget:
+            break
+        total_cost += cost
+        chosen_countries.append(country)
+    return chosen_countries
+
+def calculate_cost(countries, costs):
+    total_cost = 0
+    for country in countries:
+        total_cost += costs[country]
+    return total_cost
+
+# Assuming sample data for budget and costs for demonstration
+travel_budget = 5000
+country_costs = {'France': 1200, 'Italy': 1500, 'Spain': 800, 'Germany': 900, 'Greece': 1100}
+
+chosen_countries = choose_countries(travel_budget, country_costs)
+trip_cost = calculate_cost(chosen_countries, country_costs)
+
+print(f"The countries included in the trip are: {chosen_countries}")
+print(f"The total cost of the trip is: ${trip_cost}")
+
+
+# Partial function to add another country to your trip plan if it fits the budget.
+def add_country_if_fits_budget(budget, current_cost, new_country_cost):
+    # TODO: Add the missing code to check if you can add the new country without exceeding the budget
+    if current_cost + new_country_cost <= budget:
+        return True
+    else:
+        return False
+
+# Assuming sample values for demonstration
+current_budget = 5000
+current_cost = 3000
+new_country_cost = 1200
+
+# Check if adding the new country fits the budget
+can_add_country = add_country_if_fits_budget(current_budget, current_cost, new_country_cost)
+print(f"Can add new country within budget? {can_add_country}")
+
+# Adjusted function to consider both budget and cost preference.
+def choose_countries(budget, cost_threshold, costs):
+    total_cost = 0
+    chosen_countries = []
+    for country, cost in costs.items():
+        # TODO: Modify the condition below to also reject countries whose cost exceeds the cost_threshold
+        if cost > cost_threshold or total_cost + cost > budget:
+            continue
+        total_cost += cost
+        chosen_countries.append(country)
+    return chosen_countries
+
+def calculate_cost(countries, costs):
+    total_cost = 0
+    for country in countries:
+        total_cost += costs[country]
+    return total_cost
+
+# Assuming sample data for budget, cost threshold, and costs for demonstration
+travel_budget = 5000
+cost_threshold = 1000  # New cost preference limit
+country_costs = {'France': 1200, 'Italy': 1500, 'Spain': 800, 'Germany': 900, 'Greece': 1100}
+
+chosen_countries = choose_countries(travel_budget, cost_threshold, country_costs)
+trip_cost = calculate_cost(chosen_countries, country_costs)
+
+print(f"The countries selected within budget and cost preference are: {chosen_countries}")
+print(f"The total cost of the trip is: ${trip_cost}")
+
+
