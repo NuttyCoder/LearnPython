@@ -768,3 +768,37 @@ plt.show()
 # DataFrame chronologically, and filtering data by specific date ranges. These techniques are essential for 
 # focusing on specific periods relevant to your financial analysis or trading strategy.
 
+# Convert the Date column to datetime type
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Set the Date column as the index
+tesla_df.set_index('Date', inplace=True)
+
+# Sort the DataFrame based on the index
+tesla_df.sort_index(inplace=True)
+
+# Filtering data for January 2020 to March 2020
+tesla_q1_2020 = tesla_df.loc['2020-01':'2020-03']
+print(tesla_q1_2020.tail())
+
+
+
+import pandas as pd
+import datasets
+
+# Load TSLA dataset
+tesla_data = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla_data['train'])
+
+# Convert the Date column to datetime type
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Set the Date column as the index
+tesla_df.set_index('Date', inplace=True)
+
+# Sort the DataFrame based on the index
+tesla_df.sort_index(inplace=True)
+
+# TODO: Filter the dataset for the years 2018, 2019, 2020
+tesla_2018_2020 = tesla_df.loc['2018-01': '2020-12']
+print(tesla_2018_2020.head())
