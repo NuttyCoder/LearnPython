@@ -505,5 +505,266 @@ print(tesla_df.head())
 # This lesson is essential as visualizing financial data is crucial for identifying trends and making informed trading decisions. 
 # By the end of this lesson, you'll be proficient in plotting data using Matplotlib, customizing plots, and interpreting the results.
 
+# Introduction to Matplotlib
+# Matplotlib is a powerful plotting library in Python that allows developers to create a wide variety of static, animated, and interactive plots. 
+# It's widely used in data visualization because of its simplicity and versatility.
 
+# Why Matplotlib?
+
+# Versatility: Matplotlib can be used to create plots ranging from simple line charts to complex 3D plots.
+# Customization: Almost every aspect of a Matplotlib plot can be customized.
+#Integration: It works well with Pandas, making it easy to visualize DataFrame data.
+#To get started with Matplotlib, you need to import the pyplot module:
+
+import matplotlib.pyplot as plt
+
+# Preparing Data for Visualization
+# Before plotting, we need to prepare our Tesla stock data.
+
+# Loading the Tesla Dataset: We'll use the load_dataset function from the datasets library to load Tesla's historic price data:
+
+import pandas as pd
+from datasets import load_dataset
+
+# Load TSLA dataset
+tesla_data = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla_data['train'])
+
+# Converting Dates to Datetime Objects: To handle the time series data correctly, we need to convert the 'Date' column to datetime format:
+
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+# Setting Date as Index: Next, we'll set the 'Date' column as the index of our DataFrame and sort it:
+
+tesla_df.set_index('Date', inplace=True)
+tesla_df.sort_index(inplace=True)
+
+# At this point, our DataFrame is ready for plotting.
+# Creating Basic Line Plots
+# Now that our data is prepared - let's create a basic line plot.
+
+# Using Matplotlib, we can plot the 'Close' prices against dates:
+
+
+plt.plot(tesla_df.index, tesla_df['Close'])
+
+# In the plt.plot() function:
+
+# tesla_df.index: Represents the x-axis data, which, in this case, is the dates from the DataFrame index.
+# tesla_df['Close']: Represents the y-axis data, which are the closing prices from the 'Close' column of the DataFrame.
+# It's also essential to add titles and labels to make our plot more informative:
+
+
+plt.title('TSLA Closing Price Over Time')
+plt.xlabel('Date')
+plt.ylabel('Price (USD)')
+
+# On top of that, adding a legend helps identify what the plotted line represents:
+
+
+plt.legend(['Close Price'])
+
+# Customizing Plots
+# Customizing plots improves their readability and aesthetic appeal.
+
+# We can adjust the figure size to ensure that our plots are well-proportioned. 
+# The figsize parameter takes a tuple (width, height) in inches. For example, figsize=(10, 5) creates a f
+# figure that is 10 inches wide and 5 inches tall. This helps in setting the size of the plot for better visualization:
+plt.figure(figsize=(10, 5))
+
+# Customizing line colors and styles makes plots visually appealing:
+plt.plot(tesla_df.index, tesla_df['Close'], color='blue', linestyle='-', linewidth=2)
+
+# Grid lines can make it easier to read the plot:
+plt.grid(True)
+
+# To render the plotted graph, we use:
+plt.show()
+
+# Displaying and Interpreting Plots
+# Let's complete our plot and see the final result.
+
+# Here is the final code:
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+from datasets import load_dataset
+
+# Load TSLA dataset
+tesla_data = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla_data['train'])
+
+# Convert 'Date' column to datetime
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Set 'Date' as index and sort it
+tesla_df.set_index('Date', inplace=True)
+tesla_df.sort_index(inplace=True)
+
+# Plot the 'Close' prices
+plt.figure(figsize=(10, 5))
+plt.plot(tesla_df.index, tesla_df['Close'], color='blue', linestyle='-', linewidth=2)
+
+# Add titles and labels
+plt.title('TSLA Closing Price Over Time')
+plt.xlabel('Date')
+plt.ylabel('Price (USD)')
+
+# Add legend and grid
+plt.legend(['Close Price'])
+plt.grid(True)
+
+# Display the plot
+plt.show()
+
+# How to use Matplotlib to visualize Tesla's ($TSLA) stock data. 
+# The basics of importing and setting up Matplotlib, preparing data for visualization, 
+# creating basic line plots, and customizing plots for better readability. 
+# These skills are crucial for conducting financial analyses and making informed trading decisions.
+
+
+# Introduction to Date Filtering
+# In this lesson, we'll explore how to filter time series financial data by date range using the Pandas library. 
+# Filtering data by specific date ranges is vital in financial analysis, allowing us to focus on periods of interest, 
+# such as a particular year or month. This skill is essential for traders and analysts who need to examine stock 
+# performance during specific periods, such as economic crises or fiscal quarters.
+
+
+# Converting Date Columns to Datetime Objects ---------------------------------------------------------->
+# The first step in filtering data by date is to ensure that the date column is in a suitable format. Let's start by loading the Tesla ($TSLA) stock dataset and converting the "Date" column to datetime objects using pd.to_datetime().
+
+
+import pandas as pd
+import datasets
+
+# Load TSLA dataset
+tesla_data = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla_data['train'])
+
+# Convert the Date column to datetime type
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Display initial rows to inspect the format
+print(tesla_df.head())
+# The output of the above code confirms that the 'Date' column is now in datetime format, which is crucial for time series analysis:
+
+
+        Date      Open      High       Low     Close  Adj Close     Volume
+0 2010-06-29  1.266667  1.666667  1.169333  1.592667   1.592667  281494500
+1 2010-06-30  1.719333  2.028000  1.553333  1.588667   1.588667  257806500
+2 2010-07-01  1.666667  1.728000  1.351333  1.464000   1.464000  123282000
+3 2010-07-02  1.533333  1.540000  1.247333  1.280000   1.280000   77097000
+4 2010-07-06  1.333333  1.333333  1.055333  1.074000   1.074000  103003500
+
+# Setting the Date Column as Index ------------------------------------------------------------------------->
+# Setting the date column as the index of the DataFrame and sorting it simplifies the process of slicing and filtering data based on dates. 
+# It also enhances performance during such operations.
+
+# Here’s how to set the "Date" column as the index and sort it:
+
+
+# Set the Date column as the index
+tesla_df.set_index('Date', inplace=True)
+
+# Sort the DataFrame based on the index
+tesla_df.sort_index(inplace=True)
+print(tesla_df.head())
+# The output of the above code will be:
+
+                Open      High       Low     Close  Adj Close     Volume
+Date                                                                    
+2010-06-29  1.266667  1.666667  1.169333  1.592667   1.592667  281494500
+2010-06-30  1.719333  2.028000  1.553333  1.588667   1.588667  257806500
+2010-07-01  1.666667  1.728000  1.351333  1.464000   1.464000  123282000
+2010-07-02  1.533333  1.540000  1.247333  1.280000   1.280000   77097000
+2010-07-06  1.333333  1.333333  1.055333  1.074000   1.074000  103003500
+# This output confirms that the Date column has successfully been set as the index of the DataFrame 
+# and successfully sorted in chronological order based on this index, ensuring an accurate timeline for subsequent analysis.
+
+#  Filtering Data by Specific Date Range ------------------------------------------------------------------------------------>
+# With the date column converted to datetime objects, set as the index, and sorted, we can now filter the DataFrame by a specific date range. 
+# This technique is particularly useful when you need to analyze data for a specific year, month, or any custom date range.
+
+# Filtering the dataset for the year 2020
+tesla_2020 = tesla_df.loc['2020']
+print(tesla_2020.head())
+# In this code, loc is a Pandas method used for label-based indexing. 
+# It allows you to select rows and columns based on labels, such as dates in this case. 
+# Here, we use loc to filter the DataFrame based on the date labels, extracting all rows corresponding to the year 2020.
+
+# The output of the above code will be:
+
+                 Open       High        Low      Close  Adj Close     Volume
+Date                                                                        
+2020-01-02  28.299999  28.713333  28.114000  28.684000  28.684000  142981500
+2020-01-03  29.366667  30.266666  29.128000  29.534000  29.534000  266677500
+2020-01-06  29.364668  30.104000  29.333332  30.102667  30.102667  151995000
+2020-01-07  30.760000  31.441999  30.224001  31.270666  31.270666  268231500
+2020-01-08  31.580000  33.232666  31.215334  32.809334  32.809334  467164500
+
+#This output demonstrates the successful filtering of the DataFrame to show stock prices for the start of 2020. 
+# The simplified view focuses on the 'Open' column to display the opening stock prices at the beginning of the year, 
+# providing a quick insight into Tesla's stock performance during this period.
+
+# Other Ways to Filter by Date ---------------------------------------------------------------------->
+# We can also filter for more specific date ranges, such as a particular month or quarter:
+
+# Filtering data for January 2020
+tesla_jan_2020 = tesla_df.loc['2020-01']
+print(tesla_jan_2020.head())
+
+# The output of the above code will be:
+
+
+                 Open       High        Low      Close  Adj Close     Volume
+Date                                                                        
+2020-01-02  28.299999  28.713333  28.114000  28.684000  28.684000  142981500
+2020-01-03  29.366667  30.266666  29.128000  29.534000  29.534000  266677500
+2020-01-06  29.364668  30.104000  29.333332  30.102667  30.102667  151995000
+2020-01-07  30.760000  31.441999  30.224001  31.270666  31.270666  268231500
+2020-01-08  31.580000  33.232666  31.215334  32.809334  32.809334  467164500
+# To filter a quarter, the code will look like this:
+# Filtering data from January 2020 to March 2020 (Q1)
+# Unlike the common Python slicing operator, here, March 2020 (2020-03) is inclusive
+tesla_q1_2020 = tesla_df.loc['2020-01':'2020-03']
+print(tesla_q1_2020.tail())
+
+The output of the above code will be:
+
+                 Open       High        Low      Close  Adj Close     Volume
+Date                                                                        
+2020-03-25  36.349998  37.133331  34.074001  35.950001  35.950001  318340500
+2020-03-26  36.492668  37.333332  34.150002  35.210667  35.210667  260710500
+2020-03-27  33.666668  35.053333  32.935333  34.290668  34.290668  215661000
+2020-03-30  34.017334  34.443333  32.748669  33.475334  33.475334  179971500
+2020-03-31  33.416668  36.197334  33.133331  34.933334  34.933334  266572500
+
+# Plotting the Filtered Data ------------------------------------------------------------------------------------>
+# After filtering the data, visualizing it can help identify patterns and trends over the specified date range.
+# We will use Matplotlib, a popular plotting library in Python, to create a time series plot.
+
+# Let's visualize the January 2020 data and the Q1 2020 data for Tesla stock:
+
+
+import matplotlib.pyplot as plt
+
+# Plotting the filtered data for Q1 2020
+tesla_q1_2020 = tesla_df.loc['2020-01':'2020-03']
+
+plt.figure(figsize=(10, 5))
+plt.plot(tesla_q1_2020.index, tesla_q1_2020['Close'], marker='o', linestyle='-')
+plt.title('Tesla Stock Prices in Q1 2020')
+plt.xlabel('Date')
+plt.ylabel('Closing Price')
+plt.grid(True)
+plt.show()
+
+
+# By visualizing the data, you can gain insights into stock performance and identify trends over the specified periods,
+# thereby enhancing your financial analysis capabilities.
+
+# Learned how to filter time series financial data by date ranges using the Pandas library. 
+# We covered converting date columns to datetime objects, setting the date column as the index, sorting the 
+# DataFrame chronologically, and filtering data by specific date ranges. These techniques are essential for 
+# focusing on specific periods relevant to your financial analysis or trading strategy.
 
