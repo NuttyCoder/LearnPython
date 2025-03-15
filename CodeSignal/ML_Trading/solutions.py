@@ -1288,3 +1288,59 @@ for idx, row in crosses.iterrows():
         
 
 plt.show()
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------->>>>>>>>>
+# Concept and calculation of Volume Weighted Average Price (VWAP) specifically for Tesla ($TSLA) stock data using Pandas. 
+# VWAP is a crucial indicator in trading that helps by providing the average price a security has traded at during the day, 
+# weighted by volume. By the end of this lesson, you'll be able to calculate VWAP and visualize it alongside the closing prices of Tesla stock data.
+
+# Introduction to VWAP
+# Volume Weighted Average Price (VWAP) is a trading benchmark that gives traders insight into both the price and volume of trades for a particular stock. 
+# It represents the average price a stock has traded at throughout the day, weighted by volume.
+
+# VWAP is used by traders to identify the average price at which a stock was traded over a given period, reflecting both the price and the traded volume. 
+# It helps in determining the efficiency of stock execution by comparing it against the market's average.
+
+# The VWAP is calculated using the cumulative sum (the running total) of the volume and the volume-weighted prices:
+
+# VWAP=∑i=1n(Pi×Vi)
+#         --------
+#         ∑=1nVi
+# Where Pi is the price of the stock, and Vi is the volume of trades at each i-th period.
+
+# Loading and Preprocessing Tesla Stock Data
+# Let's start by importing the necessary libraries and loading the Tesla ($TSLA) stock data. We'll use the load_dataset function from the datasets library.
+
+import pandas as pd
+import numpy as np
+from datasets import load_dataset
+
+# Load Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+
+# Next, we'll preprocess the data by converting the 'Date' column to datetime format and setting it as the index.
+# Convert Date column to datetime format and set as index
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# For better visualization, we'll filter the data to focus on the year 2018.
+# Filter data for the year 2018
+tesla_df_small = tesla_df.loc['2018'].copy()
+
+# Calculating the VWAP --------------------------------------------------------------------------------------------------------->>>>>
+# Now that we have our data preprocessed, we can calculate the VWAP. 
+# We'll use the cumulative sum (the running total, where each value is added to the sum of previous values) 
+# of the product of volume and close price and then divide it by the cumulative sum of the volume.
+
+# Visualizing VWAP with Closing Prices
+# Visualization helps in interpreting the financial data more effectively. We'll use Matplotlib to plot the VWAP alongside the closing prices.
+
+import matplotlib.pyplot as plt
+
+# Visualize VWAP with Close Price
+tesla_df_small[['Close', 'VWAP']].plot(figsize=(12, 6), title="TSLA Close Price and VWAP (2018)")
+plt.show()
+
+# How to calculate and visualize the Volume Weighted Average Price (VWAP) for Tesla stock data using Pandas. 
+# We covered the importance of VWAP, loaded and preprocessed the data, performed the VWAP calculation, and created a visualization.
