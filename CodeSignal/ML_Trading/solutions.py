@@ -1020,3 +1020,271 @@ tesla_df_small = tesla_df.loc['2018']
 # TODO: Plot the Volume and 50-day EMA
 tesla_df_small[['Volume', 'EMA_50']].plot(figsize=(12, 6), title="TSLA Volume Price and 50-day EMA (2018)")
 plt.show()
+
+# Comparing Simple Moving Average (SMA) and Exponential Moving Average (EMA) using Tesla ($TSLA) stock data. 
+# This lesson will help you revise how to handle financial data with Pandas, calculate both SMA and EMA, and create visualizations 
+# to understand and compare these technical indicators.
+
+# Goal: By the end of this lesson, you will be able to load financial data, compute SMA and EMA, and visualize these indicators to make informed trading decisions.
+# Lesson Plan:
+
+# Loading and Preparing the Dataset
+# Calculating and Comparing SMA and EMA
+# Subsetting the Data for Visualization
+# Plotting SMA and EMA for Comparison
+
+# Loading and Preparing the Dataset
+# Let's start by loading the Tesla dataset and preparing it for analysis. We will convert the 'Date' column to datetime format and set it as the index.
+
+
+import pandas as pd
+from datasets import load_dataset
+
+# Load the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+
+# Convert the dataset into a DataFrame
+tesla_df = pd.DataFrame(dataset['train'])
+
+# Convert the 'Date' column to datetime format
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Set the 'Date' column as the index
+tesla_df.set_index('Date', inplace=True)
+
+# Calculating and Comparing SMA and EMA ------------------------------------------>>>>>>>
+# We'll calculate the 20-day Simple Moving Average (SMA) and Exponential Moving Average (EMA) of the closing prices.
+
+# Calculate the 20-day Simple Moving Average
+tesla_df['SMA_20'] = tesla_df['Close'].rolling(window=20).mean()
+
+# Calculate the 20-day Exponential Moving Average
+tesla_df['EMA_20'] = tesla_df['Close'].ewm(span=20, adjust=False).mean()
+# To make the visualization clearer, we'll focus on the year 2018.
+
+# Using a smaller date range for better visualization
+tesla_df_small = tesla_df.loc['2018']
+
+# Plotting SMA and EMA for Comparison
+# Finally, we will plot the closing prices along with the SMA and EMA to visualize and compare these indicators using Matplotlib.
+
+import matplotlib.pyplot as plt
+
+# Plotting
+tesla_df_small[['Close', 'SMA_20', 'EMA_20']].plot(figsize=(12, 6), title="TSLA Close Price, SMA 20, and EMA 20 (2018)")
+plt.show()
+
+
+import pandas as pd
+from datasets import load_dataset
+import matplotlib.pyplot as plt
+
+# Load and prepare the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# Calculate the 20-day Simple Moving Average
+tesla_df['SMA_20'] = tesla_df['Close'].rolling(window=20).mean()
+
+# Calculate the 20-day Exponential Moving Average
+tesla_df['EMA_20'] = tesla_df['Close'].ewm(span=20, adjust=False).mean()
+
+# Using a smaller date range for better visualization
+tesla_df_small = tesla_df.loc['2018']
+
+# Plotting
+tesla_df_small[['SMA_20', 'EMA_20']].plot(figsize=(12, 6), title="TSLA Close Price, SMA 20, and EMA 20 (2018)")
+plt.show()
+
+
+# Challenge ----------------------------------------------------------------------------------------------------->
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from datasets import load_dataset
+
+# Step 1: Load and prepare the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# Step 2: Calculate the 200-day SMA and EMA
+# TODO: Calculate the 200-day SMA for the Volume
+tesla_df['SMA_200'] = tesla_df['Volume'].rolling(window=200).mean()
+# TODO: Calculate the 200-day EMA for the Volume
+tesla_df['EMA_200'] = tesla_df['Volume'].ewm(span=200, adjust=False).mean()
+# Step 3: Focus on data from the year 2018 for better visualization
+tesla_df_small = tesla_df.loc['2018']
+
+# Step 4: Plot the Volume along with SMA and EMA
+plt.figure(figsize=(12, 6))
+tesla_df_small[['Volume', 'SMA_200', 'EMA_200']].plot(title="TSLA Close Price, SMA 200, and EMA 200 (2018)")
+plt.show()
+
+#-------------------------------------------------------------------------------------------------------->>>>>>
+import pandas as pd
+from datasets import load_dataset
+import matplotlib.pyplot as plt
+
+# Load and prepare the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# Calculate the 20-day Simple Moving Average (SMA)
+tesla_df['SMA_20'] = tesla_df['Close'].rolling(window=20).mean()
+
+# Calculate the 20-day Exponential Moving Average (EMA)
+tesla_df['EMA_20'] = tesla_df['Close'].ewm(span=20, adjust=False).mean()
+
+# Using a smaller date range for better visualization
+tesla_df_small = tesla_df.loc['2018']
+
+# Plotting
+# TODO: Plot closing prices along with 20-day SMA and EMA
+tesla_df_small[['Close', 'SMA_20', 'EMA_20']].plot(figsize=(12, 6),title="TSLA Closing Price, SMA 20, and EMA 20 (2018)")
+plt.show()
+
+# Applying Technical Indicators to Identify Trends using Tesla's ($TSLA) stock data. 
+#  You will revisit how to calculate Simple Moving Averages (SMAs), and learn how to identify trend signals
+# like Golden Cross and Death Cross, and visualize these trends using pandas and matplotlib.
+
+# Lesson Goal: To understand and implement technical indicators (SMA) and identify trend signals (Golden Cross and Death Cross) in financial data using Python and Pandas.
+
+# Lesson Plan:
+
+# Loading and Preparing Tesla Stock Data
+# Calculating Simple Moving Averages (SMAs)
+# Identifying Golden Cross and Death Cross
+# Visualizing the Results
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from datasets import load_dataset
+
+# Load the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+
+# Convert 'Date' column to datetime format and set it as the index
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+Explanation:
+
+# Import Libraries: We import pandas for data manipulation, matplotlib.pyplot for plotting, and load_dataset to fetch our Tesla stock data.
+# Dataset: We use load_dataset to fetch the dataset and convert it to a DataFrame.
+# Convert Date Column: The Date column is converted to datetime format for easier manipulation.
+# Set Index: We set the Date column as the index to efficiently perform time series operations.
+# Calculate 50-day and 200-day SMAs
+
+tesla_df['SMA_50'] = tesla_df['Close'].rolling(window=50).mean()
+tesla_df['SMA_200'] = tesla_df['Close'].rolling(window=200).mean()
+
+# SMA_50: We calculate the 50-day SMA by using the rolling method with a window of 50 days on the 'Close' price and then applying the mean function.
+# SMA_200: Similarly, we calculate the 200-day SMA by using a rolling window of 200 days.
+
+
+# --------------------------------------------------------->Identifying Golden Cross and Death Cross<_---------------------------------------------------
+# In trading, golden and death crosses are defined as follows:
+
+# Golden Cross: Occurs when a short-term SMA (50-day) crosses above a long-term SMA (200-day), indicating a potential upward trend.
+# Death Cross: Occurs when a short-term SMA (50-day) crosses below a long-term SMA (200-day), indicating a potential downward trend.
+# Now, let's create signals for these crossover points:
+
+# Identifying the "Golden Cross" and "Death Cross"
+tesla_df['Signal'] = 0  # Default value
+tesla_df.loc[tesla_df['SMA_50'] > tesla_df['SMA_200'], 'Signal'] = 1
+tesla_df.loc[tesla_df['SMA_50'] < tesla_df['SMA_200'], 'Signal'] = -1
+
+# Creating a column to mark crossover points
+tesla_df['Crossover'] = tesla_df['Signal'].diff()
+
+# Explanation:
+
+# Signal Column: We create a 'Signal' column to store initial values as 0.
+# Golden Cross Signal: When the 50-day SMA crosses above the 200-day SMA, we set the 'Signal' to 1.
+# Death Cross Signal: When the 50-day SMA crosses below the 200-day SMA, we set the 'Signal' to -1.
+# Crossover Column: We create a 'Crossover' column to store the points where the signal changes (differs from the previous day), indicating a crossover event.
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from datasets import load_dataset
+
+# Load the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+
+# Convert 'Date' column to datetime format and set it as the index
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# Calculate 50-day and 200-day SMAs
+tesla_df['SMA_20'] = tesla_df['Close'].rolling(window=20).mean()
+tesla_df['SMA_50'] = tesla_df['Close'].rolling(window=50).mean()
+
+# Identifying the "Golden Cross" and "Death Cross"
+tesla_df['Signal'] = 0  # Default value
+tesla_df.loc[tesla_df['SMA_20'] > tesla_df['SMA_50'], 'Signal'] = 1
+tesla_df.loc[tesla_df['SMA_20'] < tesla_df['SMA_50'], 'Signal'] = -1
+
+# Creating a column to mark crossover points
+tesla_df['Crossover'] = tesla_df['Signal'].diff()
+
+# Using a smaller date range for better visualization
+tesla_df_small = tesla_df.loc['2019']
+
+# Plot with Golden Cross and Death Cross
+fig, ax = plt.subplots(figsize=(12, 6))
+tesla_df_small[['Close', 'SMA_20', 'SMA_50']].plot(ax=ax, title="TSLA with Golden Cross and Death Cross (2019)")
+
+# Highlighting Golden Cross and Death Cross points
+crosses = tesla_df_small[tesla_df_small['Crossover'] != 0]
+for idx, row in crosses.iterrows():
+    if row['Crossover'] == 2:
+        plt.plot(idx, row['SMA_20'], 'go', markersize=10, label='Golden Cross' if 'Golden Cross' not in [text.get_text() for text in ax.get_legend().get_texts()] else "")
+    elif row['Crossover'] == -2:
+        plt.plot(idx, row['SMA_20'], 'ro', markersize=10, label='Death Cross' if 'Death Cross' not in [text.get_text() for text in ax.get_legend().get_texts()] else "")
+
+plt.legend()
+plt.show()
+
+#------------------------------------------------------------------------------------------------------------------>>>>>>>>>>>>>
+import pandas as pd
+import matplotlib.pyplot as plt
+from datasets import load_dataset
+
+# Load the Tesla dataset
+dataset = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(dataset['train'])
+
+# Convert 'Date' column to datetime format and set it as the index
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+tesla_df.set_index('Date', inplace=True)
+
+# TODO: Calculate 20-day and 50-day SMAs for the 'Volume' column using rolling mean
+tesla_df['SMA_20'] = tesla_df['Volume'].rolling(window=20).mean()
+tesla_df['SMA_50'] = tesla_df['Volume'].rolling(window=50).mean()
+# TODO: Identify the "Golden Cross" and "Death Cross" for Volume
+tesla_df['Signal'] = 0
+tesla_df.loc[tesla_df['SMA_20'] > tesla_df['SMA_50'], 'Signal'] = 1
+tesla_df.loc[tesla_df['SMA_20'] < tesla_df['SMA_50'], 'Signal'] = -1
+tesla_df['Crossover'] = tesla_df['Signal'].diff()
+# TODO: Filter the DataFrame for the year 2019
+tesla_df_small = tesla_df.loc['2019']
+# TODO: Plot the SMAs along with Volume
+fig, ax = plt.subplots(figsize=(12,6))
+tesla_df_small[['Volume', 'SMA_20', 'SMA_50']].plot(ax=ax, title="TSLA Volume, SMA 20 & SMA 50 (2019)")
+# TODO: Highlight the Golden Cross and Death Cross points
+crosses = tesla_df_small[tesla_df_small['Crossover'] != 0]
+for idx, row in crosses.iterrows():
+    if row['Crossover'] == 2:
+        plt.plot(idx, row['SMA_20'], 'go', markersize=10, label='Golden Cross' if 'Golden Cross' not in [text.get_text() for text in ax.get_legend().get_texts()] else "")
+    elif row['Crossover'] == -2:
+        plt.plot(idx, row['SMA_50'], 'ro', markersize=10, label='Death Cross' if 'Death Cross' not in [text.get_text() for text in ax.get_legend().get_texts()] else"")
+        
+
+plt.show()
