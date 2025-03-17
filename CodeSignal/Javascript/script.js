@@ -100,3 +100,89 @@ let galaxy;
 console.log(planet === "Earth")
 // TODO: Check if 'moons' has a value that is strictly 'null'
 console.log(moons === null);
+
+// The "if" Statement: Initiating Decision-Making
+// Regard the if statement as the gatekeeper of conditionals. It definitively states, "If this is true, then perform this specific action". It’s comparable to choosing between chocolate and vanilla ice cream. Let’s take a closer look at an example:
+
+let myScore = 100;
+let friendScore = 80;
+// If our score is higher, we get to brag about it!
+if (myScore > friendScore) {
+    console.log("Score bragging rights are mine!");
+    console.log("Victory is sweet!");
+}
+
+console.log("Game over.");
+// Note that in JavaScript, the conditions we inspect using if statement must always be wrapped in parentheses, like so: if (condition). The if statement applies to all statements within its block formed by braces ({}).
+
+// In the above script, since myScore is greater than friendScore, both lines within the block are executed. If myScore was smaller than friendScore, they would not.
+
+// Regardless of the condition's verdict, "Game over." is printed because it's situated outside the if block.
+
+// The "else" Statement: Expanding Our Options
+// Often, we're presented with multiple potential outcomes. For such instances, we utilize the else statement, to account for the "otherwise" scenario. Let's see it in action:
+
+let myScore = 60;
+let friendScore = 80;
+// If our score is higher, we brag. Else, we console ourselves!
+if (myScore > friendScore) {
+    console.log("I scored higher!");
+    console.log("Hurrah!");
+} else {
+    console.log("My friend scored higher. Well played.");
+    console.log("I’ll come back stronger next time.");
+}
+
+console.log("Game over.");
+// In this scenario, if the if statement's condition is met, the program executes only the block within the if statement. However, if the condition is false and thereby the first block is not executed, the program moves to execute the block within the else clause instead.
+
+// Again, irrespective of the chosen path, "Game over." is always printed as it resides outside the conditionals’ realm.
+
+//  The "else if" Statement: Handling Multiple Conditions
+// There are occasions when we must consider several distinct conditions. This is where else if flourishes, lending nuanced control over multiple possibilities.
+
+let myScore = 80;
+let friendScore = 80;
+// If our score is higher, we brag.
+// If our score is lower, we console ourselves.
+// If our scores are tied, we declare a stalemate.
+if (myScore > friendScore) {
+    console.log("I scored higher!");
+} else if (myScore < friendScore) {
+    console.log("Oh no, my friend scored higher!")
+} else {
+    console.log("It's a tie game!")
+}
+// The else if clause is checked only if the initial if statement is false. If the else if condition turns out to be true, its block of code will be executed. 
+// However, if its condition is also false, the flow of the program will descend to any subsequent else if clauses, checking their conditions, 
+// or to the else statement if there are no more else if clauses. The else block always executes as a fallback if none of the preceding conditions 
+// in the if and else if clauses are met. As such, the program can follow a multitude of paths, offering you granular control over its operation.
+
+// Understanding Logical Operators
+// Logical operators in JavaScript allow us to evaluate multiple conditions. The && operator checks if both conditions are true, || checks if either one is true, and ! negates a condition.
+
+let isWeekend = true;
+let isHoliday = false;
+let isSunny = false;
+
+if (isWeekend && isSunny) {
+  console.log("It's the weekend and it's sunny, let's go to the park!");
+} else if (isHoliday && !isSunny) {
+  console.log("It's a holiday but not sunny, let's go to the museum."); 
+} else if (isWeekend || isHoliday) {
+  console.log("It's either weekend or a holiday, let's decide based on the weather.");
+} else {
+  console.log("It's neither the weekend nor a holiday, let's stay at home.");
+}
+
+// Decide on a travel destination based on budget and weather conditions.
+let budget = 1000; // Our travel budget in dollars
+let weatherSunny = true; // The weather is sunny
+
+if (budget >= 1500 && weatherSunny) {
+  console.log("Let's book a beach vacation!");
+} else if (budget < 1500 && weatherSunny) {
+  console.log("Let's plan a camping trip in the mountains!");
+} else {
+  console.log("Let's stay home and save for a bigger trip next time.");
+}
