@@ -45,7 +45,8 @@ x *= 2; // multiplying x by 2 makes x 24
 --Assignment Operator (=): The assignment operator assigns a value to its left operand based on the value of its right operand.*/
 
 let x = 5; // x is now 5
---Equality and Strict Equality Operators (== and ===): The double equals operator (==) checks equality in value, whereas the triple equals operator (===) checks equality in both value and type.
+// Equality and Strict Equality Operators (== and ===): The double equals operator (==) checks equality in value, 
+// whereas the triple equals operator (===) checks equality in both value and type.
 
 console.log(5 == '5'); // true
 console.log(5 === '5'); // false
@@ -186,3 +187,27 @@ if (budget >= 1500 && weatherSunny) {
 } else {
   console.log("Let's stay home and save for a bigger trip next time.");
 }
+
+
+let weather = "sunny";
+let onVacation = true;
+let haveMoney = true; // We have money for the trip
+
+// Now, check if it's sunny and we're on vacation
+if (weather === "sunny" && onVacation && haveMoney) {
+    console.log("Beach trip time!");
+} else {
+    console.log("No beach trip today.");
+}
+
+
+let weather = "sunny";
+let budget = 150;
+
+// Decide where to go based on weather and budget
+if (weather === "sunny" && budget >= 150) {
+    console.log("Let's go to the beach!");
+} else if (weather === "rainy" || budget < 150) {
+    console.log("How about visiting a museum?");
+}
+
