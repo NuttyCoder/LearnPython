@@ -211,3 +211,14 @@ if (weather === "sunny" && budget >= 150) {
     console.log("How about visiting a museum?");
 }
 
+let weather = "sunny";
+let budget = 150;
+
+// TODO: Write an 'if' statement to check if the weather is lovely and we have enough funds for a beach trip.
+if (weather === 'sunny' && budget > 100)
+    console.log("Yah! Let's go to the beach!");
+else {
+// Hint: The beach trip requires 'weather' to be "sunny" and 'budget' to be greater than 100.
+
+console.log("Hmm, let's plan something else.");
+}
