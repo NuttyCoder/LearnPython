@@ -346,4 +346,10 @@ function calculateNewWeight(weight) {
 // Using the function to calculate a weight of 70 units in a new environment
 console.log(calculateNewWeight(70));  // Outputs the new weight
 
-
+// TODO: Declare a function that greets travelers with the name of their planet as a parameter
+//       and writes a greeting to the console.
+function greetPlanetTraveler(planetName) {
+    console.log(`Greetings, traveler from planet ${planetName}! Welcome to the cosmic community.`);
+}
+greetPlanetTraveler("Mars"); // Customize the greeting for a traveler from Mars
+greetPlanetTraveler("Venus"); // And for Venus
