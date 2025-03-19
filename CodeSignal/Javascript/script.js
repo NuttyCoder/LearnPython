@@ -410,3 +410,8 @@ movieGenres[3] = "Adventure";
 movieGenres.push("Fantasy");
 console.log(movieGenres); // Outputs: ["Action", "Comedy", "Drama", "Adventure", "Sci-Fi", "Fantasy"]
 
+let confirmedGuests = ["Alice", "Bob", "Charlie"];
+confirmedGuests[2] = "Eva"; // Replacing "Charlie" with new name
+console.log("We have " + confirmedGuests.length + " guests coming to the movie night:");
+console.log(confirmedGuests);
+
