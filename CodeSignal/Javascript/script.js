@@ -746,3 +746,28 @@ const mixIngredients = ({flour, sugar, eggs}) => `Mix ${flour}, ${sugar} and ${e
 const recipeMessage = mixIngredients(ingredients);
 console.log(recipeMessage); // Output is not as expected due to a code bug
 
+// A simple recipe manager
+
+// Destructuring an array of ingredients
+const ingredients = ['flour', 'sugar', 'eggs', 'butter'];
+// TODO: Assign ingredient variables using array destructuring
+const [ingredient1, ingredient2, ingredient3, ingredient4] = ingredients;
+// TODO: Use a template string to create a message about the main ingredients for a cake
+const message = `The main ingredients for the cake are: ${ingredient1}, ${ingredient2}, ${ingredient3},and ${ingredient4}.`
+// An arrow function to log the message
+const logIngredients = () => console.log(message);
+
+// Call the function to log the ingredients message
+logIngredients();
+
+// TODO: Define an arrow function named 'bakeCake' that takes in an array of ingredients and returns a string detailing the cake's ingredients. Use the `.join` method
+const bakeCake =(ingredients) => `To bake a cake, you will need" ${ingredients.join(',')}.`;
+// TODO: Create a constant array 'ingredients' with cake ingredients: 'flour', 'sugar', 'eggs', 'butter'
+const ingredients = ['flour', 'sugar', 'eggs', 'butter'];
+// TODO: Use destructuring to create variables from the 'ingredients' array, each representing an ingredient
+const[ingredient1, ingredient2, ingredient3,ingredient4] = ingredients;
+// TODO: Write a template string in 'bakingMessage' to describe the process using those 4 ingredient variables and print it to the console
+const bakingMessage = `The key ingredients for your cake are ${ingredient1}, ${ingredient2}, ${ingredient3} and ${ingredient4}.`;
+console.log(bakingMessage);
+// TODO: Use 'console.log' to output the result of calling 'bakeCake'
+console.log(bakeCake(ingredients));
