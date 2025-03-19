@@ -426,3 +426,13 @@ cinemaSeats[2] = true;
 console.log("Which seats are booked?", cinemaSeats);
 
 
+// Let's pretend we are organizing a cinema seating plan using arrays!
+let cinemaSeats = ["Empty", "Empty", "Empty", "Empty", "Empty"];
+
+// TODO: Add a command to book seat number 3
+cinemaSeats[2] ="Booked";
+console.log(cinemaSeats[2]); // Outputs "Booked"
+
+// Now, let's find out how many seats we have in our cinema.
+console.log(cinemaSeats.length); // Outputs 5
+
