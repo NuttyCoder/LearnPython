@@ -336,4 +336,14 @@ const moonRadius = 1737.1; // in kilometers
 const accuratePi = 3.141592653589793;
 console.log("The area of the moon's circle is: " + circleArea(moonRadius, accuratePi) + " square kilometers.");  // Outputs the area of the moon's circle with a message
 
+// Function to calculate a new weight based on different gravity
+function calculateNewWeight(weight) {
+  const gravityRatio = 0.38;
+  return weight * gravityRatio;  // Apply the gravity ratio
+}
+
+
+// Using the function to calculate a weight of 70 units in a new environment
+console.log(calculateNewWeight(70));  // Outputs the new weight
+
 
