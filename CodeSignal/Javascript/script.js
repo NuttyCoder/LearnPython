@@ -737,3 +737,12 @@ const basicRecipe = {name: 'Peanut Butter Cookies', servings: 4, ingredient1: 'p
 const twistRecipe = {...basicRecipe, ingredient3: 'chocolate chips'};/* use spread operator to copy the basicRecipe object and create a new object with ingredient3 added to it */ ;
 console.log(recipeMessage(twistRecipe)); // Should print the recipe with the twist ingredient
 
+// Recipe ingredients and a function to combine them into a baking mixture
+const ingredients = { flour: '1 cup', sugar: '1/2 cup', eggs: 2 };
+// Incorrectly using parameters instead of destructuring
+const mixIngredients = ({flour, sugar, eggs}) => `Mix ${flour}, ${sugar} and ${eggs} eggs to make a mixture.`;
+
+// The function call is not passing the ingredients as separate arguments when it should be destructuring an object
+const recipeMessage = mixIngredients(ingredients);
+console.log(recipeMessage); // Output is not as expected due to a code bug
+
