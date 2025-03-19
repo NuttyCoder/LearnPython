@@ -607,3 +607,17 @@ car.color ='green';
 // TODO: Update the car's color to 'green'
 let hornSound = car.honk(); // Call the honk method
 console.log(hornSound);
+
+// TODO: Define a car object with properties 'make', 'model', and 'year'
+let car = {
+    make: 'Toyota',
+    model: 'Corolla',
+    year: 2021,
+
+// TODO: Add a method to the car object that logs a message with the car's details
+    displayDetails: function () {
+        console.log(`This car is a ${this.year}  ${this.make} ${this.model}.`);
+    }
+};
+// TODO: Call the method to display the car's information
+car.displayDetails();
