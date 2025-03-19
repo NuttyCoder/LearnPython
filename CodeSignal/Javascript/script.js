@@ -444,3 +444,137 @@ movies.pop();
 movies.push("Galaxy Voyage")
 // TODO: Display the updated list of movies in the console
 console.log("Updated movies list:", movies)
+
+// ---------------------------------->Introduction and Topic Overview
+// Welcome to the universe of JavaScript! Today's topic is JavaScript Objects, a pivotal concept in JavaScript and programming! 
+// Objects efficiently group related data and functions.
+
+// In terms analogous to the real world, consider JavaScript Objects as school report cards that consolidate your subject scores 
+// (data) and remarks (characteristics) in one place. The objective of our lesson is to help you master JavaScript Objects to 
+// manage related data and functions effectively. Let's begin!
+
+// An Object in JavaScript, mirroring real-world entities, includes two principal components: properties and methods. 
+// Imagine there's a car, it displays certain characteristics, dubbed as properties (like color, make, and model), and some actions, 
+// labeled as methods (like start, stop). Essentially, JavaScript Objects package related data (properties) and functions (methods).
+
+// ------------------------------> JavaScript Object Syntax
+// Let's define a JavaScript Object employing object literal syntax. Using our car example, let's frame a JavaScript Object:
+
+let car = {
+    color: 'red',
+    make: 'Toyota',
+    model: 'Corolla',
+};
+// The object car contains three properties: color, make, and model, defined using the 'key': 'value' syntax, separated by commas (,), enclosed within curly braces ({}).
+
+// To access properties, we can employ dot notation (.) or bracket notation ([]):
+
+let carColor1 = car.color; // 'red', access using dot notation
+let carColor2 = car['color']; // 'red', access using bracket notation
+
+
+// ------> Properties of JavaScript Objects
+// JavaScript Object properties describe the object. For our car object, the properties are color, make, and model. You can add, modify, and delete properties as follows:
+
+
+car.color = 'blue'; // modifying color property
+car.roofRack = true; // adding roofRack property
+delete car.roofRack; // removing roofRack property
+// Properties in JavaScript can sport special names, enclosed by quotes or bracket notation:
+
+
+let house = {
+    'number of rooms': 4,
+    1: 'one',
+};
+
+let rooms = house['number of rooms']; // equals 4
+let one = house[1]; // equals 'one'
+
+Methods in JavaScript Objects
+Methods, the second component of JavaScript Objects, encapsulate actions or behaviors. In our car object, methods might include actions, like start, stop, accelerate, and brake. Methods are defined as functions within an object:
+
+JavaScript
+Copy to clipboard
+Play
+let car = {
+    color: 'red',
+    make: 'Toyota',
+    model: 'Corolla',
+    start: function() {
+        return 'Engine started!';
+    },
+    displayColor: function() {
+        // you can access Object properties by using 'this' keyword
+        console.log('The color of the car is ' + this.color); // prints "The color of the car is red"
+    }
+};
+
+let carStart = car.start(); // calls the start method and returns 'Engine started!'
+// Pay attention that here we use a slightly modified version of function creation called function expression. Namely, instead of this:
+
+
+function start() {
+    return 'Engine started!';
+}
+// we use the following notation:
+
+
+start: function() {
+    return 'Engine started!';
+}
+//  If we needed to provide parameters to the function, we would include the parameters in the parentheses after the function keyword:
+
+start: function(key) {
+    if (key === 'correct') {
+        return 'Engine started!';
+    }
+}
+// and would call like this: car.start('correct');
+
+// -----------------> Creating and Using JavaScript Objects
+//  Moving forward, let's compose and use our own JavaScript Objects and manage the properties dynamically:
+
+
+let user = {
+    name: 'John',
+    age: 30,
+};
+
+let userName = user.name; // 'John'
+let userAge = user['age']; // 30
+
+user.isAdmin = true; // a new property 'isAdmin' is added
+user.introduce = function() { // a new method is added
+    console.log("Hi, I am " + this.name);
+}
+delete user.age; // deletes the 'age' property
+// JavaScript supports dynamic alteration of properties, setting it apart from several other programming languages.
+
+let car = {
+    brand: 'Honda',
+    model: 'Civic',
+    year: 2022,
+    displayInfo: function() {
+        // This function returns the car information as a string
+        return this.brand + ' ' + this.model + ' (' + this.year + ')';
+    }
+};
+
+let carInfo = car.displayInfo();
+console.log(carInfo); // 'Honda Civic (2022)'
+
+let car = {
+    brand: 'Tesla',
+    model: 'Model 3',
+    drive: function() {
+        return "Vroom vroom!";
+    }
+};
+
+// Changing the model and adding a new property.
+car.color = 'white';
+car.model = 'Model Y';
+
+// TODO: Call the 'drive' method here and print the result
+console.log(car.drive());
