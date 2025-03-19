@@ -390,4 +390,23 @@ let colors = ["Red", "Green", "Blue"];
 console.log(colors.length); // Outputs 3
 
 
+// ------------------------------------>  Manipulating Arrays: A Basic Glimpse
+// JavaScript provides various methods to help us manage items in the lunchbox, such as adding or removing items. 
+// Today, we will cover two basic methods: .push(), which adds an element, and .pop(), which removes the last element:
+
+let colors = ["Red", "Green", "Blue"];
+colors.push("Yellow");  // Yellow added
+console.log(colors);  // Output: ["Red", "Green", "Blue", "Yellow"]
+colors.pop();  // Yellow removed
+console.log(colors);  // Output: ["Red", "Green", "Blue"]
+
+
+// We have an array of movie genres for a cinema theatre
+let movieGenres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi"];
+console.log(movieGenres[2]); // Output the third genre: "Drama"
+
+// Let's change "Horror" to "Adventure" and add "Fantasy" at the end
+movieGenres[3] = "Adventure";
+movieGenres.push("Fantasy");
+console.log(movieGenres); // Outputs: ["Action", "Comedy", "Drama", "Adventure", "Sci-Fi", "Fantasy"]
 
