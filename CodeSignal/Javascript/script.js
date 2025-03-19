@@ -578,3 +578,32 @@ car.model = 'Model Y';
 
 // TODO: Call the 'drive' method here and print the result
 console.log(car.drive());
+
+let car = {
+    brand: 'Ford',
+    model: 'Mustang',
+    startEngine: function() {
+        console.log('Vroom!');
+    }
+};
+
+// Let's change the car color to 'black'
+car.color = 'black';
+
+// Now let's try to start the engine of the car
+car.startEngine(); // This should output: Vroom! But it doesn't. Oh no!
+
+// Define an object representing a car
+let car = {
+    color: 'blue',
+    maxSpeed: 120,
+    honk: function() {
+        return 'Beep beep';
+    }
+    // TODO: Add a method to enable the car to honk
+};
+car.color ='green';
+// Use the car object: Change the color and honk the horn
+// TODO: Update the car's color to 'green'
+let hornSound = car.honk(); // Call the honk method
+console.log(hornSound);
