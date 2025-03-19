@@ -222,3 +222,97 @@ else {
 
 console.log("Hmm, let's plan something else.");
 }
+
+// TODO: Declare a variable for your travel budget
+let travelBudget = 1000;
+// TODO: Declare a variable for the price of your trip ticket
+let ticketPrice = 700;
+// TODO: Declare a variable for the cost of special services
+let specialServicesCost = 200;
+if (travelBudget >= (ticketPrice + specialServicesCost)) {
+    console.log("Your budget covers both the ticket price and special services.");
+} else if (traveBudget >= ticketPrice) {
+    console.log("Your budget price covers the ticket only, but not the special services.");
+} else {
+    console.log("Your budget does not cover the ticket price.");
+}
+// TODO: Write an if-else statement that first checks if your budget covers both the ticket price and the special services cost. If not, it should then check if the budget covers at least the ticket price.
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// ------------>  Introducing Functions
+// In JavaScript, a function is a block of reusable code designed to perform a specific task when invoked or 'called'. 
+// Consider a scenario in which we need to compute something or create a pop-up notification every time a user clicks on a button. 
+// In such situations, we would enclose the necessary code within a function and invoke it whenever the button is clicked.
+
+// Here is an example of defining a function named sayHello:
+// a function to say hello
+function sayHello() {
+  // code inside here runs when the function is called
+  console.log("Hello, world!");
+}
+// In this function, named sayHello, we print "Hello, world!" to the console when the function is invoked or called.
+
+// You have learned to define or declare a straightforward function in JavaScript. This is the initial building block in creating reusable code blocks.
+
+//--------->  Invoking Functions
+// To utilize a function, we have to invoke or 'call' it by appending parentheses () to the function's name. This process resembles joining a teleconference using a unique meeting link. Just as you join the meeting only when you click the link, the code inside the function is executed only when the function is called.
+
+// Let's invoke our sayHello function:
+
+
+sayHello();  // Invokes the function, outputting: "Hello, world!"
+// Here, sayHello(); is a function call informing JavaScript to execute the code block within the sayHello function.
+
+// ------------------------------>  The Role of Parameters in Functions
+// Parameters provide a function with its inputs, significantly enhancing the function's reusability. It's akin to injecting some intelligence into a function, creating a lightbulb moment. Consider a function that calculates the area of a circle. Such a function would only be useful if it could compute the area for any circle, regardless of its radius, and not just for a circle with a fixed radius.
+// Observe the following function that greets a person using their name:
+// a function that greets a person by name
+function greetPerson(name) {
+  console.log("Hello, " + name + "!");
+}
+
+// invoking the function with "Alice" as an argument
+greetPerson("Alice");  // Outputs: "Hello, Alice!"
+// In this function, name is a parameter. When we invoked greetPerson("Alice");, the value "Alice" was passed as an argument to the function.
+
+// You've learned about bestowing a function with intelligence through parameters, making the function versatile and broadly applicable.
+
+// ---------------------------------> Understanding Return Statements
+// The return keyword acts like the conveyor belt in a factory line, which delivers the final product after all the operations are performed on the assembly line.
+
+// Here's an example where we return the square of a number:
+// function that returns the square of a number
+function square(number) {
+  return number * number; // number is the function parameter
+}
+
+const squaredNumber = square(5);
+console.log(squaredNumber);  // Outputs: 25
+// In this function, the square of 5 is returned, yielding 25 as the output.
+
+// Through the return keyword, you've just learned how to make a function execute a calculation and deliver the result in JavaScript.
+
+// --------------------------------->  Scope of Variables in Functions
+// When a variable is declared within a function, it's only known within that function and cannot be accessed from outside. 
+// This concept is similar to your home WiFi network; it can only be accessed when you are within its range.
+// global variable
+let globalVariable = "I'm global!";  // This is like a cellular network available everywhere
+
+// function to check scope
+function checkScope() {
+  // local variable
+  let localVariable = "I'm local!";  // This is like your home WiFi network
+  console.log(globalVariable);  // Outputs: "I'm global!"
+  console.log(localVariable);  // Outputs: "I'm local!"
+}
+
+checkScope();
+
+console.log(globalVariable);  // Outputs: "I'm global!"
+console.log(localVariable);  // Returns an error as localVariable is not defined outside the function
+// In this code, localVariable is only accessible within checkScope(), while globalVariable can be accessed from anywhere in the code.
+
+// We learned about variable scopes in JavaScript. Their concept is quite similar to the coverage of your home WiFi network versus a cellular network 
+// that is available everywhere.
