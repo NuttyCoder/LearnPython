@@ -415,3 +415,14 @@ confirmedGuests[2] = "Eva"; // Replacing "Charlie" with new name
 console.log("We have " + confirmedGuests.length + " guests coming to the movie night:");
 console.log(confirmedGuests);
 
+
+// Array representing the seats reservation status in a cinema row
+let cinemaSeats = [false, true, false, true, false];
+
+// A new person tries to book the third seat
+cinemaSeats[2] = true;
+
+// Let's check if the third seat is now booked
+console.log("Which seats are booked?", cinemaSeats);
+
+
