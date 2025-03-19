@@ -316,3 +316,14 @@ console.log(localVariable);  // Returns an error as localVariable is not defined
 
 // We learned about variable scopes in JavaScript. Their concept is quite similar to the coverage of your home WiFi network versus a cellular network 
 // that is available everywhere.
+
+// a function to greet a planet by name
+function greetPlanet(planetName) {
+  return "Hello, " + planetName + "! Welcome to the cosmic party.";
+}
+
+// calling the greet function with "Mars" as a parameter
+const greeting = greetPlanet("Mars"); 
+console.log(greeting);  // Outputs a friendly greeting to Mars
+
+
