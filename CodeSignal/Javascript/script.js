@@ -353,3 +353,14 @@ function greetPlanetTraveler(planetName) {
 }
 greetPlanetTraveler("Mars"); // Customize the greeting for a traveler from Mars
 greetPlanetTraveler("Venus"); // And for Venus
+
+// TODO: Define a function that takes a name as a parameter and returns a greeting message including the name.
+function createGreeting (name) {
+    return `Hello, ${name}! Welcome to the adventure!`;
+}
+// TODO: Invoke the function with a name of your choice and store the return value in a variable.
+let greetingMessage = createGreeting("Heather")
+// TODO: Use console.log to print out the variable containing the greeting.
+console.log(greetingMessage);
+
+
