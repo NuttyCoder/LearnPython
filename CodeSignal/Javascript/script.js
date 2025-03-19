@@ -326,4 +326,14 @@ function greetPlanet(planetName) {
 const greeting = greetPlanet("Mars"); 
 console.log(greeting);  // Outputs a friendly greeting to Mars
 
+// function that calculates the area of a circle
+function circleArea(radius, pi) {
+    return pi * radius * radius; // Use the passed pi value
+}
+
+// The radius of the moon's circle in the cosmos
+const moonRadius = 1737.1; // in kilometers
+const accuratePi = 3.141592653589793;
+console.log("The area of the moon's circle is: " + circleArea(moonRadius, accuratePi) + " square kilometers.");  // Outputs the area of the moon's circle with a message
+
 
