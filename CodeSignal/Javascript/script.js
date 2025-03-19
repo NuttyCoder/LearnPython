@@ -436,3 +436,11 @@ console.log(cinemaSeats[2]); // Outputs "Booked"
 // Now, let's find out how many seats we have in our cinema.
 console.log(cinemaSeats.length); // Outputs 5
 
+// TODO: Create an array of movie titles in a cinema, e.g., "Space Adventure", "Ocean's Mystery".
+let movies = ["Space Adventure", "Ocean's Mystery", "Mountain Tales"];
+// TODO: Remove the last movie title from the movies array
+movies.pop();
+// TODO: Add a new movie title to the end of the movies array
+movies.push("Galaxy Voyage")
+// TODO: Display the updated list of movies in the console
+console.log("Updated movies list:", movies)
