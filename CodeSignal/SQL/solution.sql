@@ -448,3 +448,10 @@ SELECT product_name, product_price, category_id
 FROM Products
 WHERE category_id = 1 
 ORDER BY product_price ASC;
+
+
+-- TODO: Write an SQL query to select product name, product price, and category ID for specific categories, ordered by price in ascending order
+SELECT product_name, product_price, category_id
+FROM products
+WHERE category_id IN (1,2,3)
+ORDER BY product_price ASC;
