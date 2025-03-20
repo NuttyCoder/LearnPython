@@ -279,6 +279,12 @@ WHERE YEAR(order_date) > 2020;
 -- This query uses the WHERE clause to filter orders where the order_date year is greater than 2020. 
 -- Note how we used the YEAR() function on order_date for this query, as order_date is a DATE type column.
 
+-- Bringing it Together and Next Steps
+-- Well done for getting through this new concept. We've just learned what the WHERE clause is, how its syntax works, 
+-- and how it helps us customize our data retrieval process. By using the WHERE clause, we were able to retrieve all orders placed after 2020 from the Orders table.
 
 
+-- Selecting all orders placed after the year 2020
+SELECT * FROM Orders
+WHERE YEAR(order_date) > 2020;
 
