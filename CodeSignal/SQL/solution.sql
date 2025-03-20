@@ -242,4 +242,43 @@ SELECT product_name, product_price FROM Products;
 +----------------------------------+---------------+
 
 
+-- Introduction
+-- Greetings! In the previous lessons, we immersed ourselves in the basics of SQL, learned about databases, and discussed the SELECT statement. 
+-- We practiced those concepts using data from an online shopping platform. This lesson brings us to another important aspect of SQL — the WHERE clause. 
+-- With this tool, we'll be able to narrow down our data retrieval to only select the records that meet certain conditions.
+
+-- Understanding the WHERE Clause
+-- The WHERE clause is an essential part of SQL used to filter records. This clause extracts only those records from a table that fulfill a specified condition. 
+-- The WHERE clause can be used with SQL commands like SELECT, UPDATE, DELETE, etc. It significantly enhances our ability to interact with a database by allowing 
+-- us to retrieve targeted data instead of complete sets of records.
+
+-- Syntax of WHERE Clause
+-- The syntax of the WHERE clause looks like this:
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+-- In this syntax, after the SELECT statement and the FROM statement, we add the WHERE clause followed by a condition. 
+-- The condition is what we set to filter our data. If the condition is true for a record, then that record is selected.
+
+-- Your Dataset - Orders in Online Shopping
+-- Before we dive into examples of using the WHERE clause, let's familiarize ourselves with the Orders table. 
+-- This table stores details about orders placed on the online shopping platform and includes the following columns:
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+
+-- Example of WHERE Clause Use
+-- Let's see the WHERE clause in action to fetch orders from a specific year. 
+-- Suppose you want to know all the orders placed after the year 2020. Here's how you would write the SQL query:
+
+SELECT * FROM Orders
+WHERE YEAR(order_date) > 2020;
+-- This query uses the WHERE clause to filter orders where the order_date year is greater than 2020. 
+-- Note how we used the YEAR() function on order_date for this query, as order_date is a DATE type column.
+
+
+
 
