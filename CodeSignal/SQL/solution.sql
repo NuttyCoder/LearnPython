@@ -288,3 +288,73 @@ WHERE YEAR(order_date) > 2020;
 SELECT * FROM Orders
 WHERE YEAR(order_date) > 2020;
 
+-- Logical Operators are at the heart of any computational language, SQL being no exception. They're used in the WHERE clause of 
+-- SELECT statements (as well as other statements like INSERT, UPDATE, and DELETE which you'll learn about in the future) to combine 
+-- or negate conditions and ultimately help us sieve out precise information from our database.
+
+-- Understanding AND and OR Operators in SQL
+-- Firstly, we have the AND and OR operators.
+
+-- An AND operator returns TRUE if both listed conditions are true. It essentially narrows your search results because it adds more conditions that records must meet.
+
+-- Meanwhile, an OR operator returns TRUE if either of the conditions listed is true, effectively broadening your search results because it only requires one of the conditions to be met.
+
+-- To see them in action, follow the code examples:
+
+
+/* Using 'AND' operator */
+SELECT * FROM Orders WHERE YEAR(order_date) > 2022 AND order_status = 'Delivered';
+
+/* Using 'OR' operator */
+SELECT * FROM OrderItems WHERE extended_support = 1;
+-- Now let's analyze the above code snippets:
+
+-- In the first example, we employ the AND operator, which will extract orders from the database (SELECT * FROM Orders) that meet both conditions - 
+-- the order was made after 2022 and the order_status is 'Delivered'.
+
+-- In the second snippet, an OR operator is not directly used, but it's implied as we filter the rows in OrderItems table where the extended_support 
+-- field is true (1). This is a single-condition filter and doesn't showcase OR directly.
+
+-- Introduction to IN and BETWEEN Operators in SQL
+-- Next, we have the IN and BETWEEN operators:
+
+-- The IN operator allows us to specify multiple values in a WHERE clause, a clean, efficient alternative to multiple OR conditions.
+
+-- The BETWEEN operator selects values within a given range, which can be numbers, text, or dates.
+
+-- Now let's use these operators:
+
+/* Using 'IN' operator */
+SELECT * FROM Orders WHERE customer_id IN (1, 2);
+/* Same query using multiple 'OR' operators */
+SELECT * FROM Orders WHERE customer_id = 1 OR customer_id = 2;
+
+/* Using 'BETWEEN' operator */
+SELECT * FROM Orders WHERE order_date BETWEEN '2021-01-01' AND '2022-01-01';
+/* Excluding boundary values */
+SELECT * FROM Orders WHERE order_date > '2021-01-01' AND order_date < '2022-01-01';
+-- The first example employs the IN operator to extract orders placed by customers with customer_id 1 or 2.
+
+-- The BETWEEN operator in the third query performs a range-based search, extracting orders with an order date between '2021-01-01' and '2022-01-01', including both dates. If you don’t want the boundary values, refer to the last line where explicit conditions are used to exclude them.
+
+-- Note: Modern SQL engines optimize IN and OR similarly, so there’s no significant difference in execution for small lists. However, for longer lists, IN is preferred for clarity.
+
+-- Conceptualizing the NOT Operator
+-- Finally, we have the NOT operator, which is used to exclude records that meet specific conditions. Let's try it out in a SELECT statement:
+
+
+/* Using 'NOT' operator */
+SELECT * FROM Orders WHERE order_date NOT BETWEEN '2021-06-01' AND '2021-12-31';
+-- In the snippet above, we use the NOT operator to exclude certain records from our selection. This line extracts orders where the order_date is not in the range from '2021-06-01' to '2021-12-31'.
+
+-- Logical operators, such as AND, OR, IN, NOT IN, and BETWEEN, help us refine our SQL queries to get the data we need in a more efficient and specific way. These tools will allow us to retrieve specific sets of data from our database, which in this case concern online shopping data.
+
+-- TODO: Fetch orders with specific conditions
+SELECT * FROM Orders WHERE order_id > 1 AND order_status = 'Delivered';
+-- TODO: Fetch orders occurring between '2021-01-01' and '2022-01-01'
+SELECT * FROM Orders
+WHERE order_date BETWEEN '2021-01-01' AND '2022-01-01';
+
+-- TODO: Fetch orders from year 2021 or 2022, with order IDs between 100 and 400, where the order status was either Delivered or Canceled
+SELECT * FROM Orders WHERE YEAR (order_date) IN (2021, 2022) AND order_id BETWEEN 100 AND 400 AND (order_status = "Delivered" OR order_status = "Canceled");
+
