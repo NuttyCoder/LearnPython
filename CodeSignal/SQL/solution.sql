@@ -442,3 +442,9 @@ SELECT order_id, order_date
 FROM Orders
 WHERE YEAR (order_date) > 2020 AND YEAR (order_date) < 2023
 ORDER BY order_date DESC;
+
+-- TODO: Filter by category using the WHERE clause
+SELECT product_name, product_price, category_id
+FROM Products
+WHERE category_id = 1 
+ORDER BY product_price ASC;
