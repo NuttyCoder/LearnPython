@@ -358,3 +358,87 @@ WHERE order_date BETWEEN '2021-01-01' AND '2022-01-01';
 -- TODO: Fetch orders from year 2021 or 2022, with order IDs between 100 and 400, where the order status was either Delivered or Canceled
 SELECT * FROM Orders WHERE YEAR (order_date) IN (2021, 2022) AND order_id BETWEEN 100 AND 400 AND (order_status = "Delivered" OR order_status = "Canceled");
 
+
+--*****new key SQL keyword — ORDER BY — and discover how we can use this to organize and sort our data.
+
+-- Understanding ORDER BY Clause
+-- In SQL, the ORDER BY keyword is used to sort the result set in ascending or descending order. 
+-- It's an invaluable tool when seeking insights from data and one that you will use frequently. 
+-- The ORDER BY keyword sorts the records in ascending order by default, but descending order can be applied by using DESC after the column name.
+
+-- To illustrate how this works, let's say we have a Products table with columns: product_id, product_name, and product_price. 
+-- If we would like to sort our list of products by their names in descending order, we could use the ORDER BY clause like this:
+
+
+SELECT product_name, product_id 
+FROM Products 
+ORDER BY product_name DESC;
+
+-- Linking SELECT with ORDER BY
+-- Remember our dear friend, the SELECT statement? Well, it's back again. This time, however, we're going to pair it up with the ORDER BY clause. 
+-- The general syntax looks like this:
+
+SELECT column_name 
+FROM table_name 
+ORDER BY column_name ASC|DESC;
+
+-- Interpreting Results
+-- Let's break down our SQL query and the output:
+
+-- SELECT product_name, product_id: This part of the command specifies the columns that we want to retrieve from the Products table.
+-- FROM Products: Here we are specifying the table that we want to retrieve data from.
+-- ORDER BY product_name ASC: The ORDER BY clause sorts the records based on the product name. The ASC part specifies that we want the sorting to be in ascending order. 
+-- The ORDER BY keyword sorts the records in ascending order by default, so the ASC keyword is optional here.
+
+-- Functional Dependency and ORDER BY
+-- When using the ORDER BY clause, it’s important to understand functional dependency in SQL. A functional dependency exists when one column uniquely 
+-- determines another column in a table.
+
+-- If you use ORDER BY on a column that is not unique (e.g., product_name in the Products table), rows with duplicate values in that column might 
+-- appear in a random or unpredictable order in the result set.
+
+-- Consider this query:
+
+
+SELECT product_name, product_price 
+FROM Products 
+ORDER BY product_name ASC;
+-- If multiple products share the same product_name, the SQL engine may return these rows in a different order each time you run the query. 
+-- This happens because there’s no explicit instruction on how to handle ties (rows with identical product_name values).
+
+-- To prevent non-deterministic sorting:
+
+-- Add a secondary column to the ORDER BY clause. This ensures a consistent sort order for rows with duplicate values in the primary sort column.
+-- Choose a secondary column that uniquely identifies rows, such as a primary key or another distinct attribute.
+-- Corrected example:
+
+
+SELECT product_name, product_price 
+FROM Products 
+ORDER BY product_name ASC, product_id ASC;
+-- In this case::
+
+-- product_name is the primary sort column.
+-- product_id is the secondary sort column, ensuring consistent order for rows with the same product_name.
+-- Always include a secondary column in ORDER BY when sorting on non-unique columns. This ensures that your query results are deterministic and repeatable.
+
+-- TODO: Select all products
+SELECT * FROM products;
+
+
+-- TODO: Select product name and product ID ordered by product name in descending order
+SELECT product_name, product_id
+FROM Products
+ORDER BY product_name DESC;
+
+-- TODO: Change the sorting of order dates to be from newest to oldest
+SELECT order_id, order_date
+FROM Orders
+ORDER BY order_date DESC;
+
+
+-- TOOD: Fill in the missing pieces of code based on the task description
+SELECT order_id, order_date
+FROM Orders
+WHERE YEAR (order_date) > 2020 AND YEAR (order_date) < 2023
+ORDER BY order_date DESC;
