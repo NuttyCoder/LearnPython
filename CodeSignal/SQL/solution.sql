@@ -508,3 +508,355 @@ order_item_id	order_id	product_id	extended_support
 -- They help in extracting valuable information that might be distributed across multiple tables. 
 -- Several types of JOINs provide flexibility in how we choose to connect and derive insights from this data.
 
+-- Mastering JOIN Relationships
+-- When performing a JOIN between two tables, it’s essential to understand the relationship between the columns involved. 
+-- Functional dependencies arise when one column in a table uniquely determines another column. If these dependencies are not considered, 
+-- it can lead to incorrect data interpretation or unnecessary duplication in the result set. We must ensure that the columns used in the 
+-- ON clause of the JOIN define a clear relationship between the tables. In the Products table, category_id uniquely determines the 
+-- category_name from the Categories table. A JOIN between these tables should respect this dependency to avoid redundant or conflicting data.
+
+-- Without a valid ON condition, a JOIN can result in a Cartesian product, where every row from one table is paired with every row from another table. 
+-- This can lead to an exponential increase in the result set size. For instance:
+
+
+SELECT * FROM Customers, Orders;
+-- This query retrieves all possible combinations of rows from Customers and Orders, potentially resulting in millions of rows for large tables. 
+-- Proper use of the ON condition helps prevent such excessive results by ensuring meaningful connections between tables.
+
+-- INNER JOIN
+-- Before we deep-dive into the world of SQL JOINs, it's crucial to understand the variety of joins available. 
+-- Each type serves a unique purpose, allowing us to adjust our queries to retrieve the exact data we need.
+
+-- An INNER JOIN, often referred to as just JOIN, is the most common type. It fetches records with matching values in both participating tables. 
+-- Unmatched rows are not included in the result. By default, an INNER JOIN is assumed if no specific type of JOIN is mentioned.
+
+-- Example:
+
+
+SELECT Orders.order_id, Orders.order_date, Orders.order_status, Customers.customer_name AS Customer
+FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Orders.order_status = 'Canceled'
+ORDER BY Orders.order_date DESC;
+-- In this example, we use INNER JOIN to combine the Orders and Customers tables. 
+-- The query retrieves the order ID, date, and customer name for orders that have been canceled, ordered by the date of the order in descending order.
+
+-- LEFT, RIGHT, and FULL JOIN
+-- A LEFT JOIN (also known as LEFT OUTER JOIN) provides all records from the left table and the matched records from the right table. 
+-- If there's no match, the result set will include NULL values for the right table's columns. This JOIN is advantageous when you want 
+-- to include all records of one table (the left one) regardless of matching rows in the other table.
+
+-- Alternatively, a RIGHT JOIN (or RIGHT OUTER JOIN) offers all records from the right table and the matched records from the left table. 
+-- If there's no match, the result set will include NULL values for unmatched left table's columns.
+
+-- A FULL JOIN (or FULL OUTER JOIN) yields all records when a match exists in either of the participating tables. 
+-- It combines the effects of both LEFT JOIN and RIGHT JOIN. If there's no match, the result set will have NULL values for every 
+-- column of the table lacking a matching row. FULL JOIN is not directly supported in MySQL but can be emulated with a combination 
+-- of LEFT JOIN, RIGHT JOIN, and UNION, which we'll explore later in this course.
+
+-- Wrapping Up and Looking Ahead
+-- As we conclude this introductory module on SQL JOINs, think of yourself as an artisan learning a new craft. 
+-- Remember, understanding SQL JOINs theoretically sets the stage, but applying them hands-on is the real key to mastery.
+
+-- Moving forward, we'll begin by delving into each table — Categories, Customers, Products, Orders, and OrderItems — individually. 
+-- This approach will not only familiarize you with the data but also build a solid foundation for when we start interlinking these tables using JOINs. 
+-- From simple data retrieval to intricate queries, you'll learn to weave the story of an online shopping platform using SQL.
+
+
+Example : 1
+
+SELECT Orders.order_id, Orders.order_date, Orders.order_status, Customers.customer_name AS Customer
+FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Orders.order_status = 'Canceled'
+ORDER BY Orders.order_date DESC;
+
+Example : 2 -- Cange Example 1 to finding all delivered orders:
+SELECT Orders.order_id, Orders.order_date, Orders.order_status, Customers.customer_name AS Customer
+FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Orders.order_status = 'Delivered'
+ORDER BY Orders.order_date DESC;
+
+
+Example 3:
+SELECT Orders.order_id, Orders.order_date, Orders.order_status, Customers.customer_name AS Customer
+FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Orders.order_status = 'Canceled'
+ORDER BY Orders.order_date DESC;
+
+-- Exploring INNER JOIN
+-- In this session, we'll focus on the INNER JOIN. Essentially, the INNER JOIN in SQL is a clause that merges rows from two tables based on a shared column between them. The result is a dataset that includes only the rows that satisfy the joining condition.
+
+-- Before diving into examples, let's review the standard syntax for executing an INNER JOIN:
+
+SELECT column1, column2, ...
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+-- This syntax serves as the foundation of our queries whenever we desire to merge data from two related tables. 
+-- In this lesson, we'll see how this structure is practically used to join Products and OrderItems tables.
+
+-- By the end of this lesson, you'll be adept at retrieving data from the OrderItems and Products tables using INNER JOIN. 
+-- The key product_id will serve as the common link between these tables.
+
+-- INNER JOIN in Action
+
+-- Suppose we have an OrderItems table showcasing the extended_support option for orders. This can be linked to the Products table, where we want to retrieve product details. We can use an INNER JOIN to unify these two tables:
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+INNER JOIN OrderItems
+ON Products.product_id = OrderItems.product_id;
+
+-- Sneak peek of the output:
+-- | product_name                   | product_price | extended_support |
+-- |--------------------------------|---------------|------------------|
+-- | Critical Thinking Guide        |         16.15 |                0 |
+-- | Grammar Exercises Worksheets   |         10.70 |                0 |
+
+-- In this SQL statement:
+
+-- SELECT Products.product_name, Products.product_price, OrderItems.extended_support specifies the data we want — product_name and product_price from the 
+-- Products table and extended_support from the OrderItems table.
+-- FROM Products indicates the primary table from which we start our query.
+-- INNER JOIN OrderItems indicates that we wish to connect the Products table with the OrderItems table.
+-- ON Products.product_id = OrderItems.product_id is the key condition that joins these tables. It ensures that the join happens through the product_id column, 
+-- common to both tables. This condition aligns the rows from Products and OrderItems accurately.
+-- Executing this INNER JOIN query on the Products and OrderItems tables generates a comprehensive list that associates each product with its respective 
+-- ordering details, showcasing the utility of INNER JOIN to proficiently merge related data from two tables.
+
+-- Note: If a product is ordered multiple times, the INNER JOIN will duplicate the product details for each matching row in the OrderItems table.
+-- For example, when retrieving product names and details, you might see the same product listed multiple times if it appears in several order 
+-- entries with different support options. To handle this, you can use aggregation with GROUP BY to summarize the data and eliminate duplicates, 
+-- grouping the results by product and providing a count of the order items. This allows for an effective summary of the data without repetition.
+
+-- Handling NULL Values in INNER JOIN
+-- The INNER JOIN only includes rows where the join condition is satisfied. If a row in one table has a NULL value in the join column, 
+-- it will not appear in the result set. For instance, if a product_id in the OrderItems table is NULL, that row will not match any row in the 
+-- Products table and will be excluded from the results.
+
+-- To find rows with NULL values that are excluded by the INNER JOIN, you can use a LEFT JOIN and filter for NULL in the right table’s column:
+
+
+SELECT OrderItems.order_item_id, OrderItems.product_id
+FROM OrderItems
+LEFT JOIN Products ON OrderItems.product_id = Products.product_id
+WHERE Products.product_id IS NULL;
+-- This query retrieves OrderItems that do not have a matching product_id in the Products table.
+
+-- Reversing the Order
+-- Let's refine our example by arranging all products along with their order support status in descending order of product price. Here's how the query is structured:
+
+--  To solve this, we can use aggregation (GROUP BY) to summarize data and eliminate duplicates:
+
+--  This approach leverages GROUP BY to group the results by product-wise, providing a count of the order items, thereby summarizing the data effectively.
+
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+INNER JOIN OrderItems
+ON Products.product_id = OrderItems.product_id
+ORDER BY Products.product_price DESC;
+
+-- Example output:
+-- | product_name                   | product_price | extended_support |
+-- |--------------------------------|---------------|------------------|
+-- | Project Management Course      |        149.26 |                0 |
+-- | Project Management Course      |        149.26 |                0 |
+-- In this scenario, the ORDER BY Products.product_price DESC condition arranges the results in descending order by product price.
+
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+INNER JOIN OrderItems
+ON Products.product_id = OrderItems.product_id
+WHERE OrderItems.extended_support = 1
+ORDER BY Products.product_price DESC;
+
++--------------------------------+---------------+------------------+
+| product_name                   | product_price | extended_support |
++--------------------------------+---------------+------------------+
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Graphic Design Course          |         52.96 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Business Trends Podcast        |         30.02 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Vocabulary Practice Worksheets |         18.45 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
+| Chemistry Elements Flashcards  |          5.43 |                1 |
++--------------------------------+---------------+------------------+
+
