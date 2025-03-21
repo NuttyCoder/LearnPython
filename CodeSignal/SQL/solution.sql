@@ -860,3 +860,27 @@ ORDER BY Products.product_price DESC;
 | Chemistry Elements Flashcards  |          5.43 |                1 |
 +--------------------------------+---------------+------------------+
 
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+INNER JOIN OrderItems ON Products.product_id = OrderItems.product_id
+WHERE Products.product_name IN ("Graphic Design Course", "Business Trends Podcast")
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+INNER JOIN OrderItems ON Products.product_id = OrderItems.product_id
+-- TODO: Filter products that have extended warranty and have a 'category_id' 2 ('Worksheets')
+WHERE OrderItems.extended_support = 1 AND Products.category_id = 2
+ORDER BY Products.product_price DESC;
+
+ORDER BY Products.product_price DESC
+
+
+-- TODO: Select product name, product price, and extended support for products in the Worksheets category.
+-- TODO: Join Products table with OrderItems table on product_id.
+-- TODO: Filter results to extended support equals 1 and limit to Worksheets (2nd) category.
+-- TODO: Order the results by the product price in descending order.
+SELECT Products.product_name, Products.product_price, OrderItems.extended_Support
+FROM Products
+INNER JOIN OrderItems ON Products.product_id = OrderItems.product_id
+WHERE OrderItems.extended_support = 1 and Products.category_id = 2
+ORDER BY Products.product_price DESC;
