@@ -455,3 +455,56 @@ SELECT product_name, product_price, category_id
 FROM products
 WHERE category_id IN (1,2,3)
 ORDER BY product_price ASC;
+
+-- SQL JOINs, linking tables together in complex but meaningful ways, much like a skilled craftsman intricately assembles different parts into a cohesive masterpiece.
+
+-- Our tool of choice for this course is MySQL, a standard in database management systems. 
+-- However, if you plan to use a different SQL-based system, rest assured — the concept of JOINs is universal across all platforms.
+
+-- Brief Dataset Description
+-- Let’s get acquainted with our dataset, inspired by the dynamics of an online shopping platform, which contains five primary tables. 
+-- Below are some sample rows to give you an idea about the structure starting from the simplest table:
+
+-- Categories Table
+
+category_id	category_name
+1	Flashcards
+2	Worksheets
+3	Guides
+4	Podcasts
+5	Courses
+-- This table lists the five product categories available on the platform.
+
+-- Customers Table
+
+customer_id	customer_name
+1	John Doe
+2	Jane Smith
+-- This table provides details about the customers using the platform.
+
+-- Products Table
+
+product_id	product_name	product_price	category_id
+1	Vocabulary Flashcards	9.34	1
+2	Math Problems Flashcards	12.84	1
+-- The Products table contains detailed information about the products offered, including names, prices, and categories.
+
+-- Orders Table
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+-- This table displays the orders made on the platform, along with their status and associated customers.
+
+-- OrderItems Table:
+
+order_item_id	order_id	product_id	extended_support
+1	1	25	0
+2	2	12	0
+-- The OrderItems table includes information about each item in an order, such as the order it belongs to, the product, and whether it has support.
+
+-- What are SQL JOINs?
+-- SQL JOINs are techniques to combine data from two or more tables based on a shared column between them. 
+-- They help in extracting valuable information that might be distributed across multiple tables. 
+-- Several types of JOINs provide flexibility in how we choose to connect and derive insights from this data.
+
