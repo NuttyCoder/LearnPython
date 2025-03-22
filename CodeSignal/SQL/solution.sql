@@ -884,3 +884,267 @@ FROM Products
 INNER JOIN OrderItems ON Products.product_id = OrderItems.product_id
 WHERE OrderItems.extended_support = 1 and Products.category_id = 2
 ORDER BY Products.product_price DESC;
+
+-- Recap of SQL Joins
+-- Before we start, keep in mind that SQL JOINs allow us to combine data from two or more tables based on a related column. 
+-- Previously, we've worked with INNER JOIN, which selects rows that have matching values in both tables. 
+-- In this lesson, we'll explore how LEFT JOIN and RIGHT JOIN can help us manipulate our data further.
+
+-- Sample Tables Overview
+-- To understand these JOIN types better, consider two simple tables: Orders and OrderItems.
+
+Orders Table:
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+-- The Orders table provides detailed information about each order, including the order_id, date, status, and the customer who placed the order. This is useful for tracking order specifics.
+
+OrderItems Table:
+
+order_item_id	order_id	product_id	extended_support
+1	1	25	0
+2	2	12	0
+-- The OrderItems table connects each order to the specific items within it using corresponding order_id values.
+
+-- INNER JOIN Explained
+-- INNER JOIN returns rows when there's a match in both tables. If there's no match, those rows are not included in the output.
+
+Example:
+
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+INNER JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Sneak peek of the output:
+-- | order_date | order_status | product_id |
+-- |------------|--------------|------------|
+-- | 2021-08-17 | Delivered    | 25         |
+-- | 2022-04-03 | Processed    | 12         |
+
+-- Understanding the LEFT JOIN
+-- LEFT JOIN includes all rows from the left table, along with any matches from the right table. If there's no match, the output displays NULL for the right table's columns.
+
+Example:
+
+
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+LEFT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Sneak peek of the output:
+-- | order_date | order_status | product_id |
+-- |------------|--------------|------------|
+-- | 2021-08-17 | Delivered    | 25         |
+-- | 2022-04-03 | Processed    | 12         |
+
+-- Diving into the RIGHT JOIN
+-- RIGHT JOIN ensures that every row from the right table is included in the output, with matched rows from the left table.
+
+Example:
+
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+RIGHT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Sneak peek of the output:
+-- | order_date | order_status | product_id |
+-- |------------|--------------|------------|
+-- | 2021-08-17 | Delivered    | 25         |
+-- | 2022-04-03 | Processed    | 12         |
+
+
+-- Note: With the provided sample tables, there currently seems to be no visible difference due to the limited number of rows and the 
+-- fact that each order has a corresponding order item. However, generally, there is a difference: RIGHT JOIN includes all rows from 
+-- the right table (OrderItems) and any corresponding rows from the left table (Orders). It's advisable to try this on tables with 
+-- more rows and different cases where some rows in the right table do not have corresponding rows in the left table to see the full effect.
+
+
+--Understanding Differences Between LEFT JOIN and RIGHT JOIN
+-- To better highlight the distinctions between LEFT JOIN and RIGHT JOIN, let's expand the sample tables:
+
+-- Orders Table:
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+3	12	NULL	Canceled
+OrderItems Table:
+
+order_item_id	order_id	product_id	extended_support
+1	1	25	0
+2	2	12	0
+3	4	18	1
+LEFT JOIN Example:
+  
+SELECT Orders.order_id, Orders.order_date, OrderItems.product_id
+FROM Orders
+LEFT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Result:
+-- | order_id | order_date | product_id |
+-- |----------|------------|------------|
+-- | 1        | 2021-08-17 | 25         |
+-- | 2        | 2022-04-03 | 12         |
+-- | 3        | NULL       | NULL       |
+RIGHT JOIN Example:
+
+SELECT Orders.order_id, Orders.order_date, OrderItems.product_id
+FROM Orders
+RIGHT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Result:
+-- | order_id | order_date | product_id |
+-- |----------|------------|------------|
+-- | 1        | 2021-08-17 | 25         |
+-- | 2        | 2022-04-03 | 12         |
+-- | NULL     | NULL       | 18         |
+
+--Key Difference:
+
+LEFT JOIN includes all rows from Orders, showing NULL for OrderItems columns when there’s no match.
+RIGHT JOIN includes all rows from OrderItems, showing NULL for Orders columns when there’s no match.
+
+
+-- Select order date, order status, and product ID from the Orders and OrderItems tables respectively
+-- Execute a left join on both tables using `order_id` as the joining key
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+LEFT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+
+-- Select Order date, Order status and Product ID from the Orders and OrderItems tables respectively
+-- Undertake a right join on both tables based on order_id
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+RIGHT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- TODO: Select order date and order status from the Orders table and product_id from OrderItems
+-- TODO: Undertake a right join on both tables based on order_id
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+RIGHT JOIN OrderItems ON Orders.order_id = OrderItems.order_id;
+
+-- Select order date, order status from Orders and product_id from OrderItems
+-- Undertake a left join on both tables based on order_id
+SELECT Orders.order_date, Orders.order_status, OrderItems.product_id
+FROM Orders
+LEFT JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+
+
+-- Select Product name, Product price, and Extended Support status from the Products and OrderItems tables respectively
+-- Undertake a left join on both tables based on product_id
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support 
+FROM Products 
+LEFT JOIN OrderItems ON OrderItems.product_id = Products.product_id
+
+
+-- SQL JOINs are essential when it comes to processing data, and having a command over FULL JOINs can help you effectively analyze intricate data relations. 
+-- For this lesson, we will be continuing with MySQL, but remember, the understanding of SQL you garner here is transferable to other relational database 
+-- management systems (RDBMS) such as PostgreSQL, SQL Server, and SQLite, with just slight differences in their syntax.
+
+-- Traversing Through JOINs and Understanding FULL JOIN
+-- Before we plunge into FULL JOIN, let's reinforce our knowledge of JOINs. SQL JOINs enable us to merge rows from two or more tables based on a common  
+-- column among them. An INNER JOIN returns rows where there is a match in both tables. A LEFT JOIN gives all records from the left table and the matched 
+-- records from the right one. A RIGHT JOIN, conversely, returns all records from the right table and the matched records from the left one.
+
+-- FULL JOIN in SQL straddles the territory between LEFT JOIN and RIGHT JOIN. It provides all records where there is a match in either the left table or the right one, 
+-- essentially unifying the results of LEFT JOIN and RIGHT JOIN to offer a comprehensive view of your data.
+
+-- This simple visual aid below can help make sense of it, where A and B are the tables we are joining and the green areas depict the results of different JOINs.
+
+-- Practical Implementation Of SQL FULL JOIN in MySQL
+-- Let's put our concepts into practice using FULL JOIN to merge relevant data from Products and OrderItems:
+
+
+-- First part: Fetch all products, product prices, and their associated supports from order items
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+LEFT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+
+UNION ALL
+
+-- Second part: Retrieve order items with no matching products, ensuring we aren't omitting any data
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+RIGHT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+WHERE Products.product_id IS NULL;
+
+-- Sneak peek of the output:
+-- | product_name                     | product_price | extended_support |
+-- |----------------------------------|---------------|------------------|
+-- | Vocabulary Flashcards            |          9.34 |                0 |
+-- | Vocabulary Flashcards            |          9.34 |                0 |
+-- In this query, we adopt a bifurcated strategy. The first section applies a LEFT JOIN to list all products, product prices, along with their corresponding support 
+-- selection from order items. The latter section, which is essential for simulating a FULL JOIN, uses a RIGHT JOIN to cover those rows from the OrderItems table 
+-- that fail to find a match in the Products table (we ensure this by checking WHERE Products.product_id IS NULL).
+
+-- By joining these two parts through UNION ALL, we effectively simulate a FULL JOIN, yielding a complete view that includes all matched and unmatched records 
+-- from both tables.
+
+-- Note: In our scenario, no order items are linked to non-existent products, so the LEFT JOIN captures everything. However, in more complex scenarios where 
+-- mismatches exist, this method of combining LEFT JOIN and RIGHT JOIN is necessary to simulate a FULL JOIN.
+
+-- Managing NULL Values in FULL JOIN Operations
+-- In the query we've just dissected, the condition WHERE Products.product_id IS NULL in the second select statement plays a crucial role. 
+-- This ensures that only those records from the OrderItems table are added that are not in the Products table. By handling NULL values in this way, 
+-- we ensure that our dataset is complete, which is extremely valuable for data analysts who want to cover all possible angles in their exploration.
+-- TODO: Retrieve all products, product prices and their corresponding extended support from order items
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+RIGHT JOIN OrderItems ON Products.product_id = OrderItems.product_id;
+
+
+-- TODO: Fetch product name, product price, and extended support from Products and OrderItems tables
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products 
+LEFT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+
+UNION ALL
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products 
+RIGHT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+WHERE Products.product_id IS NULL;
+
+
+-- Fetch all products, their prices, and associated support status using FULL JOIN equivalent
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+LEFT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+
+UNION ALL
+
+-- Retrieve order items with no matching products (Hint: User RIGHT JOIN and filter NULL product_ids with WHERE)
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM OrderItems
+RIGHT JOIN Products ON Products.product_id = OrderItems.product_id
+WHERE Products.product_id IS NULL;
+
+-- TODO 1: Extract all products, product prices, and their associated supports using a LEFT JOIN to obtain all records from the Products table whether there's an associated record in the OrderItems table or not.
+
+-- TODO 2: Retrieve order items with no matching products. Implement a RIGHT JOIN to obtain all records from the OrderItems table whether there's an associated record in the Products table or not. Ensure you include only records where Products.product_id is NULL.
+
+-- TODO 3: Apply the UNION ALL clause to merge the findings of your previous tasks, ensuring a complete dataset that encompasses both associated and non-associated records from both tables.
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+From Products
+LEFT JOIN  OrderItems on Products.product_id = OrderItems.product_id
+UNION ALL
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+RIGHT JOIN OrderItems ON  Products.product_id = OrderItems.product_id
+WHERE Products.product_id IS NULL; 
+
+-- TODO: Add to the query filtering specifically for products in the category "Flashcards" (category_id = 1)
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+LEFT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+
+UNION ALL
+
+SELECT Products.product_name, Products.product_price, OrderItems.extended_support
+FROM Products
+RIGHT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+WHERE Products.product_id IS NULL AND Products.category_id = 1;
+
