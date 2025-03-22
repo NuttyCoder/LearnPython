@@ -1148,3 +1148,9 @@ FROM Products
 RIGHT JOIN OrderItems ON Products.product_id = OrderItems.product_id
 WHERE Products.product_id IS NULL AND Products.category_id = 1;
 
+
+Understand what the COUNT function does.
+Learn the basic syntax of the COUNT function.
+See an example of counting rows in a table.
+Apply the COUNT function in a real-world context, using online shopping analytics as an example.
+By the end of this lesson, you will be able to use the COUNT function to obtain quantitative insights from a dataset
