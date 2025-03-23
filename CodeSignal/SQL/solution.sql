@@ -1154,3 +1154,7 @@ Learn the basic syntax of the COUNT function.
 See an example of counting rows in a table.
 Apply the COUNT function in a real-world context, using online shopping analytics as an example.
 By the end of this lesson, you will be able to use the COUNT function to obtain quantitative insights from a dataset
+
+
+Understand the count function
+learn the basic syntax of the count function
