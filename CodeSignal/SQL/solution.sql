@@ -1273,3 +1273,14 @@ SELECT COUNT(*) FROM Orders WHERE order_status = 'Processed';
 -- ---------
 -- 156
 -- This query would count the total number of rows in the Orders table where the order_status is 'Processed'.
+
+
+SELECT COUNT(*) FROM Orders;
+
+
+-- TODO: Count the number of orders that have the status Processed
+SELECT COUNT(*) FROM Orders WHERE order_status = 'Processed';
+
+-- TODO: Calculate the number of orders placed after the year 2021
+SELECT COUNT(*) FROM Orders WHERE YEAR(order_date) > 2021 ;
+
