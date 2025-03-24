@@ -1255,3 +1255,21 @@ SELECT COUNT(*) FROM Orders;
 SELECT COUNT(*): This command tells the database to count all rows.
 FROM Orders: This specifies the table from which to count the rows.
 In this example, the COUNT function returns 600, which is the total number of rows in the Orders table. 
+
+--Real-world Application: Online Shopping Analytics
+-- Counting rows in a table is not just a theoretical exercise; it has practical applications in real-world scenarios. 
+  -- For instance, in online shopping analytics, you might want to count how many orders have a specific status like "Processed" or "Delivered."
+
+-- Imagine a dataset that includes information about various orders and their statuses. Here, the COUNT function can help you quickly determine 
+  -- meaningful statistics related to order processing or customer interactions.
+
+-- For example, if we wanted to count the number of orders that have been processed, we would use the following query:
+
+
+SELECT COUNT(*) FROM Orders WHERE order_status = 'Processed';
+
+-- Output:
+-- COUNT(*)
+-- ---------
+-- 156
+-- This query would count the total number of rows in the Orders table where the order_status is 'Processed'.
