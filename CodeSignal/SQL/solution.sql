@@ -1238,4 +1238,20 @@ COUNT(*): Counts all rows in the table, including rows with NULL values in any c
 COUNT(column_name): Counts only non-NULL values in the specified column.
 
   
-  
+-- Example: Counting Total Rows in a Table
+-- Let's walk through an example to demonstrate how to count the total number of rows in a table. \
+  -- Recall the table named Orders that stores information about customer orders.
+
+-- To count the total number of rows in the Orders table, we use the following SQL query:
+
+SELECT COUNT(*) FROM Orders;
+
+-- Output:
+-- COUNT(*)
+-- ---------
+-- 600
+-- Explanation:
+
+SELECT COUNT(*): This command tells the database to count all rows.
+FROM Orders: This specifies the table from which to count the rows.
+In this example, the COUNT function returns 600, which is the total number of rows in the Orders table. 
