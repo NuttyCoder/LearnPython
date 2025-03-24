@@ -1156,5 +1156,86 @@ Apply the COUNT function in a real-world context, using online shopping analytic
 By the end of this lesson, you will be able to use the COUNT function to obtain quantitative insights from a dataset
 
 
-Understand the count function
-learn the basic syntax of the count function
+--Understand the count function
+--learn the basic syntax of the count function
+
+--Dataset Introduction
+--In case you haven't done any of our other courses using this dataset, here is a quick overview for you. 
+  -- Below are some sample rows to give you an idea of the structure starting from the simplest table:
+
+Categories Table
+
+category_id	category_name
+1	Flashcards
+2	Worksheets
+3	Guides
+4	Podcasts
+5	Courses
+--This table lists the five product categories available on the platform.
+
+--Customers Table
+
+customer_id	customer_name
+1	John Doe
+2	Jane Smith
+--This table provides details about the customers using the platform.
+
+--Products Table:
+
+product_id	product_name	product_price	category_id
+1	Vocabulary Flashcards	9.34	1
+2	Math Problems Flashcards	12.84	1
+--The Products table lists products available in the online store.
+
+--Orders Table:
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+--The Orders table contains details of customer orders, including the order date and status.
+
+--OrderItems Table:
+
+order_item_id	order_id	product_id	extended_support
+1	1	25	0
+2	2	12	0
+--The OrderItems table includes information about each item in an order, such as the order it belongs to, the product, and whether 
+
+  it has support.
+-- Introduction to COUNT Function
+-- The COUNT function in SQL is used to return the number of rows that match a specified condition. 
+-- It can also be used without any condition to count all rows in a table. It is a simple yet powerful tool for performing 
+--quantitative analysis on data.
+
+--Common Use Cases
+--The COUNT function is commonly used in the following scenarios:
+
+--Counting the total number of rows in a table.
+--Counting the number of unique entries.
+--Counting the number of entries that satisfy a particular condition.
+--Understanding how to use the COUNT function helps you derive quick summary statistics from your data, 
+  --making it essential for tasks ranging from basic reporting to complex data analysis.
+
+  
+  -- Basic Syntax of the COUNT Function
+-- The basic syntax of the COUNT function in SQL is as follows:
+
+
+SELECT COUNT(column_name) FROM table_name WHERE condition;
+-- Let's break this down:
+
+SELECT: The command used to retrieve data from the database.
+COUNT(column_name): The COUNT function, which takes a column name as an argument.
+FROM table_name: Specifies the table from which to retrieve the data.
+WHERE condition: An optional clause to filter the rows counted.
+For example, if you want to count all rows in a table without any condition, you can use the * symbol:
+
+
+SELECT COUNT(*) FROM table_name;
+Difference Between COUNT(*) and COUNT(column_name):
+
+COUNT(*): Counts all rows in the table, including rows with NULL values in any column.
+COUNT(column_name): Counts only non-NULL values in the specified column.
+
+  
+  
