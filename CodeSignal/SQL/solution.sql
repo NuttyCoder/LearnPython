@@ -1284,3 +1284,64 @@ SELECT COUNT(*) FROM Orders WHERE order_status = 'Processed';
 -- TODO: Calculate the number of orders placed after the year 2021
 SELECT COUNT(*) FROM Orders WHERE YEAR(order_date) > 2021 ;
 
+-- TODO: Write the SQL query to count all orders for customer_id 1
+
+SELECT COUNT(*) AS OrderCount
+FROM orders
+WHERE customer_id = 1
+
+--The Need for DISTINCT in Our Database
+-- Given the diverse range of products in online shopping, utilizing DISTINCT is quite handy. We can use it to identify unique categories, 
+  -- and much more. It will broaden our understanding of the products data.
+
+-- Let's first learn the format of a basic SQL query that uses DISTINCT.
+
+SELECT DISTINCT column_name FROM table_name;
+--It is time to apply this format to our online shopping dataset. Consider the following statement:
+
+SELECT DISTINCT category_id FROM Products;
+
+-- Output:
+--  category_id
+-- ------------
+--           1
+--           2
+--           3
+--           4
+--           5
+-- This query will fetch all the distinct or unique category_id from the Products table. We use DISTINCT to avoid getting repeated category IDs in the output.
+
+-- More Applications of DISTINCT
+-- Let's look at a few more examples using the DISTINCT keyword.
+
+-- What if we want to know all the unique products that have been ordered from our online shop? Simple, we would run:
+
+SELECT DISTINCT product_id FROM OrderItems;
+
+-- Sneak peek of the output:
+--  product_id
+-- ------------
+--           1
+--           6
+--           7
+--          10
+
+  -- The DISTINCT keyword can be applied to multiple columns to find unique combinations of values. For example, let's suppose you want to find all unique combinations of customer_id and order_status in the Orders table:
+
+
+SELECT DISTINCT customer_id, order_status 
+FROM Orders;
+
+-- Sneak peek of the output:
+-- | customer_id | order_status |
+-- |-------------|--------------|
+-- |          41 | Delivered    |
+-- |          16 | Processed    |
+-- |          44 | Refunded     |
+-- |           6 | Processed    |
+
+-- This query returns unique pairs of customer_id and order_status. Rows with identical customer_id values but different order_status values will be treated as distinct.
+
+-- When using DISTINCT, it's important to remember that fetching unique values from large datasets can be time-consuming and slow down your queries. 
+-- Therefore, always consider the performance implications and use DISTINCT only when necessary.
+
