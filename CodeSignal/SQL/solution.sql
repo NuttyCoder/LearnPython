@@ -1355,3 +1355,6 @@ FROM OrderItems
 WHERE OrderItems.extended_support = 1;
 
 
+-- TODO: Write an SQL query to select all unique product IDs
+SELECT DISTINCT OrderItems.product_id
+FROM OrderItems
