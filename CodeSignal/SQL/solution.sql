@@ -1349,3 +1349,9 @@ FROM Orders;
 SELECT DISTINCT category_id
 FROM Products;
 
+-- TODO: Fetch all unique product IDs with extended support
+SELECT DISTINCT OrderItems.product_id
+FROM OrderItems
+WHERE OrderItems.extended_support = 1;
+
+
