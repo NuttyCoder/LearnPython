@@ -1345,3 +1345,7 @@ FROM Orders;
 -- When using DISTINCT, it's important to remember that fetching unique values from large datasets can be time-consuming and slow down your queries. 
 -- Therefore, always consider the performance implications and use DISTINCT only when necessary.
 
+-- TODO: Select all distinct category IDs from Products
+SELECT DISTINCT category_id
+FROM Products;
+
