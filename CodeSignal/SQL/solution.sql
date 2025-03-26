@@ -1783,3 +1783,121 @@ SELECT
 FROM Products p
 JOIN OrderItems o ON p.product_id = o.product_id
 WHERE p.category_id IN (1,2) and o.extended_support =1;
+
+Introduction to Subqueries
+So, what is a subquery? A subquery, also known as an "inner query" or "nested query," is a query nested within another SQL query. It allows us to solve convoluted problems that require multiple steps, making our SQL statements even more powerful. Essentially, a subquery can retrieve data for the primary or outer SQL query to utilize. Like other SQL queries you're now familiar with, they begin with a SELECT statement and conclude with an appropriate clause such as WHERE or FROM.
+
+For instance, let's consider a straightforward subquery that calculates the average price of products in the Products table:
+
+SQL
+Copy to clipboard
+Play
+SELECT AVG(product_price) FROM Products;
+
+-- Output:
+--  AVG(product_price) 
+-- -------------------
+--           10.874 
+This subquery, when used within a larger query, can help us compare each product's price to the average and filter out products that meet certain conditions.
+Nesting Subqueries
+Subqueries can be nested within other subqueries or queries. Nesting is the act of placing one item inside another. In the case of subqueries, nesting results in an outer query, possibly containing one or more subqueries. These subqueries can, in turn, contain further subqueries, enabling SQL to solve exceptionally complex tasks.
+
+While the concept might appear intimidating initially, don't worry! The beauty of nested subqueries is that they can always be broken down into smaller, easier-to-understand steps.
+
+ Subquery Use Case Example
+Let's examine a straightforward example before we proceed to break down the final task. Suppose we want to find products that have a price greater than the average price of all products. Here's how we could accomplish this with a subquery:
+
+
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    o.order_date AS OrderDate
+FROM Products p
+INNER JOIN OrderItems oi ON p.product_id = oi.product_id
+INNER JOIN Orders o ON oi.order_id = o.order_id
+WHERE p.product_price > (
+    SELECT AVG(product_price)
+    FROM Products
+);
+
+-- Sneak peek of the output:
+-- | ProductID | ProductName                     | OrderDate  |
+-- |-----------|---------------------------------|------------|
+-- |        2  | Math Problems Flashcards         | 2022-04-03 |
+-- |        4  | History Events Flashcards        | 2022-03-24 |
+
+-- In this example:
+
+-- We introduce aliases p for Products and o for OrderItems to simplify references within the query.
+-- First, we perform an INNER JOIN on the Products and OrderItems tables on the product_id field, and also do INNER JOIN on the Orders table for retrieving the order_date.
+-- Next, we filter using a WHERE clause that compares each product's price to the average price (SELECT AVG(product_price) FROM Products) of all products. This is our subquery.
+-- This query retrieves products where the price is above the average, along with the order date of orders containing those products.
+-- You have now seen how to use subqueries to tackle complex SQL problems!
+
+
+-- TODO: Find and fix the issue in the code
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    o.order_id AS OrderID
+FROM Products p
+INNER JOIN OrderItems o ON p.product_id = o.product_id
+WHERE p.product_price > (
+    SELECT AVG(product_price)
+    FROM Products
+);
+
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    o.order_date AS OrderDate
+FROM Products p
+INNER JOIN OrderItems oi ON p.product_id = oi.product_id
+INNER JOIN Orders o ON o.order_id = o.order_id
+WHERE p.product_price > (
+    SELECT AVG(product_price)
+    FROM Products
+);
+
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    p.product_price AS ProductPrice,
+    o.order_date AS OrderDate
+FROM 
+    Products p
+INNER JOIN 
+    OrderItems oi ON p.product_id = oi.product_id
+INNER JOIN 
+    Orders o ON o.order_id = o.order_id
+INNER JOIN 
+    Categories c ON p.category_id = c.category_id 
+WHERE 
+    p.product_price > (
+        SELECT AVG(product_price)
+        FROM Products
+    )
+AND 
+    c.category_id IN (4,5 )
+ORDER BY 
+    p.product_id DESC, 
+    o.order_date DESC;
+
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    p.product_price AS ProductPrice,
+    oi.extended_support AS ExtendedSupport
+FROM 
+    Products p
+INNER JOIN 
+    OrderItems oi ON p.product_id = oi.product_id
+WHERE 
+    p.product_price > (
+        SELECT 
+            AVG(product_price) 
+        FROM 
+            Products
+    );
+
+
