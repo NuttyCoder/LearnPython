@@ -1468,4 +1468,60 @@ GROUP BY YEAR(order_date);
 -- Each year corresponds to a distinct period in which orders were placed. By counting the occurrences of order_id for each year, we obtain the 
 -- total number of orders placed per year.
 
+-- Another Example
+-- Let's explore a more detailed example, integrating multiple SQL techniques:
+
+
+SELECT Orders.order_date, COUNT(OrderItems.extended_support) AS TotalSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+GROUP BY Orders.order_date
+ORDER BY Orders.order_date DESC;
+
+-- Sneak peek of the output:
+-- | order_date | TotalSupports |
+-- |------------|---------------|
+-- | 2023-12-30 |             2 |
+-- | 2023-12-29 |             2 |
+
+
+-- This SQL query retrieves the date of each order and counts the total number of extended supports given per order date. 
+-- The results are grouped by order date and sorted from the most recent to the oldest. This example demonstrates the powerful 
+-- combination of GROUP BY with JOIN operations to derive meaningful insights from order data.
+
+
+-- Common Pitfalls and Tips
+-- When using the GROUP BY clause, ensure that every non-aggregated column in your SELECT statement is also included in the GROUP BY clause. 
+-- This ensures accurate grouping of your data.
+
+-- Additionally, remember that the GROUP BY clause does not guarantee a specific order of output rows. If you need your results in a particular 
+-- order, use the ORDER BY clause, as demonstrated in our example.
+
+-- TODO: Get the count of order_id from Orders table grouped by year
+SELECT YEAR(order_date) AS Year, COUNT(order_id) AS TotalOrders
+FROM Orders
+GROUP BY YEAR (order_date);
+
+-- TODO: Fetch the total number of orders placed in each year
+SELECT YEAR (order_date) AS Year, COUNT(order_id) AS TotalOrders
+FROM Orders
+GROUP BY Year (order_date);
+
+-- TODO: Select all orders placed after the year 2021 with extended support and count the total number of such orders
+-- group by order date and order by order date in descending order
+SELECT Orders.order_date, COUNT(OrderItems.extended_support) AS TotalSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+WHERE(OrderItems.extended_support = 1) AND (order_date) > 2021
+GROUP BY Orders.order_date
+ORDER BY Orders.order_date DESC;
+
+-- TODO: Write an SQL query to retrieve the order date and the total number of extended support instances for each order date,
+-- only including the years 2021 and 2022, grouped by order date and ordered by order date in descending order.
+SELECT Orders.order_date, COUNT(OrderItems.extended_support) AS TotalOrders
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+WHERE(OrderItems.extended_support = 1) AND YEAR(Orders.order_date) IN (2021, 2022)
+GROUP BY Orders.order_date
+ORDER BY Orders.order_date DESC;
 
