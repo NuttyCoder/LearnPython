@@ -1883,6 +1883,7 @@ ORDER BY
     p.product_id DESC, 
     o.order_date DESC;
 
+
 SELECT 
     p.product_id AS ProductID,
     p.product_name AS ProductName,
@@ -1900,4 +1901,67 @@ WHERE
             Products
     );
 
+-- You've mastered the use of SQL logical and conditional operators and elevated your data analysis with subqueries. In this unit, we're diving into complex queries and conditional logic — an advanced SQL topic that will allow for even more intricate data queries and analysis.
+
+-- We will continue to work with our online shopping database, focusing on the Orders and Products tables. The Orders table contains details such as order IDs, dates, and status, while Products holds information about products, including price and category.
+
+Employing the IF Function in SQL
+In SQL, the IF function is one of the most useful tools we have for adding conditional logic to our queries. It operates according to a simple principle: if a specific condition is true, then do something; if it's false, then do something else.
+
+Let's put this into practice by categorizing orders into 'Recent' and 'Earlier' periods using an SQL query:
+
+SELECT
+    order_id AS OrderID,
+    order_date AS OrderDate,
+    IF(YEAR(order_date) > 2022, 'Recent Order', 'Earlier Order') AS OrderPeriod
+FROM
+    Orders;
+    
+-- Sneak peek of the output:
+-- | OrderID | OrderDate   | OrderPeriod    |
+-- |---------|-------------|----------------|
+-- |       1 | 2021-08-17  | Earlier Order  |
+-- |       2 | 2022-04-03  | Earlier Order  |
+In the query above, the IF function checks whether each order's date is after 2022. If the condition is true, 'Recent Order' is returned; otherwise, 'Earlier Order' is returned. This approach allows us to categorize orders based on their dates in a very efficient and readable manner.
+Deep Dive into the CASE Statement
+The CASE statement is an exceptionally versatile tool in SQL, allowing us to execute actions based on various conditions, offering functionality somewhat similar to the IF statement but with enhanced flexibility. Unlike the IF function, which is binary in its conditionality (true or false), the CASE statement supports multiple conditions, providing a robust means to handle complex logical operations within our queries.
+
+Let's explore how we can categorize products by their price using the CASE statement:
+
+
+SELECT
+    p.product_id AS ProductID,
+    p.product_price AS ProductPrice,
+    CASE
+        WHEN p.product_price < 20 THEN 'Low'
+        WHEN p.product_price BETWEEN 20 AND 100 THEN 'Mid'
+        ELSE 'High'
+    END AS ProductPriceCategory
+FROM
+    Products p;
+    
+-- Sneak peek of the output:
+-- | ProductID | ProductPrice | ProductPriceCategory |
+-- |-----------|--------------|----------------------|
+-- |         1 |        9.34  | Low                  |
+-- |         2 |       12.84  | Low                  |
+In this example, we're selecting the Products table fields. The CASE is applied to determine a product's price category. It sequentially evaluates each condition specified by the WHEN clauses until one is found true. If none of the WHEN conditions match, the ELSE clause (considered a default) is returned. Note that the ELSE clause is optional; if it is omitted and no conditions are met, the CASE statement will return NULL. Here's a closer look at the workflow:
+
+The CASE statement starts its evaluation.
+If the product_price is less than 20, 'Low' is returned.
+If the product_price is between 20 and 100, 'Mid' is returned.
+If neither condition is met, the ELSE part catches all remaining possibilities, returning 'High'.
+The conclusion of the CASE statement is marked by the END keyword, signifying the end of the conditional checks. Following END, we use AS ProductPriceCategory to label the outcome of our CASE statement, assigning it as a new column in our results. This naming convention is not just for clarity; it’s essential for referencing the produced column in other parts of our query or in applications that consume this query's output.
+  
+-- TODO: Categorize products based on their price
+SELECT
+    p.product_id AS ProductID,
+    p.product_price AS ProductPrice,
+    CASE
+        WHEN p.product_price < 20 THEN 'Low'
+        WHEN p.product_price BETWEEN 20 AND 100 THEN 'Mid'
+        ELSE 'High'
+    END AS ProductPriceCategory
+FROM
+    Products p;  
 
