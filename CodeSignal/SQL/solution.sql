@@ -1525,3 +1525,104 @@ WHERE(OrderItems.extended_support = 1) AND YEAR(Orders.order_date) IN (2021, 202
 GROUP BY Orders.order_date
 ORDER BY Orders.order_date DESC;
 
+-- SUM and AVG Functions
+-- At this juncture, the SUM function must seem pretty familiar to you. It does the heavy lifting when we need to find total values. 
+  --For instance, it calculates total supports selected or total items bought in our case.
+
+-- On the other hand, the AVG function might be new to you. It's a classic SQL function utilized for calculating the arithmetic mean 
+-- of a set of values. Simply put, AVG can help us determine an average value, such as the average supports selected per year in the online shopping data.
+
+
+-- Example 1: Utilizing The SUM Function
+
+-- Aggregate total supports selected per each year
+SELECT YEAR(Orders.order_date) as Year, SUM(OrderItems.extended_support) as TotalSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+GROUP BY YEAR(Orders.order_date);
+
+-- Output:
+-- | Year | TotalSupports |
+-- |------|---------------|
+-- | 2021 |            57 |
+-- | 2022 |            63 |
+-- | 2023 |            60 |
+
+-- In the above example, we're using the SUM function to find the total supports selected per year in our online shopping data. 
+-- This is achieved by joining the Orders and OrderItems tables on order_id, where OrderItems records the details of items ordered in each transaction. 
+-- The GROUP BY clause ensures we get a total supports count for each year, providing a comprehensive view of the transaction trends.
+
+-- Example 2: Leveraging The AVG Function
+
+-- Aggregate average supports selected per each year excluding 2022
+SELECT YEAR(Orders.order_date) as Year, AVG(OrderItems.extended_support) as AverageSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+WHERE YEAR(Orders.order_date) != 2022
+GROUP BY YEAR(Orders.order_date);
+
+-- Output:
+-- | Year | AverageSupports |
+-- |------|-----------------|
+-- | 2021 |          0.3000 |
+-- | 2023 |          0.2913 |
+
+-- Here, we're introducing the AVG function to find the average supports selected per year in our online shopping data excluding 2022. 
+-- By filtering orders based on the order_date condition (YEAR(Orders.order_date) != 2022), we focus on the other years. 
+-- The AVG function calculates the arithmetic mean of supports across these years, offering insights into the trends in customer support service selections over time.
+
+-- Please note that if 2023 has a lower average than 2021, it indicates that despite having a higher total of extended support selections (60 vs. 57), 
+-- the proportion of extended support selections to the total number of orders is lower. This suggests there were more instances where extended support 
+-- was not selected in 2023.
+
+-- Handling NULL Values in Aggregate Calculations
+-- Aggregate functions like SUM and AVG automatically ignore NULL values. However, this can lead to misleading results if you are unaware of their presence.
+
+-- Suppose the extended_support column contains NULL:
+
+extended_support
+1
+0
+NULL
+-- In this case, the result of the AVG would be the following:
+
+Total: 1 + 0 = 1
+Count of non-NULL rows: 2
+Average: 1/2 = 0.5
+-- To handle NULL values, use COALESCE to replace them with a default value (e.g., 0):
+
+SELECT AVG(COALESCE(OrderItems.extended_support, 0)) AS AverageSupports
+FROM OrderItems;
+-- Thus, always check for NULL values in your dataset when using aggregate functions, especially if the column is not required to have a value, 
+-- to ensure accuracy in your calculations.
+
+-- Remembering the GROUP BY Clause
+-- From our past lessons, you should recall that the GROUP BY clause groups a result into subsets that share the same attribute value. 
+-- It’s a vital component when using aggregate functions like SUM, COUNT, AVG, and others because it enables us to apply these functions 
+-- to each group of data independently, providing us with insightful segmented data.
+
+-- As you've noticed in our examples, GROUP BY plays an essential role when using aggregate functions. 
+-- We use GROUP BY to return a separate sum or average for each year, allowing us to analyze the transaction trends in a structured manner.
+
+
+-- TODO: Fix the query that aggregates average extended support per each year, excluding the year 2022
+SELECT YEAR (Orders.order_date) as Year, AVG(OrderItems.extended_support) as AverageSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+WHERE YEAR(Orders.order_date) != 2022
+GROUP BY YEAR (Orders.order_date);
+
+
+-- Incorrect SQL query with mistake It WaS WITH at INSTEAD OF on
+SELECT YEAR (Orders.order_date) as Year, SUM(OrderItems.extended_support) as TotalSupports
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+GROUP BY YEAR(Orders.order_date);
+
+-- TODO: Write an SQL query to aggregate total extended supports and average extended supports per each year.
+SELECT YEAR (Orders.order_date) as Year, AVG(OrderItems.extended_support) as AverageSupports, SUM(OrderItems.extended_support) as TotalSupport
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+GROUP BY YEAR (Orders.order_date);
+
+
