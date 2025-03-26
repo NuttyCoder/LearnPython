@@ -1424,3 +1424,7 @@ JOIN Categories ON Products.category_id = Categories.category_id
 WHERE Categories.category_name IN ("Flashcards", "Worksheets")
 GROUP BY Products.category_id;
 
+SELECT Products.category_id, SUM(1) AS TotalItemsSold
+FROM OrderItems
+JOIN Products ON OrderItems.product_id = Products.product_id
+GROUP BY Products.category_id;
