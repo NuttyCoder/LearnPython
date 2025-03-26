@@ -1673,3 +1673,113 @@ SELECT Orders.*
 FROM Orders
 JOIN Customers ON Customers.customer_id = Orders.customer_id
 WHERE Customers.customer_name = 'John Doe' OR Orders.order_status = 'Delivered';
+
+-- TODO: Fetch all orders where product price is greater than a specified amount and order status is a specific value
+-- Join Orders table with OrderItems and Products tables to access the necessary data
+SELECT Orders.*
+FROM Orders
+JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+JOIN Products ON OrderItems.product_id = Products.product_id
+WHERE Products.product_price > 100 AND Orders.order_status = 'Delivered';
+
+-- Introduction to SQL Conditional Operators
+-- In our previous lesson, we tackled the foundational knowledge of the logical operators AND/OR in SQL. 
+-- Now, we're going to extend this knowledge by introducing SQL conditional operators, which will further enhance the 
+-- precision and detail of your queries. These operators include LIKE, BETWEEN, and IN.
+
+-- In essence, conditional operators in SQL allow us to filter the output of our SQL queries based on certain criteria or conditions. 
+-- They're used in conjunction with the SQL WHERE clause to specify the conditions that data must meet to be included in the query results. 
+-- Let's delve into each of these conditional operators.
+
+-- Getting Started with the LIKE Operator
+-- The LIKE operator in SQL is used in a WHERE clause to search for a specified pattern within a column. It works with wildcard characters, 
+-- such as the percentage % sign and the underscore _, to refine searches.
+
+-- The percentage sign % matches zero, one, or multiple characters in a string pattern within the LIKE operator. See the usage examples below:
+
+--  A%: Matches any string starting with 'A' (e.g., 'Apple', 'Ant').
+--  %A: Matches any string ending with 'A' (e.g., 'Pizza', 'Alpaca').
+--  %A%: Matches any string containing 'A' (e.g., 'Table', 'Laptop').
+--  The underscore _ matches exactly one character. See the usage examples below:
+
+--  A_: Matches any two-character string starting with 'A' (e.g., 'An', 'At').
+--  _A: Matches any two-character string ending with 'A' (e.g., 'Ba', 'Ca').
+--  Here's an example showing how the LIKE operator is used:
+
+-- Use LIKE operator to find all orders in January
+SELECT order_id, order_date
+FROM Orders
+WHERE order_date LIKE '2021-01%';
+
+-- Sneak peek of the output:
+-- | order_id | order_date |
+-- |----------|------------|
+-- |        1 | 2021-01-15 |
+-- |        2 | 2021-01-20 |
+
+-- In the example above, we search for all orders in the Orders table whose order_date starts with '2021-01', 
+-- using the LIKE operator and the % wildcard. This will return all orders placed in January 2021.
+
+-- The Power of the BETWEEN Operator
+-- The BETWEEN operator in SQL is used to select values within a specific range. These values can be numbers, text, or dates. It is used with the WHERE clause.
+
+-- The syntax for using BETWEEN is column_name BETWEEN value1 AND value2, where value1 and value2 define the range within which to search. 
+-- It is important to note that BETWEEN is inclusive of both value1 and value2.
+
+-- Here's an example of a SQL query that uses the BETWEEN operator:
+
+
+-- Find OrderItems with extended support
+SELECT product_name, category_id
+FROM Products
+WHERE category_id BETWEEN 2 AND 4;
+
+-- Sneak peek of the output:
+-- | product_name       | category_id |
+-- |--------------------|-------------|
+-- | Math Worksheets    |           2 |
+-- | Science Guides     |           3 |
+-- | Language Podcasts  |           4 |
+
+
+-- In this query, the BETWEEN operator is used to filter products from the Products table whose category_id falls between 2 and 4 (inclusive).
+
+-- Efficiency of the IN Operator
+-- The IN operator in SQL allows us to filter data based on multiple values in a WHERE clause. 
+-- It serves as a shorthand for multiple OR conditions and it's often used when there's a need to compare a column with more than two values.
+
+-- Consider this example of a SQL query using the IN operator:
+
+-- Find products from specific categories with extended support in orders
+SELECT 
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    o.order_id AS OrderID
+FROM Products p
+JOIN OrderItems o ON p.product_id = o.product_id
+WHERE p.category_id IN (1, 2) AND o.extended_support = 1;
+
+-- Sneak peek of the output:
+-- | ProductID | ProductName             | OrderID |
+-- |-----------|-------------------------|---------|
+-- |         1 | Vocabulary Flashcards   |       4 |
+-- |         2 | Math Problems Flashcards|       4 |
+
+
+-- In this example, the IN operator permits us to select products whose category_id is either 1 or 2, and the extended_support for those order items is true (1). 
+-- The table aliases p and o are used to make the query concise — p represents the Products table and o represents the OrderItems table. 
+-- This helps in writing shorter and more readable SQL queries.
+
+-- TODO: Fetch all orders placed in 2022
+SELECT order_id, order_date
+FROM Orders
+WHERE order_date LIKE '2022%';
+
+-- TODO: Write an SQL query that joins the Products and OrderItems tables and filters for products in categories 1 or 2 with extended support.
+SELECT
+    p.product_id AS ProductID,
+    p.product_name AS ProductName,
+    o.order_id AS order_id
+FROM Products p
+JOIN OrderItems o ON p.product_id = o.product_id
+WHERE p.category_id IN (1,2) and o.extended_support =1;
