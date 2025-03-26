@@ -1626,3 +1626,50 @@ JOIN OrderItems ON Orders.order_id = OrderItems.order_id
 GROUP BY YEAR (Orders.order_date);
 
 
+-- Introduction and Context Setting
+-- Welcome to the course "Learning SQL with Online Shopping Data"! In this course, you'll learn how to use SQL to query and analyze data from a real-world dataset revolving around an online shopping environment.
+
+-- We'll be working with several main tables:
+
+Orders: Contains data about the orders placed by customers.
+Customers: Contains data about the customers who place orders.
+-- Here's a quick preview of what these tables look like:
+
+-- Orders Table:
+
+order_id	customer_id	order_date	order_status
+1	41	2021-08-17	Delivered
+2	16	2022-04-03	Processed
+
+  -- Customers Table:
+customer_id	customer_name
+1	John Doe
+2	Jane Smith
+
+
+SELECT * 
+FROM Orders
+Where order_status = 'Delivered' AND  customer_id = 1;
+
+
+SELECT Customers.customer_id, Customers.customer_name, Orders.order_date, Orders.order_status
+FROM Orders
+JOIN Customers ON Customers.customer_id = Order.customer_id
+WHERE Customers.customer_name = 'John Doe' AND Orders.order_date BETWEEN '2023-01-01' AND '2023-12-31';
+
+-- TODO: Fetch all orders by a specific customer within a certain date range
+SELECT *
+FROM Orders
+WHERE customer_id = 1 AND order_date BETWEEN '2021-01-01' AND '2021-12-31';
+
+-- TODO: Fetch all orders placed by a specific customer within a certain date range
+SELECT *
+FROM Orders
+WHERE customer_id = 1 AND Orders.order_date BETWEEN '2021-01-01' AND '2021-12-31';
+
+  
+-- TODO: Find and fix the issue in the code
+SELECT Orders.*
+FROM Orders
+JOIN Customers ON Customers.customer_id = Orders.customer_id
+WHERE Customers.customer_name = 'John Doe' OR Orders.order_status = 'Delivered';
