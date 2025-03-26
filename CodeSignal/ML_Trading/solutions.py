@@ -1462,3 +1462,4 @@ tesla_df['Adj-Open'] = tesla_df['Adj Close'] - tesla_df['Open']
 print(tesla_df[['Close-Low', 'Adj-Open']].head())
 
 
+ 
