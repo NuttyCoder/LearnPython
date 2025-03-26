@@ -1416,3 +1416,11 @@ FROM OrderItems
 JOIN Products ON OrderItems.product_id = Products.product_id
 GROUP BY Products.category_id;
 
+-- TODO: Modify the query to calculate the total number of items sold only for the categories named "Flashcards" and "Worksheets"
+SELECT Products.category_id, SUM(1) AS TotalItemsSold
+FROM OrderItems
+JOIN Products ON OrderItems.product_id = Products.product_id
+JOIN Categories ON Products.category_id = Categories.category_id
+WHERE Categories.category_name IN ("Flashcards", "Worksheets")
+GROUP BY Products.category_id;
+
