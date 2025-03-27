@@ -1593,3 +1593,71 @@ scaled_stds = features_scaled.std(axis=0)
 
 print("\nMean values of scaled features:", scaled_means)
 print("Standard deviations of scaled features:", scaled_stds)
+
+# Problem
+
+# Modify our code to scale only the Volume feature using StandardScaler and include this scaled feature in our dataset as a new column Volume_Scaled. 
+
+import pandas as pd
+import datasets
+from sklearn.preprocessing import StandardScaler
+
+# Load the dataset
+data = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(data['train'])
+
+# Feature Engineering: creating new features
+tesla_df['High-Low'] = tesla_df['High'] - tesla_df['Low']
+tesla_df['Price-Open'] = tesla_df['Close'] - tesla_df['Open']
+
+# Scaling only the 'volume' feature
+scaler = StandardScaler()
+tesla_df['Volume_Scaled'] = scaler.fit_transform(tesla_df[['Volume']])
+
+# Defining features # Update features to include 'Volume_Scaled'
+features = tesla_df[['High-Low', 'Price-Open', 'Volume_Scaled']].values
+
+# Displaying the first few scaled features
+print("Scaled features (first 5 rows):\n", tesla_df[['High-Low','Price-Open', 'Volume_Scaled' ]].head())
+
+# Checking mean values and standard deviations of scaled features
+scaled_means = tesla_df[['High-Low', 'Price-Open', 'Volume_Scaled']].mean(axis=0)
+scaled_stds = tesla_df[['High-Low', 'Price-Open', 'Volume_Scaled']].std(axis=0)
+
+print("\nMean values of scaled features:", scaled_means)
+print("Standard deviations of scaled features:", scaled_stds)
+
+# TASK
+# Add the missing lines to properly scale the features using StandardScaler and validate that the scaling is correct.
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import datasets
+
+# Load the dataset
+data = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(data['train'])
+
+# Feature Engineering: creating new features
+tesla_df['High-Low'] = tesla_df['High'] - tesla_df['Low']
+tesla_df['Price-Open'] = tesla_df['Close'] - tesla_df['Open']
+
+# Defining features
+features =  tesla_df[['High-Low', 'Price-Open']].values
+# Features include new columns and 'Volume' column
+features = tesla_df[['High-Low', 'Price-Open', 'Volume']].values
+
+# TODO: Initialize the StandardScaler and scale the features
+scaler = StandardScaler()
+features_scaled = scaler.fit_transform(features)
+
+# Displaying the first few scaled features
+print("Scaled features (first 5 rows):\n", features_scaled[:5])
+
+# Checking mean values and standard deviations of scaled features
+scaled_means = features_scaled.mean(axis=0)
+scaled_stds = features_scaled.std(axis=0)
+
+print("\nMean values of scaled features:", scaled_means)
+print("Standard deviations of scaled features:", scaled_stds)
+
