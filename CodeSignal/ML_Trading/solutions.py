@@ -2289,4 +2289,301 @@ target = tesla_df['Close'].values
 
 # Displaying features and target
 print("Features (first 5 rows):\n", features[:5])
-print("Target (first 5 rows):\n", target[:5])        
+print("Target (first 5 rows):\n", target[:5])    
+
+
+#############################################################################################################################
+        Introduction to Machine Learning with Gradient Boosting Models
+#############################################################################################################################
+Quick Revision: Data Loading and Preparation
+First, let's quickly revise how to load data and prepare it for machine learning:
+
+Python
+Copy to clipboard
+Play
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import datasets
+
+# Load dataset
+tesla = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla['train'])
+
+# Convert the column to `datetime`
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+tesla_df['SMA_5'] = tesla_df['Adj Close'].rolling(window=5).mean()
+tesla_df['SMA_10'] = tesla_df['Adj Close'].rolling(window=10).mean()
+tesla_df['EMA_5'] = tesla_df['Adj Close'].ewm(span=5, adjust=False).mean()
+tesla_df['EMA_10'] = tesla_df['Adj Close'].ewm(span=10, adjust=False).mean()
+
+# Drop NaN values created by moving averages
+tesla_df.dropna(inplace=True)
+
+# Features and target selection
+features = tesla_df[['Open', 'High', 'Low', 'Close', 'Volume', 'SMA_5', 'SMA_10', 'EMA_5', 'EMA_10']].values
+target = tesla_df['Adj Close'].values
+
+# Standardizing features
+scaler = StandardScaler()
+features_scaled = scaler.fit_transform(features)
+In this code we:
+
+Convert the 'Date' column to datetime format.
+Calculate SMA with windows of 5 and 10 days.
+Calculate EMA with spans of 5 and 10 days.
+Handle missing values resulting from moving averages.
+Select relevant features and the target variable.
+Standardize the feature values for better model performance.
+
+
+# ------------------------------------------------------------------What is a Gradient Boosting Regressor?
+# -- Gradient Boosting is a powerful machine learning technique used for predictive modeling tasks. 
+ # Gradient Boosting Regressor is a specific application of this technique for regression tasks, where we aim to predict a continuous target variable like stock prices.
+
+# In simple terms, Gradient Boosting works by creating an ensemble (a group) of weak prediction models, which are typically simple models.  
+# It combines these weak models in a sequential manner to build a robust predictive model. Here's a simplified explanation of how it works:
+                              
+
+Initial Prediction: Start with an initial prediction, which is often the average of the target values.
+Calculate Residuals: Calculate the residuals, which are the differences between the actual target values and the current predictions.
+Train Weak Learners: Train a weak learner (a simple model) on the residuals to predict these errors.
+Update Predictions: Update the overall predictions by adding the predictions of the weak learner to the current predictions.
+Iterate: Repeat steps 2-4 multiple times, each time using a new weak learner to correct the errors of the previous model.
+Through this iterative process, the gradient boosting regressor minimizes the errors and produces a strong predictive model.
+
+# *************Training a Gradient Boosting Model
+
+# First, we need to split the dataset into training and testing sets. Then, we instantiate a Gradient Boosting Regressor and fit the model to the training data.
+
+# * Here is the necessary code to accomplish this:
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingRegressor
+
+# Splitting the dataset
+X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.25, random_state=42)
+
+# Instantiate and fit the model
+model = GradientBoostingRegressor(random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluating Model Performance
+# Evaluating the model is crucial to understand how well it performs. We will:
+
+# Make predictions with the trained model.
+# Calculate and print the Mean Squared Error (MSE) to the actual y_test values.
+# Here is how you can achieve this:
+
+
+from sklearn.metrics import mean_squared_error
+
+# Predict and evaluate
+predictions = model.predict(X_test)
+mse = mean_squared_error(y_test, predictions)
+print("Mean Squared Error:", mse)
+The output of the above code will be:
+
+Output Text:
+        
+Mean Squared Error: 0.4944244179351423
+# This output indicates the accuracy of our Gradient Boosting Model by providing the mean squared error between the actual 
+        # and predicted stock prices. A lower MSE value suggests better predictive performance.
+
+# -- Visualizing Predictions
+# -- Finally, let's visualize the actual vs predicted values to understand the performance of our model better:
+
+# -- We will plot the actual and predicted values using scatter plots. Here's the visualization code:
+
+
+import matplotlib.pyplot as plt
+
+# Plotting predictions vs actual values
+plt.figure(figsize=(10, 6))
+plt.scatter(range(len(y_test)), y_test, label='Actual', alpha=0.7)
+plt.scatter(range(len(y_test)), predictions, label='Predicted', alpha=0.7)
+plt.title('Actual vs Predicted Values')
+plt.xlabel('Sample Index')
+plt.ylabel('Value')
+plt.legend()
+plt.show()        
+
+        
+# Here:
+
+plt.figure(figsize=(10, 6)): This line initializes a new figure with a specified size.
+plt.scatter(range(len(y_test)), y_test, label='Actual', alpha=0.7): This command creates a scatter plot of the actual values. The range(len(y_test)) generates x-coordinates, while y_test provides actual stock prices. The label parameter is set for the legend, and alpha=0.7 sets the transparency level.
+plt.scatter(range(len(y_test)), predictions, label='Predicted', alpha=0.7): This command creates a scatter plot of the predicted values, using the same x-coordinates for comparison. The label parameter is set for the legend, and alpha=0.7 sets the transparency level.
+plt.title('Actual vs Predicted Values'): Sets the title of the plot.
+plt.xlabel('Sample Index'): Sets the x-axis label to 'Sample Index'.
+plt.ylabel('Value'): Sets the y-axis label to 'Value'.
+plt.legend(): Displays the legend to differentiate between actual and predicted values.
+plt.show(): Renders the plot to the screen.
+
+      
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from datasets import load_dataset
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
+# Load dataset
+tesla = load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla['train'])
+
+# Convert 'Date' column to datetime format
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Adding technical indicators
+tesla_df['SMA_5'] = tesla_df['Adj Close'].rolling(window=5).mean()
+tesla_df['SMA_10'] = tesla_df['Adj Close'].rolling(window=10).mean()
+tesla_df['EMA_5'] = tesla_df['Adj Close'].ewm(span=5, adjust=False).mean()
+tesla_df['EMA_10'] = tesla_df['Adj Close'].ewm(span=10, adjust=False).mean()
+
+# Drop NaN values created by moving averages
+tesla_df.dropna(inplace=True)
+
+# Features and target selection excluding the 'Close' column
+features = tesla_df[['Close','Open', 'High', 'Low', 'Volume', 'SMA_5', 'SMA_10', 'EMA_5', 'EMA_10']].values
+target = tesla_df['Adj Close'].values
+
+# Standardizing features
+scaler = StandardScaler()
+features_scaled = scaler.fit_transform(features)
+
+# Splitting the dataset again
+X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.25, random_state=42)
+
+# Train the model
+model = GradientBoostingRegressor(random_state=42)
+model.fit(X_train, y_train)
+
+# Predict and evaluate
+predictions = model.predict(X_test)
+mse = mean_squared_error(y_test, predictions)
+print("Mean Squared Error:", mse)
+
+# Visualizing the predictions
+plt.figure(figsize=(10, 6))
+plt.scatter(range(len(y_test)), y_test, label='Actual', alpha=0.7)
+plt.scatter(range(len(y_test)), predictions, label='Predicted', alpha=0.7)
+plt.title('Actual vs Predicted Values')
+plt.xlabel('Sample Index')
+plt.ylabel('Value')
+plt.legend()
+plt.show()   
+
+   
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
+# Load dataset
+tesla = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla['train'])
+
+# Convert 'Date' to datetime format
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+
+# Calculate SMAs and EMAs
+tesla_df['SMA_5'] = tesla_df['Adj Close'].rolling(window=5).mean()
+tesla_df['SMA_10'] = tesla_df['Adj Close'].rolling(window=10).mean()
+tesla_df['EMA_5'] = tesla_df['Adj Close'].ewm(span=5, adjust=False).mean()
+tesla_df['EMA_10'] = tesla_df['Adj Close'].ewm(span=10, adjust=False).mean()
+
+# Drop NaN values
+tesla_df.dropna(inplace=True)
+
+# Features and target selection
+features = tesla_df[['Open', 'High', 'Low', 'Close', 'Volume', 'SMA_5', 'SMA_10', 'EMA_5', 'EMA_10']].values
+target = tesla_df['Adj Close'].values
+
+# Standardizing features
+scaler = StandardScaler()
+features_scaled = scaler.fit_transform(features)
+
+# Splitting the dataset
+X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.25, random_state=42)
+
+# Instantiate and fit the Gradient Boosting Regressor
+model = GradientBoostingRegressor(random_state=42)
+model.fit(X_train, y_train)
+
+# Predict and evaluate the model
+predictions = model.predict(X_test)
+mse = mean_squared_error(y_test, predictions)
+print("Mean Squared Error:", mse)
+
+# Visualizing the actual vs predicted values
+plt.figure(figsize=(10, 6))
+plt.scatter(range(len(y_test)), y_test, label='Actual', alpha=0.7)
+plt.scatter(range(len(y_test)), predictions, label='Predicted', alpha=0.7)
+plt.title('Actual vs Predicted Values')
+plt.xlabel('Sample Index')
+plt.ylabel('Value')
+plt.legend()
+plt.show()
+
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+import numpy as np
+import datasets
+
+# Load dataset
+tesla = datasets.load_dataset('codesignal/tsla-historic-prices')
+tesla_df = pd.DataFrame(tesla['train'])
+
+# TODO: Convert 'Date' column to datetime format
+tesla_df['Date'] = pd.to_datetime(tesla_df['Date'])
+# TODO: Add technical indicators: 
+# - Price_Diff: Difference in adjusted close price from the previous day (Adj Close - Adj Close.shift(1))
+# - Volatility: Standard deviation of adjusted close price over the last 5 days (Adj Close.rolling(window=5).std())
+# - Momentum: Difference in adjusted close price compared to 5 days ago (Adj Close - Adj Close.shift(5))
+# - Log_Price: Logarithm of the adjusted close price (np.log(Adj Close))
+tesla_df['Price_Diff'] = tesla_df['Adj Close'] - tesla_df['Adj Close'].shift(1)
+tesla_df['Volatility'] = tesla_df['Adj Close'].rolling(window=5).std()
+tesla_df['Momentum'] = tesla_df['Adj Close'] - tesla_df['Adj Close'].shift(5)
+tesla_df['Log_Price'] = np.log(tesla_df['Adj Close']) 
+
+# TODO: Drop rows with NaN values
+tesla_df.dropna(inplace=True)
+# TODO: Select features (Price_Diff, Volatility, Momentum, Log_Price) and target variable (Adj Close)
+features = tesla_df[['Price_Diff', 'Volatility', 'Momentum', 'Log_Price']].values
+target = tesla_df['Adj Close'].values
+# TODO: Standardize the feature values
+scaler = StandardScaler()
+features_scaled = scaler.fit_transform(features)
+# TODO: Split the dataset into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.25, random_state=42)
+# TODO: Instantiate the Gradient Boosting Regressor and fit it to the training data
+model = GradientBoostingRegressor(random_state=42)
+model.fit(X_train, y_train)
+# TODO: Make predictions and calculate the Mean Squared Error (MSE)
+predictions = model.predict(X_test)
+mse = mean_squared_error(y_test, predictions)
+print("Mean Squared Error:", mse)
+# TODO: Visualize actual vs predicted values using scatter plots
+plt.figure(figsize=(10, 6))
+plt.scatter(range(len(y_test)), y_test, label='Actual', alpha=0.7)
+plt.scatter(range(len(y_test)), predictions, label = 'Predicted', alpha=0.7)
+plt.title('Actual vs Predicted Values')
+plt.xlabel('Sample Index')
+plt.ylabel('Value')
+plt.legend()
+plt.show()
+
+     
+     
+         
